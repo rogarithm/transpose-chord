@@ -20,4 +20,10 @@ class ChordParserTest {
         assertThat(rootTone).isEqualTo("G");
     }
 
+    @Test
+    public void getRootToneOfMinorChord() {
+        Chord aMinor = new Chord("Am");
+        String rootTone = parser.getRootTone(aMinor);
+        assertThat(rootTone).isEqualTo("A");
+    }
 }

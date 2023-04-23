@@ -8,6 +8,11 @@ public class Chord {
     }
 
     public String getRootTone() {
-        return chordString.substring(0, 1);
+        if (chordString.length() == 1)
+            return chordString.substring(0, 1);
+        else if (chordString.length() == 2 && chordString.charAt(1) == 'm')
+            return chordString.substring(0, 1);
+        else
+            throw new IllegalArgumentException("unable to parse given chord");
     }
 }
