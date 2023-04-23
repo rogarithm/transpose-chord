@@ -4,7 +4,7 @@ import model.Key;
 
 public class ChordParser {
     public String getRootTone(Chord chord) {
-        return null;
+        return chord.getRootTone();
     }
 
     public Chord getChordOf(Key key, Degree degree) {
