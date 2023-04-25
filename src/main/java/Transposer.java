@@ -1,9 +1,9 @@
-import model.Chord;
-import model.Key;
+import model.Note;
+import model.Symbol;
 
 public class Transposer {
 
-    public Chord doTranspose(Chord chord, Key currentKey, Key transposedKey) {
+    public Symbol doTranspose(Symbol chord, Note currentKey, Note transposedKey) {
         return null;
     }
 }

@@ -1,10 +1,10 @@
-import model.Chord;
+import model.Note;
+import model.Symbol;
 import model.Degree;
-import model.Key;
 
 public class DegreeCalculator {
 
-    public Degree computeDegree(Key key, Chord chord) {
+    public Degree computeDegree(Note key, Symbol chord) {
         return null;
     }
 

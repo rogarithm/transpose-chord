@@ -1,13 +1,13 @@
-import model.Chord;
+import model.Note;
+import model.Symbol;
 import model.Degree;
-import model.Key;
 
 public class ChordParser {
-    public String getRootTone(Chord chord) {
-        return chord.getRootTone();
+    public String getRootNote(Symbol chord) {
+        return chord.getRootNote();
     }
 
-    public Chord getChordOf(Key key, Degree degree) {
+    public Symbol getChordOf(Note key, Degree degree) {
         return null;
     }
 }

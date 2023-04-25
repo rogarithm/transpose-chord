@@ -1,6 +1,6 @@
 import static org.assertj.core.api.Assertions.*;
 
-import model.Chord;
+import model.Symbol;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +14,18 @@ class ChordParserTest {
     }
 
     @Test
-    public void getRootToneOfMajorChord() {
-        Chord gMajor = new Chord("G");
-        String rootTone = parser.getRootTone(gMajor);
+    public void getRootOfMajorChord() {
+        Symbol gMajor = new Symbol("G");
+        String rootTone = parser.getRootNote(gMajor);
         assertThat(rootTone).isEqualTo("G");
     }
 
     @Test
-    public void getRootToneOfMinorChord() {
-        Chord aMinor = new Chord("Am");
-        String rootTone = parser.getRootTone(aMinor);
+    public void getRootOfFlatMajorChord() {
+        Symbol gMajor = new Symbol("Gb");
+        String rootTone = parser.getRootNote(gMajor);
+        assertThat(rootTone).isEqualTo("Gb");
+    }
         assertThat(rootTone).isEqualTo("A");
     }
 }
