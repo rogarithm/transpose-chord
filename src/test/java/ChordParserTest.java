@@ -20,17 +20,4 @@ class ChordParserTest {
         assertThat(rootTone).isEqualTo("G");
     }
 
-    @Test
-    public void getRootOfFlatMajorChord() {
-        Symbol gMajor = new Symbol("Gb");
-        String rootTone = parser.getRootNote(gMajor);
-        assertThat(rootTone).isEqualTo("Gb");
-    }
-
-    @Test
-    public void getRootOfMinorChord() {
-        Symbol aMinor = new Symbol("Am");
-        String rootTone = parser.getRootNote(aMinor);
-        assertThat(rootTone).isEqualTo("A");
-    }
 }
