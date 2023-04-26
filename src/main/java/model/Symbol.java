@@ -10,14 +10,20 @@ public class Symbol {
     }
 
     public String getRootNote() {
-        if (chordString.length() == 1)
+        if (isNotFlat(chordString))
             return chordString.substring(0, 1);
-        else if (chordString.length() >= 2 && chordString.charAt(1) == 'b')
+        if (isFlat(chordString))
             return chordString.substring(0, 2);
-        else if (chordString.length() >= 2)
-            return chordString.substring(0, 1);
-        else
-            throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
+
+        throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
+    }
+
+    private boolean isNotFlat(String s) {
+        return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != 'b');
+    }
+
+    private boolean isFlat(String s) {
+        return s.length() >= 2 && s.charAt(1) == 'b';
     }
 
     public String getOther() {
