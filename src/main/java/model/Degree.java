@@ -12,6 +12,10 @@ public enum Degree {
         this.steps = steps;
     }
 
+    public int getSteps() {
+        return this.steps;
+    }
+
     public static Degree getDegree(Note note, Note currentKey) {
         Map<Degree, Note> notesInDegree = new HashMap<>();
         for (Degree d : Degree.values()) {

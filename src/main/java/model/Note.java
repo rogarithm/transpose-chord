@@ -33,4 +33,8 @@ public enum Note {
     public Note getHalfStepUpperNote() {
         return Note.valueOf(this.next);
     }
+
+    public Note getTransposedNote(Note keyToTranspose, Degree degreeOfChord) {
+        return keyToTranspose.getHalfStepsUpperNote(degreeOfChord.getSteps());
+    }
 }
