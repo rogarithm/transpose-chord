@@ -27,12 +27,10 @@ public class Symbol {
     }
 
     public String getOther() {
-        if (chordString.length() == 1)
-            return "";
-        else if (chordString.length() >= 2 && chordString.charAt(1) == 'b')
-            return "";
-        else if (chordString.length() >= 2)
+        if (isNotFlat(chordString))
             return chordString.substring(1);
+        if (isFlat(chordString))
+            return chordString.substring(2);
         else
             throw new IllegalArgumentException("Symbol.getOther(): unable to parse given chord");
     }

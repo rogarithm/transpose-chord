@@ -27,4 +27,26 @@ class SymbolTest {
         String rootTone = aMinor.getRootNote();
         assertThat(rootTone).isEqualTo("A");
     }
+
+    @Test
+    public void getOtherOfMajorChord() {
+        Symbol gMajor = new Symbol("G");
+        String other = gMajor.getOther();
+        assertThat(other).isEqualTo("");
+    }
+
+    @Test
+    public void getOtherOfFlatMajorChord() {
+        Symbol gFlatMajor = new Symbol("Gb");
+        String other = gFlatMajor.getOther();
+        assertThat(other).isEqualTo("");
+    }
+
+    @Test
+    public void getOtherOfMinorChord() {
+        Symbol aMinor = new Symbol("Am");
+        String other = aMinor.getOther();
+        assertThat(other).isEqualTo("m");
+    }
+
 }
