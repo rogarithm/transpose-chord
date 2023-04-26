@@ -14,8 +14,8 @@ public enum Note {
     Bb("Bb", "B"),
     B("B", "C");
 
-    private String current;
-    private String next;
+    private final String current;
+    private final String next;
 
     Note(String current, String next) {
         this.current = current;

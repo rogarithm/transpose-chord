@@ -6,7 +6,7 @@ import java.util.Map;
 public enum Degree {
     I(0), II(2), III(4), IV(5), V(7), VI(9), VII(11);
 
-    private int steps;
+    private final int steps;
 
     Degree(int steps) {
         this.steps = steps;
