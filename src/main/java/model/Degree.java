@@ -17,13 +17,13 @@ public enum Degree {
     }
 
     public static Degree getDegree(Note note, Note currentKey) {
-        Map<Degree, Note> notesInDegree = new HashMap<>();
-        for (Degree d : Degree.values()) {
-            notesInDegree.put(d, currentKey.getHalfStepsUpperNote(d.steps));
+        Map<Degree, Note> notesInKey = new HashMap<>();
+        for (Degree degree : Degree.values()) {
+            notesInKey.put(degree, currentKey.getHalfStepsUpperNote(degree.steps));
         }
-        for (Degree d : notesInDegree.keySet()) {
-            if (notesInDegree.get(d).equals(note))
-                return d;
+        for (Degree degree : notesInKey.keySet()) {
+            if (notesInKey.get(degree).equals(note))
+                return degree;
         }
         throw new IllegalArgumentException("no matching degree for given note!");
     }
