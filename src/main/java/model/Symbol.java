@@ -2,8 +2,6 @@ package model;
 
 public class Symbol {
     private String chordString;
-    private String key;
-    private String other;
 
     public Symbol(String chordString) {
         this.chordString = chordString;
