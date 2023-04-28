@@ -9,12 +9,10 @@ import org.junit.jupiter.api.Test;
 class TransposerTest {
 
     private Transposer transposer;
-    private ChordParser parser;
 
     @BeforeEach
     public void setUp() {
-        parser = new ChordParser();
-        transposer = new Transposer(parser);
+        transposer = new Transposer();
     }
 
     @Test

@@ -4,15 +4,12 @@ import model.Symbol;
 
 public class Transposer {
 
-    private ChordParser parser;
-
-    public Transposer(ChordParser parser) {
-        this.parser = parser;
+    public Transposer() {
     }
 
     public String doTranspose(Symbol chord, Note currentKey, Note transposedKey) {
-        String rootNote = parser.getRootNote(chord);
-        String other = parser.getOther(chord);
+        String rootNote = chord.getRootNote();
+        String other = chord.getOther();
 
         Note note = Note.valueOf(rootNote);
         Degree degree = Degree.getDegree(note, currentKey);
