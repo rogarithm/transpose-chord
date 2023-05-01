@@ -1,4 +1,3 @@
-import model.Degree;
 import model.Interval;
 import model.Note;
 import model.Symbol;

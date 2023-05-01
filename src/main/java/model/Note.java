@@ -22,19 +22,4 @@ public enum Note {
         this.next = next;
     }
 
-    public Note getHalfStepsUpperNote(int steps) {
-        Note current = this;
-        for (int i=0; i<steps; i++) {
-            current = Note.valueOf(current.next);
-        }
-        return current;
-    }
-
-    public Note getHalfStepUpperNote() {
-        return Note.valueOf(this.next);
-    }
-
-    public Note getTransposedNote(Note keyToTranspose, Degree degreeOfChord) {
-        return keyToTranspose.getHalfStepsUpperNote(degreeOfChord.getSteps());
-    }
 }
