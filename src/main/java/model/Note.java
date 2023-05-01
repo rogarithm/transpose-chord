@@ -1,25 +1,23 @@
 package model;
 
 public enum Note {
-    C("C", "Db"),
-    Db("Db", "D"),
-    D("D", "Eb"),
-    Eb("Eb", "E"),
-    E("E", "F"),
-    F("F", "Gb"),
-    Gb("Gb", "G"),
-    G("G", "Ab"),
-    Ab("Ab", "A"),
-    A("A", "Bb"),
-    Bb("Bb", "B"),
-    B("B", "C");
+    C("C"),
+    Db("Db"),
+    D("D"),
+    Eb("Eb"),
+    E("E"),
+    F("F"),
+    Gb("Gb"),
+    G("G"),
+    Ab("Ab"),
+    A("A"),
+    Bb("Bb"),
+    B("B");
 
     private final String current;
-    private final String next;
 
-    Note(String current, String next) {
+    Note(String current) {
         this.current = current;
-        this.next = next;
     }
 
 }
