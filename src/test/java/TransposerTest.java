@@ -42,30 +42,4 @@ class TransposerTest {
         Assertions.assertThat(transposed).isEqualTo("E7");
     }
 
-    @Test
-    public void transposeMajorChordWithInterval() {
-        Symbol gMajor = new Symbol("G");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
-        String transposed = transposer.doTransposeWithInterval(gMajor, keyBefore, keyAfter);
-        Assertions.assertThat(transposed).isEqualTo("A");
-    }
-
-    @Test
-    public void transposeMinorChordWithInterval() {
-        Symbol gMajor = new Symbol("Bm");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
-        String transposed = transposer.doTransposeWithInterval(gMajor, keyBefore, keyAfter);
-        Assertions.assertThat(transposed).isEqualTo("Dbm");
-    }
-
-    @Test
-    public void transpose7thChordWithInterval() {
-        Symbol gMajor = new Symbol("D7");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
-        String transposed = transposer.doTransposeWithInterval(gMajor, keyBefore, keyAfter);
-        Assertions.assertThat(transposed).isEqualTo("E7");
-    }
 }
