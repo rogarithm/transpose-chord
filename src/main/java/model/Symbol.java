@@ -8,9 +8,9 @@ public class Symbol {
     }
 
     public String getRootNote() {
-        if (isNotFlat(chordString))
+        if (isNotFlat(chordString) && isNotSharp(chordString))
             return chordString.substring(0, 1);
-        if (isFlat(chordString))
+        if (isFlat(chordString) || isSharp(chordString))
             return chordString.substring(0, 2);
 
         throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
@@ -22,6 +22,14 @@ public class Symbol {
 
     private boolean isFlat(String s) {
         return s.length() >= 2 && s.charAt(1) == 'b';
+    }
+
+    private boolean isNotSharp(String s) {
+        return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != '#');
+    }
+
+    private boolean isSharp(String s) {
+        return s.length() >= 2 && s.charAt(1) == '#';
     }
 
     public String getOther() {
