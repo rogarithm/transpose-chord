@@ -29,7 +29,7 @@ public class Symbol {
             return chordString.substring(1);
         if (isFlat(chordString))
             return chordString.substring(2);
-        else
-            throw new IllegalArgumentException("Symbol.getOther(): unable to parse given chord");
+
+        throw new IllegalArgumentException("Symbol.getOther(): unable to parse given chord");
     }
 }
