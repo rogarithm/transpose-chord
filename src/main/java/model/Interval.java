@@ -35,19 +35,19 @@ public class Interval {
     }
 
     public int getInterval(Note base, Note target) {
-        if (base.getName().endsWith("#")) {
+        if (base.toString().endsWith("#")) {
             base = findEquivalentNote(base);
         }
 
         int result = 0;
-        NextNotes currentNote = NextNotes.valueOf(base.getName());
+        NextNotes currentNote = NextNotes.valueOf(base.toString());
 
-        while (!currentNote.current.equals(target.getName())) {
+        while (!currentNote.current.equals(target.toString())) {
             currentNote = NextNotes.valueOf(currentNote.next);
             result += 1;
         }
 
-        if (currentNote.current.equals(target.getName())) {
+        if (currentNote.current.equals(target.toString())) {
             return result;
         }
 
@@ -55,11 +55,11 @@ public class Interval {
     }
 
     public Note getRaisedNote(Note base, int steps) {
-        if (base.getName().endsWith("#")) {
+        if (base.toString().endsWith("#")) {
             base = findEquivalentNote(base);
         }
 
-        NextNotes currentNote = NextNotes.valueOf(base.getName());
+        NextNotes currentNote = NextNotes.valueOf(base.toString());
 
         while (steps != 0) {
             currentNote = NextNotes.valueOf(currentNote.next);
@@ -72,7 +72,7 @@ public class Interval {
     private Note findEquivalentNote(Note note) {
 
         for (NextNotes nextNote : NextNotes.values()) {
-            if (nextNote.alternate != null && nextNote.alternate.equals(note.getName())) {
+            if (nextNote.alternate != null && nextNote.alternate.equals(note.toString())) {
                 note = NoteFactory.create(nextNote.next);
             }
         }

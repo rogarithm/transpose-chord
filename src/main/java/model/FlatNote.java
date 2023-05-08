@@ -17,7 +17,7 @@ public enum FlatNote implements Note {
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         return name;
     }
 }
