@@ -10,34 +10,55 @@ class IntervalTest {
     @Test
     public void getIntervalsInGKey() {
         Interval itv = new Interval();
-        int itvM2 = itv.getInterval(Note.G, Note.A);
+        Note G = PlainNote.G;
+        Note A = PlainNote.A;
+        Note Bb = FlatNote.B;
+        Note D = PlainNote.D;
+
+        int itvM2 = itv.getInterval(G, A);
         assertThat(itvM2).isEqualTo(2);
 
-        int itvm3 = itv.getInterval(Note.G, Note.Bb);
+        int itvm3 = itv.getInterval(G, Bb);
         assertThat(itvm3).isEqualTo(3);
 
-        int itvP5 = itv.getInterval(Note.G, Note.D);
+        int itvP5 = itv.getInterval(G, D);
         assertThat(itvP5).isEqualTo(7);
     }
 
     @Test
     public void getIntervalFail() {
         Interval itv = new Interval();
+        Note G = PlainNote.G;
+        Note H = PlainNote.valueOf("H");
 
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> itv.getInterval(Note.G, Note.valueOf("H")));
+                () -> itv.getInterval(G, H));
     }
 
     @Test
     public void getRaisedNotes() {
         Interval itv = new Interval();
-        Note noteA = itv.getRaisedNote(Note.G, 2);
-        assertThat(noteA).isEqualTo(Note.A);
+        Note G = PlainNote.G;
+        Note A = PlainNote.A;
+        Note Bb = FlatNote.B;
+        Note D = PlainNote.D;
 
-        Note noteBb = itv.getRaisedNote(Note.G, 3);
-        assertThat(noteBb).isEqualTo(Note.Bb);
+        Note noteA = itv.getRaisedNote(G, 2);
+        assertThat(noteA).isEqualTo(A);
 
-        Note noteD = itv.getRaisedNote(Note.G, 7);
-        assertThat(noteD).isEqualTo(Note.D);
+        Note noteBb = itv.getRaisedNote(G, 3);
+        assertThat(noteBb).isEqualTo(Bb);
+
+        Note noteD = itv.getRaisedNote(G, 7);
+        assertThat(noteD).isEqualTo(D);
+    }
+
+    @Test
+    public void getRaisedNoteInGKey() {
+        Interval itv = new Interval();
+        Note G = PlainNote.G;
+
+        Note noteFsharp = itv.getRaisedNote(G, 11);
+        assertThat(noteFsharp).isEqualTo(SharpNote.F);
     }
 }

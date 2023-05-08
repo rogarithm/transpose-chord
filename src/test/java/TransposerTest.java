@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import model.Note;
+import model.PlainNote;
 import model.Symbol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +19,8 @@ class TransposerTest {
     @Test
     public void transposeMajorChord() {
         Symbol gMajor = new Symbol("G");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
+        Note keyBefore = PlainNote.G;
+        Note keyAfter = PlainNote.A;
         String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("A");
     }
@@ -27,8 +28,8 @@ class TransposerTest {
     @Test
     public void transposeMinorChord() {
         Symbol gMajor = new Symbol("Bm");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
+        Note keyBefore = PlainNote.G;
+        Note keyAfter = PlainNote.A;
         String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("Dbm");
     }
@@ -36,8 +37,8 @@ class TransposerTest {
     @Test
     public void transpose7thChord() {
         Symbol gMajor = new Symbol("D7");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
+        Note keyBefore = PlainNote.G;
+        Note keyAfter = PlainNote.A;
         String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("E7");
     }
