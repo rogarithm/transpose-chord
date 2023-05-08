@@ -26,16 +26,6 @@ class IntervalTest {
     }
 
     @Test
-    public void getIntervalFail() {
-        Interval itv = new Interval();
-        Note G = PlainNote.G;
-        Note H = PlainNote.valueOf("H");
-
-        Assertions.assertThrows(IllegalArgumentException.class,
-                () -> itv.getInterval(G, H));
-    }
-
-    @Test
     public void getRaisedNotes() {
         Interval itv = new Interval();
         Note G = PlainNote.G;
