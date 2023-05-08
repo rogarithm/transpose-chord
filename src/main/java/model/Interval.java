@@ -27,14 +27,14 @@ public class Interval {
 
     public int getInterval(Note base, Note target) {
         int result = 0;
-        NextNotes currentNote = NextNotes.valueOf(base.name());
+        NextNotes currentNote = NextNotes.valueOf(base.getName());
 
-        while (!currentNote.current.equals(target.name())) {
+        while (!currentNote.current.equals(target.getName())) {
             currentNote = NextNotes.valueOf(currentNote.next);
             result += 1;
         }
 
-        if (currentNote.current.equals(target.name())) {
+        if (currentNote.current.equals(target.getName())) {
             return result;
         }
 
@@ -42,7 +42,7 @@ public class Interval {
     }
 
     public Note getRaisedNote(Note base, int steps) {
-        NextNotes currentNote = NextNotes.valueOf(base.name());
+        NextNotes currentNote = NextNotes.valueOf(base.getName());
 
         while (steps != 0) {
             currentNote = NextNotes.valueOf(currentNote.next);
