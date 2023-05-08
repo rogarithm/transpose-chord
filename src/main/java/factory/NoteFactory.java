@@ -3,6 +3,7 @@ package factory;
 import model.FlatNote;
 import model.Note;
 import model.PlainNote;
+import model.SharpNote;
 
 public class NoteFactory {
 
@@ -11,8 +12,8 @@ public class NoteFactory {
             return PlainNote.valueOf(name.substring(0, 1));
         if (isFlat(name))
             return FlatNote.valueOf(name.substring(0, 2));
-        if(isSharp(name)) //TODO SharpNote 반환하도록 바꾸기
-            return null;
+        if (isSharp(name))
+            return SharpNote.valueOf(name.substring(0, 2));
 
         throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
     };
