@@ -44,11 +44,20 @@ class IntervalTest {
     }
 
     @Test
-    public void getRaisedNoteInGKey() {
+    public void getRaisedNoteOfFlatNote() {
         Interval itv = new Interval();
         Note G = PlainNote.G;
 
-        Note noteFsharp = itv.getRaisedNote(G, 11);
-        assertThat(noteFsharp).isEqualTo(SharpNote.F);
+        Note noteGflat = itv.getRaisedNote(G, 11);
+        assertThat(noteGflat).isEqualTo(FlatNote.G);
+    }
+
+    @Test
+    public void getRaisedNoteOfSharpNote() {
+        Interval itv = new Interval();
+        Note Gsharp = SharpNote.G;
+
+        Note noteA = itv.getRaisedNote(Gsharp, 1);
+        assertThat(noteA).isEqualTo(PlainNote.A);
     }
 }
