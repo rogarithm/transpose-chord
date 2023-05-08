@@ -1,5 +1,7 @@
 package model;
 
+import factory.NoteFactory;
+
 public class Interval {
 
     private enum NextNotes {
@@ -49,6 +51,6 @@ public class Interval {
             steps -= 1;
         }
 
-        return Note.valueOf(currentNote.current);
+        return NoteFactory.create(currentNote.current);
     }
 }
