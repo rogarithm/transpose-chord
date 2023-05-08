@@ -1,22 +1,22 @@
-package factory;
-
-import model.FlatNote;
-import model.Note;
-import model.PlainNote;
-import model.SharpNote;
+package model.note;
 
 public class NoteFactory {
 
     public static Note create(String name) {
-        if (isNotFlat(name) && isNotSharp(name))
+        if (isNotFlat(name) && isNotSharp(name)) {
             return PlainNote.valueOf(name.substring(0, 1));
-        if (isFlat(name))
+        }
+        if (isFlat(name)) {
             return FlatNote.valueOf(name.substring(0, 1));
-        if (isSharp(name))
+        }
+        if (isSharp(name)) {
             return SharpNote.valueOf(name.substring(0, 1));
+        }
 
         throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
-    };
+    }
+
+    ;
 
     private static boolean isNotFlat(String s) {
         return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != 'b');

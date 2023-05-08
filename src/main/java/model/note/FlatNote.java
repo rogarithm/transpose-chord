@@ -1,4 +1,4 @@
-package model;
+package model.note;
 
 public enum FlatNote implements Note {
 

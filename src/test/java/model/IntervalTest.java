@@ -2,7 +2,10 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Assertions;
+import model.note.FlatNote;
+import model.note.Note;
+import model.note.PlainNote;
+import model.note.SharpNote;
 import org.junit.jupiter.api.Test;
 
 class IntervalTest {

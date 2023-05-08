@@ -1,6 +1,7 @@
 package model;
 
-import factory.NoteFactory;
+import model.note.NoteFactory;
+import model.note.Note;
 
 public class Interval {
 

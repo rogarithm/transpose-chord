@@ -1,6 +1,6 @@
-import factory.NoteFactory;
+import model.note.NoteFactory;
 import model.Interval;
-import model.Note;
+import model.note.Note;
 import model.Symbol;
 
 public class Transposer {

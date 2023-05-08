@@ -1,7 +1,5 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import model.Note;
-import model.PlainNote;
+import model.note.Note;
+import model.note.PlainNote;
 import model.Symbol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
