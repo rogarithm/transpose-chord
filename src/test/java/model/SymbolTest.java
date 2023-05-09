@@ -16,8 +16,8 @@ class SymbolTest {
 
     @Test
     public void getRootOfSharpMajorChord() {
-        Symbol gFlatMajor = new Symbol("G#");
-        String rootTone = gFlatMajor.getRootNote();
+        Symbol gSharpMajor = new Symbol("G#");
+        String rootTone = gSharpMajor.getRootNote();
         assertThat(rootTone).isEqualTo("G#");
     }
 
@@ -30,8 +30,8 @@ class SymbolTest {
 
     @Test
     public void getRootOfSharpMinorChord() {
-        Symbol aMinor = new Symbol("A#m");
-        String rootTone = aMinor.getRootNote();
+        Symbol aSharpMinor = new Symbol("A#m");
+        String rootTone = aSharpMinor.getRootNote();
         assertThat(rootTone).isEqualTo("A#");
     }
 

@@ -25,19 +25,19 @@ class TransposerTest {
 
     @Test
     public void transposeMinorChord() {
-        Symbol gMajor = new Symbol("Bm");
+        Symbol bMinor = new Symbol("Bm");
         Note keyBefore = PlainNote.G;
         Note keyAfter = PlainNote.A;
-        String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
+        String transposed = transposer.doTranspose(bMinor, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("Dbm");
     }
 
     @Test
     public void transpose7thChord() {
-        Symbol gMajor = new Symbol("D7");
+        Symbol d7 = new Symbol("D7");
         Note keyBefore = PlainNote.G;
         Note keyAfter = PlainNote.A;
-        String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
+        String transposed = transposer.doTranspose(d7, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("E7");
     }
 
