@@ -6,13 +6,20 @@ import model.note.FlatNote;
 import model.note.Note;
 import model.note.PlainNote;
 import model.note.SharpNote;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class IntervalTest {
 
+    private Interval itv;
+
+    @BeforeEach
+    public void setUp() {
+        itv = new Interval();
+    }
     @Test
     public void getIntervalsInGKey() {
-        Interval itv = new Interval();
         Note G = PlainNote.G;
         Note A = PlainNote.A;
         Note Bb = FlatNote.B;
@@ -30,7 +37,6 @@ class IntervalTest {
 
     @Test
     public void getRaisedNotes() {
-        Interval itv = new Interval();
         Note G = PlainNote.G;
         Note A = PlainNote.A;
         Note Bb = FlatNote.B;
@@ -48,7 +54,6 @@ class IntervalTest {
 
     @Test
     public void getRaisedNoteOfFlatNote() {
-        Interval itv = new Interval();
         Note G = PlainNote.G;
 
         Note noteGflat = itv.getRaisedNote(G, 11);
