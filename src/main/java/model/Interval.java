@@ -5,6 +5,25 @@ import model.note.Note;
 
 public class Interval {
 
+    enum Intervals {
+        MAJOR_SECOND(2),
+        MAJOR_THIRD(4),
+        MAJOR_FOURTH(5),
+        MAJOR_FIFTH(7),
+        MAJOR_SIXTH(9),
+        MAJOR_SEVENTH(11);
+
+        private final int offset;
+
+        Intervals(int offset) {
+            this.offset = offset;
+        }
+
+        public int getOffset() {
+            return offset;
+        }
+    }
+
     private enum NextNotes {
         C("C", "Db", "C#"),
         Db("Db", "D"),
@@ -79,5 +98,14 @@ public class Interval {
         }
 
         return note;
+    }
+
+    public Intervals getIntervalName(int steps) {
+        for (Intervals itvName : Intervals.values()) {
+            if (steps == itvName.offset)
+                return itvName;
+        }
+
+        throw new IllegalArgumentException("can't find interval name for given semitones count: " + steps);
     }
 }

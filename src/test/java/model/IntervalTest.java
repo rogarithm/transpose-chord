@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.Interval.Intervals;
 import model.note.FlatNote;
 import model.note.Note;
 import model.note.PlainNote;
@@ -62,10 +63,15 @@ class IntervalTest {
 
     @Test
     public void getRaisedNoteOfSharpNote() {
-        Interval itv = new Interval();
         Note Gsharp = SharpNote.G;
 
         Note noteA = itv.getRaisedNote(Gsharp, 1);
         assertThat(noteA).isEqualTo(PlainNote.A);
+    }
+
+    @Test
+    public void getIntervalNameFromIntervalSteps() {
+        Intervals majorSecond = itv.getIntervalName(2);
+        Assertions.assertThat(majorSecond).isEqualTo(Intervals.MAJOR_SECOND);
     }
 }
