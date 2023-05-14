@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import model.Interval.Intervals;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;
@@ -31,4 +32,20 @@ class DegreeTest {
         Assertions.assertThat(degree.getNoteForGivenDegree(2)).isEqualTo("E");
     }
 
+    @Test
+    public void thirdDegreeOfDShouldFormattedWithF() {
+        Note keyBefore = NoteFactory.create("G");
+        Note noteToTranspose = NoteFactory.create("B");
+        Note keyAfter = NoteFactory.create("D");
+
+        Interval itv = new Interval();
+        int interval = itv.getInterval(keyBefore, noteToTranspose);
+        Note raisedNote = itv.getRaisedNote(keyAfter, interval);
+        Intervals intervalName = itv.getIntervalName(interval);
+        int deg = intervalName.getDegree();
+
+        Degree degree = new Degree(keyAfter);
+        String noteToFormat = degree.getNoteForGivenDegree(deg);
+        Assertions.assertThat(noteToFormat).isEqualTo("F");
+    }
 }

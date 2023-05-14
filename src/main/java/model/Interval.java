@@ -6,21 +6,27 @@ import model.note.Note;
 public class Interval {
 
     enum Intervals {
-        MAJOR_SECOND(2),
-        MAJOR_THIRD(4),
-        MAJOR_FOURTH(5),
-        MAJOR_FIFTH(7),
-        MAJOR_SIXTH(9),
-        MAJOR_SEVENTH(11);
+        MAJOR_SECOND(2, 2),
+        MAJOR_THIRD(3, 4),
+        MAJOR_FOURTH(4, 5),
+        MAJOR_FIFTH(5, 7),
+        MAJOR_SIXTH(6, 9),
+        MAJOR_SEVENTH(7, 11);
 
+        private final int degree;
         private final int offset;
 
-        Intervals(int offset) {
+        Intervals(int degree, int offset) {
+            this.degree = degree;
             this.offset = offset;
         }
 
         public int getOffset() {
             return offset;
+        }
+
+        public int getDegree() {
+            return degree;
         }
     }
 

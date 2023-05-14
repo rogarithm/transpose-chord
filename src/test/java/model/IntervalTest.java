@@ -74,4 +74,11 @@ class IntervalTest {
         Intervals majorSecond = itv.getIntervalName(2);
         Assertions.assertThat(majorSecond).isEqualTo(Intervals.MAJOR_SECOND);
     }
+
+    @Test
+    public void getDegreeFromIntervalName() {
+        Intervals majorSecond = itv.getIntervalName(2);
+        int degree = majorSecond.getDegree();
+        assertThat(degree).isEqualTo(2);
+    }
 }
