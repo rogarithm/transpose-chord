@@ -77,7 +77,7 @@ public class Interval {
             return result;
         }
 
-        throw new IllegalArgumentException("can't find interval for given target note!");
+        throw new IllegalArgumentException("can't find interval from " + base + " to " + target + "!");
     }
 
     public Note getRaisedNote(Note base, int steps) {
