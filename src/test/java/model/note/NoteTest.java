@@ -1,6 +1,5 @@
 package model.note;
 
-import model.note.PlainNote;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

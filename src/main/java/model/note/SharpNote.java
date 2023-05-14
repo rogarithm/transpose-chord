@@ -1,7 +1,5 @@
 package model.note;
 
-import model.note.Note;
-
 public enum SharpNote implements Note {
 
     C("C#"),

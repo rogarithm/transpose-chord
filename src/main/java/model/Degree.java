@@ -4,11 +4,6 @@ import model.note.Note;
 
 public class Degree {
 
-    public int getDegreeOfNote(Note note) {
-        Degrees degrees = Degrees.valueOf(note.toString());
-        return degrees.degree;
-    }
-
     private enum Degrees {
         C("C", "D"),
         D("D", "E"),
@@ -41,4 +36,10 @@ public class Degree {
             degree++;
         }
     }
+
+    public int getDegreeOfNote(Note note) {
+        Degrees degrees = Degrees.valueOf(note.toString());
+        return degrees.degree;
+    }
+
 }
