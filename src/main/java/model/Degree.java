@@ -42,4 +42,12 @@ public class Degree {
         return degrees.degree;
     }
 
+    public String getNoteForGivenDegree(int degree) {
+        for (Degrees degrees : Degrees.values()) {
+            if (degrees.degree == degree) {
+                return degrees.current;
+            }
+        }
+        throw new IllegalArgumentException("there's no note for given degree: " + degree);
+    }
 }

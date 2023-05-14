@@ -24,4 +24,11 @@ class DegreeTest {
         Assertions.assertThat(degree.getDegreeOfNote(noteE)).isEqualTo(2);
     }
 
+    @Test
+    public void getNoteForDegree() {
+        Note noteD = NoteFactory.create("D");
+        Degree degree = new Degree(noteD);
+        Assertions.assertThat(degree.getNoteForGivenDegree(2)).isEqualTo("E");
+    }
+
 }
