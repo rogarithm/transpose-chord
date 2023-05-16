@@ -40,12 +40,11 @@ class DegreeTest {
 
         Interval itv = new Interval();
         int interval = itv.getInterval(keyBefore, noteToTranspose);
-        Note raisedNote = itv.getRaisedNote(keyAfter, interval);
         Intervals intervalName = itv.getIntervalName(interval);
-        int deg = intervalName.getDegree();
+        int degreeOfInterval = intervalName.getDegree();
 
         Degree degree = new Degree(keyAfter);
-        String noteToFormat = degree.getNoteForGivenDegree(deg);
+        String noteToFormat = degree.getNoteForGivenDegree(degreeOfInterval);
         Assertions.assertThat(noteToFormat).isEqualTo("F");
     }
 }
