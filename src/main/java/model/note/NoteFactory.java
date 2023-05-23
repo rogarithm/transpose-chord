@@ -13,7 +13,7 @@ public class NoteFactory {
             return SharpNote.valueOf(name.substring(0, 1));
         }
 
-        throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
+        throw new IllegalArgumentException("unable to parse given chord " + name);
     }
 
     private static boolean isNotFlat(String s) {
