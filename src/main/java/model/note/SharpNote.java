@@ -12,7 +12,7 @@ enum SharpNote implements Note {
 
     private final String name;
 
-    private SharpNote(String name) {
+    SharpNote(String name) {
         this.name = name;
     }
 

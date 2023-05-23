@@ -1,7 +1,5 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import model.Interval.Intervals;
 import model.note.Note;
 import model.note.NoteFactory;

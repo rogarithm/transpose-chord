@@ -1,4 +1,3 @@
-import model.Key;
 import model.note.NoteFactory;
 import model.Interval;
 import model.note.Note;

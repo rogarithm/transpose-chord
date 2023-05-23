@@ -12,7 +12,7 @@ enum PlainNote implements Note {
 
     private final String name;
 
-    private PlainNote(String name) {
+    PlainNote(String name) {
         this.name = name;
     }
 

@@ -16,8 +16,6 @@ public class NoteFactory {
         throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
     }
 
-    ;
-
     private static boolean isNotFlat(String s) {
         return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != 'b');
     }

@@ -12,7 +12,7 @@ enum FlatNote implements Note {
 
     private final String name;
 
-    private FlatNote(String name) {
+    FlatNote(String name) {
         this.name = name;
     }
 

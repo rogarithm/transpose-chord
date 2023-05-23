@@ -2,10 +2,8 @@ package model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import model.Interval.Intervals;
 import model.note.Note;
 import model.note.NoteFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class KeyTest {
