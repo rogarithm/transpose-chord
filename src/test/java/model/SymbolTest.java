@@ -15,10 +15,24 @@ class SymbolTest {
     }
 
     @Test
+    public void getRootOfSharpMajorChord() {
+        Symbol gSharpMajor = new Symbol("G#");
+        String rootTone = gSharpMajor.getRootNote();
+        assertThat(rootTone).isEqualTo("G#");
+    }
+
+    @Test
     public void getRootOfFlatMajorChord() {
         Symbol gFlatMajor = new Symbol("Gb");
         String rootTone = gFlatMajor.getRootNote();
         assertThat(rootTone).isEqualTo("Gb");
+    }
+
+    @Test
+    public void getRootOfSharpMinorChord() {
+        Symbol aSharpMinor = new Symbol("A#m");
+        String rootTone = aSharpMinor.getRootNote();
+        assertThat(rootTone).isEqualTo("A#");
     }
 
     @Test

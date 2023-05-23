@@ -1,5 +1,7 @@
+import model.Key;
+import model.note.NoteFactory;
 import model.Interval;
-import model.Note;
+import model.note.Note;
 import model.Symbol;
 
 public class Transposer {
@@ -13,7 +15,7 @@ public class Transposer {
         String rootNote = chord.getRootNote();
         String other = chord.getOther();
 
-        Note note = Note.valueOf(rootNote);
+        Note note = NoteFactory.create(rootNote);
         int steps = itv.getInterval(currentKey, note);
         Note transposedNote = itv.getRaisedNote(transposedKey, steps);
 

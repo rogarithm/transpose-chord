@@ -1,0 +1,50 @@
+package model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import model.Interval.Intervals;
+import model.note.Note;
+import model.note.NoteFactory;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+class DegreeTest {
+
+    @Test
+    public void setGivenNoteAsRoot() {
+        Note noteD = NoteFactory.create("D");
+        Degree degree = new Degree(noteD);
+        Assertions.assertThat(degree.getDegreeOfNote(noteD)).isEqualTo(1);
+    }
+
+    @Test
+    public void setGivenNoteAsSecond() {
+        Note noteD = NoteFactory.create("D");
+        Note noteE = NoteFactory.create("E");
+        Degree degree = new Degree(noteD);
+        Assertions.assertThat(degree.getDegreeOfNote(noteE)).isEqualTo(2);
+    }
+
+    @Test
+    public void getNoteForDegree() {
+        Note noteD = NoteFactory.create("D");
+        Degree degree = new Degree(noteD);
+        Assertions.assertThat(degree.getNoteForGivenDegree(2)).isEqualTo("E");
+    }
+
+    @Test
+    public void thirdDegreeOfDShouldFormattedWithF() {
+        Note keyBefore = NoteFactory.create("G");
+        Note noteToTranspose = NoteFactory.create("B");
+        Note keyAfter = NoteFactory.create("D");
+
+        Interval itv = new Interval();
+        int interval = itv.getInterval(keyBefore, noteToTranspose);
+        Intervals intervalName = itv.getIntervalName(interval);
+        int degreeOfInterval = intervalName.getDegree();
+
+        Degree degree = new Degree(keyAfter);
+        String noteToFormat = degree.getNoteForGivenDegree(degreeOfInterval);
+        Assertions.assertThat(noteToFormat).isEqualTo("F");
+    }
+}

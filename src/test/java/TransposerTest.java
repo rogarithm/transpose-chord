@@ -1,6 +1,5 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import model.Note;
+import model.note.Note;
+import model.note.PlainNote;
 import model.Symbol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,27 +17,27 @@ class TransposerTest {
     @Test
     public void transposeMajorChord() {
         Symbol gMajor = new Symbol("G");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
+        Note keyBefore = PlainNote.G;
+        Note keyAfter = PlainNote.A;
         String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("A");
     }
 
     @Test
     public void transposeMinorChord() {
-        Symbol gMajor = new Symbol("Bm");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
-        String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
+        Symbol bMinor = new Symbol("Bm");
+        Note keyBefore = PlainNote.G;
+        Note keyAfter = PlainNote.A;
+        String transposed = transposer.doTranspose(bMinor, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("Dbm");
     }
 
     @Test
     public void transpose7thChord() {
-        Symbol gMajor = new Symbol("D7");
-        Note keyBefore = Note.G;
-        Note keyAfter = Note.A;
-        String transposed = transposer.doTranspose(gMajor, keyBefore, keyAfter);
+        Symbol d7 = new Symbol("D7");
+        Note keyBefore = PlainNote.G;
+        Note keyAfter = PlainNote.A;
+        String transposed = transposer.doTranspose(d7, keyBefore, keyAfter);
         Assertions.assertThat(transposed).isEqualTo("E7");
     }
 
