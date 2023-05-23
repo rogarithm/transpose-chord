@@ -1,6 +1,6 @@
 package model.note;
 
-public enum FlatNote implements Note {
+enum FlatNote implements Note {
 
     C("Cb"),
     D("Db"),

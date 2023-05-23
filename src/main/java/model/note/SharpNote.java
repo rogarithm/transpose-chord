@@ -1,6 +1,6 @@
 package model.note;
 
-public enum SharpNote implements Note {
+enum SharpNote implements Note {
 
     C("C#"),
     D("D#"),
