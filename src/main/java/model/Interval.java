@@ -89,12 +89,32 @@ public class Interval {
 
             return noteFinder.name;
         }
+
+        static Note findEquivalentNoteInFlat(Note sharpNote) {
+
+            for (HigherNoteFinder noteFinder : HigherNoteFinder.values()) {
+                if (canDisplayInSharp(noteFinder) && isSameNote(sharpNote, noteFinder.alternateNext)) {
+                    sharpNote = NoteFactory.create(noteFinder.next);
+                }
+            }
+
+            return sharpNote;
+        }
+
+        private static boolean isSameNote(Note note1, String note2) {
+            return note1.toString().equals(note2);
+        }
+
+        private static boolean canDisplayInSharp(HigherNoteFinder noteFinder) {
+            return noteFinder.alternateNext != null;
+        }
+
     }
 
     public int getNumberOfSemitonesBetween(Note base, Note target) {
 
         if (base.toString().endsWith("#")) {
-            base = findEquivalentNoteInFlat(base);
+            base = HigherNoteFinder.findEquivalentNoteInFlat(base);
         }
 
         return HigherNoteFinder.computeSemitonesBetween(base, target);
@@ -103,23 +123,12 @@ public class Interval {
     public Note getRaisedNote(Note base, int numberOfSemitones) {
 
         if (base.toString().endsWith("#")) {
-            base = findEquivalentNoteInFlat(base);
+            base = HigherNoteFinder.findEquivalentNoteInFlat(base);
         }
 
         String raisedNoteName = HigherNoteFinder.findRaisedNote(base, numberOfSemitones);
 
         return NoteFactory.create(raisedNoteName);
-    }
-
-    private Note findEquivalentNoteInFlat(Note note) {
-
-        for (HigherNoteFinder nextNote : HigherNoteFinder.values()) {
-            if (nextNote.alternateNext != null && nextNote.alternateNext.equals(note.toString())) {
-                note = NoteFactory.create(nextNote.next);
-            }
-        }
-
-        return note;
     }
 
     public Intervals getIntervalName(int steps) {
