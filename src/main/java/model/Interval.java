@@ -61,6 +61,34 @@ public class Interval {
             this.next = next;
             this.alternateNext = alternateNext;
         }
+
+        static int computeSemitonesBetween(Note base, Note target) {
+
+            String baseName = base.toString();
+            String targetName = target.toString();
+            HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(baseName);
+
+            int result = 0;
+            while (!noteFinder.name.equals(targetName)) {
+                noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
+                result += 1;
+            }
+
+            return result;
+        }
+
+        static String findRaisedNote(Note base, int numberOfSemitones) {
+
+            String baseName = base.toString();
+            HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(baseName);
+
+            while (numberOfSemitones != 0) {
+                noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
+                numberOfSemitones -= 1;
+            }
+
+            return noteFinder.name;
+        }
     }
 
     public int getNumberOfSemitonesBetween(Note base, Note target) {
@@ -69,19 +97,7 @@ public class Interval {
             base = findEquivalentNoteInFlat(base);
         }
 
-        int result = 0;
-        HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(base.toString());
-
-        while (!noteFinder.name.equals(target.toString())) {
-            noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
-            result += 1;
-        }
-
-        if (noteFinder.name.equals(target.toString())) {
-            return result;
-        }
-
-        throw new IllegalArgumentException("can't find interval from " + base + " to " + target + "!");
+        return HigherNoteFinder.computeSemitonesBetween(base, target);
     }
 
     public Note getRaisedNote(Note base, int numberOfSemitones) {
@@ -90,14 +106,9 @@ public class Interval {
             base = findEquivalentNoteInFlat(base);
         }
 
-        HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(base.toString());
+        String raisedNoteName = HigherNoteFinder.findRaisedNote(base, numberOfSemitones);
 
-        while (numberOfSemitones != 0) {
-            noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
-            numberOfSemitones -= 1;
-        }
-
-        return NoteFactory.create(noteFinder.name);
+        return NoteFactory.create(raisedNoteName);
     }
 
     private Note findEquivalentNoteInFlat(Note note) {
