@@ -24,12 +24,14 @@ public class Degree {
     }
 
     Degree(Note rootNote) {
+
         int degreeNumber = 1;
         NoteDisplayBasis degree1DisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
         degree1DisplayBasis.degreeNumber = degreeNumber;
         degreeNumber++;
 
         NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degree1DisplayBasis.ofNextDegree);
+
         while (!displayBasis.ofCurrentDegree.equals(degree1DisplayBasis.ofCurrentDegree)) {
             displayBasis.degreeNumber = degreeNumber;
             displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree);
@@ -38,6 +40,7 @@ public class Degree {
     }
 
     public int getDegreeNumberOf(Note note) {
+
         NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
         return noteDisplayBasis.degreeNumber;
     }
@@ -48,6 +51,7 @@ public class Degree {
                 return noteDisplayBasis.ofCurrentDegree;
             }
         }
-        throw new IllegalArgumentException("there's no note for given degreeNumber: " + degreeNumber);
+
+        throw new IllegalArgumentException("there's no note for given degree number: " + degreeNumber);
     }
 }
