@@ -15,9 +15,22 @@ public class Key {
         private final String current;
         private final String alternate;
 
-        EquivalentNote(String current, String next) {
+        EquivalentNote(String current, String alternate) {
+
             this.current = current;
-            this.alternate = next;
+            this.alternate = alternate;
+        }
+
+        static String findFormattedNote(Note note, String format) {
+
+            for (EquivalentNote equivalentNote : EquivalentNote.values()) {
+                if (equivalentNote.current.equals(note.toString()) &&
+                        equivalentNote.alternate.substring(0,1).equals(format)) {
+                    return equivalentNote.alternate;
+                }
+            }
+
+            throw new IllegalArgumentException("can't format given note " + note + " in " + format + "!");
         }
     }
 
@@ -25,18 +38,14 @@ public class Key {
     private final Interval interval;
 
     public Key(Note rootNote) {
+
         this.rootNote = rootNote;
         this.interval = new Interval();
     }
 
     public Note formatNoteIn(Note note, String format) {
-        for (EquivalentNote equivalentNote : EquivalentNote.values()) {
-            if (equivalentNote.current.equals(note.toString()) &&
-            equivalentNote.alternate.substring(0,1).equals(format)) {
-                return NoteFactory.create(equivalentNote.alternate);
-            }
-        }
 
-        throw new IllegalArgumentException("can't format given note " + note + " in " + format + "!");
+        String formatted = EquivalentNote.findFormattedNote(note, format);
+        return NoteFactory.create(formatted);
     }
 }
