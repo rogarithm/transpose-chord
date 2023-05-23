@@ -37,17 +37,17 @@ public class Degree {
         }
     }
 
-    public int getDegreeOfNote(Note note) {
+    public int getDegreeNumberOf(Note note) {
         NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
         return noteDisplayBasis.degreeNumber;
     }
 
-    public String getNoteForGivenDegree(int degree) {
+    public String getNoteOf(int degreeNumber) {
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
-            if (noteDisplayBasis.degreeNumber == degree) {
+            if (noteDisplayBasis.degreeNumber == degreeNumber) {
                 return noteDisplayBasis.ofCurrentDegree;
             }
         }
-        throw new IllegalArgumentException("there's no note for given degree: " + degree);
+        throw new IllegalArgumentException("there's no note for given degreeNumber: " + degreeNumber);
     }
 }

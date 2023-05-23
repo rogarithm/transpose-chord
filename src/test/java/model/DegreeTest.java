@@ -12,7 +12,7 @@ class DegreeTest {
     public void setGivenNoteAsRoot() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeOfNote(noteD)).isEqualTo(1);
+        Assertions.assertThat(degree.getDegreeNumberOf(noteD)).isEqualTo(1);
     }
 
     @Test
@@ -20,14 +20,14 @@ class DegreeTest {
         Note noteD = NoteFactory.create("D");
         Note noteE = NoteFactory.create("E");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeOfNote(noteE)).isEqualTo(2);
+        Assertions.assertThat(degree.getDegreeNumberOf(noteE)).isEqualTo(2);
     }
 
     @Test
     public void getNoteForDegree() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getNoteForGivenDegree(2)).isEqualTo("E");
+        Assertions.assertThat(degree.getNoteOf(2)).isEqualTo("E");
     }
 
     @Test
@@ -42,7 +42,7 @@ class DegreeTest {
         int degreeOfInterval = intervalName.getDegree();
 
         Degree degree = new Degree(keyAfter);
-        String noteToFormat = degree.getNoteForGivenDegree(degreeOfInterval);
+        String noteToFormat = degree.getNoteOf(degreeOfInterval);
         Assertions.assertThat(noteToFormat).isEqualTo("F");
     }
 }
