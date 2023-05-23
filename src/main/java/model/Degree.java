@@ -4,7 +4,7 @@ import model.note.Note;
 
 public class Degree {
 
-    private enum Degrees {
+    private enum NoteDisplayBasis {
         C("C", "D"),
         D("D", "E"),
         E("E", "F"),
@@ -13,39 +13,39 @@ public class Degree {
         A("A", "B"),
         B("B", "C");
 
-        private final String current;
-        private final String next;
-        private int degree;
+        private final String ofCurrentDegree;
+        private final String ofNextDegree;
+        private int degreeNumber;
 
-        Degrees(String current, String next) {
-            this.current = current;
-            this.next = next;
+        NoteDisplayBasis(String ofCurrentDegree, String ofNextDegree) {
+            this.ofCurrentDegree = ofCurrentDegree;
+            this.ofNextDegree = ofNextDegree;
         }
     }
 
-    Degree(Note root) {
-        int degree = 1;
-        Degrees currentNote = Degrees.valueOf(root.toString());
-        currentNote.degree = degree;
-        degree++;
+    Degree(Note rootNote) {
+        int degreeNumber = 1;
+        NoteDisplayBasis degree1DisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
+        degree1DisplayBasis.degreeNumber = degreeNumber;
+        degreeNumber++;
 
-        Degrees nextNote = Degrees.valueOf(currentNote.next);
-        while (!nextNote.current.equals(currentNote.current)) {
-            nextNote.degree = degree;
-            nextNote = Degrees.valueOf(nextNote.next);
-            degree++;
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degree1DisplayBasis.ofNextDegree);
+        while (!displayBasis.ofCurrentDegree.equals(degree1DisplayBasis.ofCurrentDegree)) {
+            displayBasis.degreeNumber = degreeNumber;
+            displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree);
+            degreeNumber++;
         }
     }
 
     public int getDegreeOfNote(Note note) {
-        Degrees degrees = Degrees.valueOf(note.toString());
-        return degrees.degree;
+        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
+        return noteDisplayBasis.degreeNumber;
     }
 
     public String getNoteForGivenDegree(int degree) {
-        for (Degrees degrees : Degrees.values()) {
-            if (degrees.degree == degree) {
-                return degrees.current;
+        for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
+            if (noteDisplayBasis.degreeNumber == degree) {
+                return noteDisplayBasis.ofCurrentDegree;
             }
         }
         throw new IllegalArgumentException("there's no note for given degree: " + degree);
