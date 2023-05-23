@@ -32,13 +32,13 @@ class IntervalTest {
 
     @Test
     public void getIntervalsInGKey() {
-        int itvM2 = itv.getInterval(G, A);
+        int itvM2 = itv.getNumberOfSemitonesBetween(G, A);
         assertThat(itvM2).isEqualTo(2);
 
-        int itvm3 = itv.getInterval(G, Bb);
+        int itvm3 = itv.getNumberOfSemitonesBetween(G, Bb);
         assertThat(itvm3).isEqualTo(3);
 
-        int itvP5 = itv.getInterval(G, D);
+        int itvP5 = itv.getNumberOfSemitonesBetween(G, D);
         assertThat(itvP5).isEqualTo(7);
     }
 
@@ -77,7 +77,7 @@ class IntervalTest {
     @Test
     public void getDegreeFromIntervalName() {
         Intervals majorSecond = itv.getIntervalName(2);
-        int degree = majorSecond.getDegree();
+        int degree = majorSecond.getDegreeNumber();
         assertThat(degree).isEqualTo(2);
     }
 }

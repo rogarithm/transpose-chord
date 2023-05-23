@@ -46,9 +46,9 @@ class DegreeTest {
         Note keyAfter = NoteFactory.create("D");
 
         Interval itv = new Interval();
-        int interval = itv.getInterval(keyBefore, noteToTranspose);
+        int interval = itv.getNumberOfSemitonesBetween(keyBefore, noteToTranspose);
         Intervals intervalName = itv.getIntervalName(interval);
-        int degreeOfInterval = intervalName.getDegree();
+        int degreeOfInterval = intervalName.getDegreeNumber();
 
         Degree degree = new Degree(keyAfter);
         String noteToFormat = degree.getNoteOf(degreeOfInterval);

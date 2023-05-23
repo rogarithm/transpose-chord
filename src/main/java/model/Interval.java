@@ -13,24 +13,25 @@ public class Interval {
         MAJOR_SIXTH(6, 9),
         MAJOR_SEVENTH(7, 11);
 
-        private final int degree;
-        private final int offset;
+        private final int degreeNumber;
+        private final int semitonesFromRootNote;
 
-        Intervals(int degree, int offset) {
-            this.degree = degree;
-            this.offset = offset;
+        Intervals(int degreeNumber, int semitonesFromRootNote) {
+            this.degreeNumber = degreeNumber;
+            this.semitonesFromRootNote = semitonesFromRootNote;
         }
 
-        public int getOffset() {
-            return offset;
+        public int getSemitonesFromRootNote() {
+            return semitonesFromRootNote;
         }
 
-        public int getDegree() {
-            return degree;
+        public int getDegreeNumber() {
+            return degreeNumber;
         }
     }
 
-    private enum NextNotes {
+    private enum HigherNoteFinder {
+
         C("C", "Db", "C#"),
         Db("Db", "D"),
         D("D", "Eb", "D#"),
@@ -44,61 +45,65 @@ public class Interval {
         Bb("Bb", "B"),
         B("B", "C");
 
-        private final String current;
+        private final String name;
         private final String next;
-        private String alternate;
+        private String alternateNext;
 
-        NextNotes(String current, String next) {
-            this.current = current;
+        HigherNoteFinder(String name, String next) {
+
+            this.name = name;
             this.next = next;
         }
 
-        NextNotes(String current, String next, String alternate) {
-            this.current = current;
+        HigherNoteFinder(String name, String next, String alternateNext) {
+
+            this.name = name;
             this.next = next;
-            this.alternate = alternate;
+            this.alternateNext = alternateNext;
         }
     }
 
-    public int getInterval(Note base, Note target) {
+    public int getNumberOfSemitonesBetween(Note base, Note target) {
+
         if (base.toString().endsWith("#")) {
-            base = findEquivalentNote(base);
+            base = findEquivalentNoteInFlat(base);
         }
 
         int result = 0;
-        NextNotes currentNote = NextNotes.valueOf(base.toString());
+        HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(base.toString());
 
-        while (!currentNote.current.equals(target.toString())) {
-            currentNote = NextNotes.valueOf(currentNote.next);
+        while (!noteFinder.name.equals(target.toString())) {
+            noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
             result += 1;
         }
 
-        if (currentNote.current.equals(target.toString())) {
+        if (noteFinder.name.equals(target.toString())) {
             return result;
         }
 
         throw new IllegalArgumentException("can't find interval from " + base + " to " + target + "!");
     }
 
-    public Note getRaisedNote(Note base, int steps) {
+    public Note getRaisedNote(Note base, int numberOfSemitones) {
+
         if (base.toString().endsWith("#")) {
-            base = findEquivalentNote(base);
+            base = findEquivalentNoteInFlat(base);
         }
 
-        NextNotes currentNote = NextNotes.valueOf(base.toString());
+        HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(base.toString());
 
-        while (steps != 0) {
-            currentNote = NextNotes.valueOf(currentNote.next);
-            steps -= 1;
+        while (numberOfSemitones != 0) {
+            noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
+            numberOfSemitones -= 1;
         }
 
-        return NoteFactory.create(currentNote.current);
+        return NoteFactory.create(noteFinder.name);
     }
 
-    private Note findEquivalentNote(Note note) {
+    private Note findEquivalentNoteInFlat(Note note) {
 
-        for (NextNotes nextNote : NextNotes.values()) {
-            if (nextNote.alternate != null && nextNote.alternate.equals(note.toString())) {
+        for (HigherNoteFinder nextNote : HigherNoteFinder.values()) {
+            if (nextNote.alternateNext != null && nextNote.alternateNext.equals(note.toString())) {
                 note = NoteFactory.create(nextNote.next);
             }
         }
@@ -107,8 +112,9 @@ public class Interval {
     }
 
     public Intervals getIntervalName(int steps) {
+
         for (Intervals itvName : Intervals.values()) {
-            if (steps == itvName.offset)
+            if (steps == itvName.semitonesFromRootNote)
                 return itvName;
         }
 

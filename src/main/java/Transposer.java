@@ -15,7 +15,7 @@ public class Transposer {
         String other = chord.getOther();
 
         Note note = NoteFactory.create(rootNote);
-        int steps = itv.getInterval(currentKey, note);
+        int steps = itv.getNumberOfSemitonesBetween(currentKey, note);
         Note transposedNote = itv.getRaisedNote(transposedKey, steps);
 
         return transposedNote.toString() + other;
