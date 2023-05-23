@@ -46,6 +46,11 @@ public class Degree {
     }
 
     public String getNoteOf(int degreeNumber) {
+
+        if (degreeNumber < 1 || degreeNumber > 8) {
+            throw new IllegalArgumentException("you put invalid degree number: " + degreeNumber + "\nThe degree number should be between 1 and 8 (inclusive).");
+        }
+
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber == degreeNumber) {
                 return noteDisplayBasis.ofCurrentDegree;

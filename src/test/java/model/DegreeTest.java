@@ -1,5 +1,7 @@
 package model;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import model.Interval.Intervals;
 import model.note.Note;
 import model.note.NoteFactory;
@@ -21,6 +23,13 @@ class DegreeTest {
         Note noteE = NoteFactory.create("E");
         Degree degree = new Degree(noteD);
         Assertions.assertThat(degree.getDegreeNumberOf(noteE)).isEqualTo(2);
+    }
+
+    @Test
+    public void getNoteForInvalidDegree() {
+        Note noteD = NoteFactory.create("D");
+        Degree degree = new Degree(noteD);
+        assertThrows(IllegalArgumentException.class, () -> degree.getNoteOf(0));
     }
 
     @Test
