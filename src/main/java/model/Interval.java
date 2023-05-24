@@ -30,6 +30,16 @@ public class Interval {
         }
     }
 
+    public Intervals getIntervalName(int steps) {
+
+        for (Intervals itvName : Intervals.values()) {
+            if (steps == itvName.semitonesFromRootNote)
+                return itvName;
+        }
+
+        throw new IllegalArgumentException("can't find interval name for given semitones count: " + steps);
+    }
+
     private enum HigherNoteFinder {
 
         C("C", "Db", "C#"),
@@ -129,15 +139,5 @@ public class Interval {
         String raisedNoteName = HigherNoteFinder.findRaisedNote(base, numberOfSemitones);
 
         return NoteFactory.create(raisedNoteName);
-    }
-
-    public Intervals getIntervalName(int steps) {
-
-        for (Intervals itvName : Intervals.values()) {
-            if (steps == itvName.semitonesFromRootNote)
-                return itvName;
-        }
-
-        throw new IllegalArgumentException("can't find interval name for given semitones count: " + steps);
     }
 }
