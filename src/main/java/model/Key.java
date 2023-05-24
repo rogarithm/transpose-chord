@@ -43,7 +43,7 @@ public class Key {
         this.interval = new Interval();
     }
 
-    public Note formatNoteIn(Note note, String format) {
+    public Note convertToSharpNoteOfSamePitch(Note note, String format) {
 
         String formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, format);
         return NoteFactory.create(formatted);
