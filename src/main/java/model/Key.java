@@ -5,7 +5,7 @@ import model.note.NoteFactory;
 
 public class Key {
 
-    private enum EquivalentNote {
+    private enum EquivalentNoteFinder {
         Db("Db", "C#"),
         Eb("Eb", "D#"),
         Gb("Gb", "F#"),
@@ -15,18 +15,18 @@ public class Key {
         private final String name;
         private final String alternate;
 
-        EquivalentNote(String name, String alternate) {
+        EquivalentNoteFinder(String name, String alternate) {
 
             this.name = name;
             this.alternate = alternate;
         }
 
-        static String findFormattedNote(Note note, String format) {
+        static String findEquivalentNoteMeetsFormat(Note note, String format) {
 
-            for (EquivalentNote equivalentNote : EquivalentNote.values()) {
-                if (equivalentNote.name.equals(note.toString()) &&
-                        equivalentNote.alternate.substring(0,1).equals(format)) {
-                    return equivalentNote.alternate;
+            for (EquivalentNoteFinder noteFinder : EquivalentNoteFinder.values()) {
+                if (noteFinder.name.equals(note.toString()) &&
+                        noteFinder.alternate.substring(0,1).equals(format)) {
+                    return noteFinder.alternate;
                 }
             }
 
@@ -45,7 +45,7 @@ public class Key {
 
     public Note formatNoteIn(Note note, String format) {
 
-        String formatted = EquivalentNote.findFormattedNote(note, format);
+        String formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, format);
         return NoteFactory.create(formatted);
     }
 }
