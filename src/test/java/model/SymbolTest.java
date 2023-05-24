@@ -44,21 +44,21 @@ class SymbolTest {
     @Test
     public void getOtherOfMajorChord() {
         Symbol gMajor = new Symbol("G");
-        String other = gMajor.getOther();
+        String other = gMajor.getChordTones();
         assertThat(other).isEqualTo("");
     }
 
     @Test
     public void getOtherOfFlatMajorChord() {
         Symbol gFlatMajor = new Symbol("Gb");
-        String other = gFlatMajor.getOther();
+        String other = gFlatMajor.getChordTones();
         assertThat(other).isEqualTo("");
     }
 
     @Test
     public void getOtherOfMinorChord() {
         Symbol aMinor = new Symbol("Am");
-        String other = aMinor.getOther();
+        String other = aMinor.getChordTones();
         assertThat(other).isEqualTo("m");
     }
 

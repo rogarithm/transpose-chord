@@ -1,19 +1,20 @@
 package model;
 
 public class Symbol {
-    private String chordString;
 
-    public Symbol(String chordString) {
-        this.chordString = chordString;
+    private final String chord;
+
+    public Symbol(String chord) {
+        this.chord = chord;
     }
 
     public String getRootNote() {
-        if (isNotFlat(chordString) && isNotSharp(chordString))
-            return chordString.substring(0, 1);
-        if (isFlat(chordString) || isSharp(chordString))
-            return chordString.substring(0, 2);
+        if (isNotFlat(chord) && isNotSharp(chord))
+            return chord.substring(0, 1);
+        if (isFlat(chord) || isSharp(chord))
+            return chord.substring(0, 2);
 
-        throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
+        throw new IllegalArgumentException("unable to get root note of given chord: " + chord);
     }
 
     private boolean isNotFlat(String s) {
@@ -32,12 +33,12 @@ public class Symbol {
         return s.length() >= 2 && s.charAt(1) == '#';
     }
 
-    public String getOther() {
-        if (isNotFlat(chordString))
-            return chordString.substring(1);
-        if (isFlat(chordString))
-            return chordString.substring(2);
+    public String getChordTones() {
+        if (isNotFlat(chord))
+            return chord.substring(1);
+        if (isFlat(chord))
+            return chord.substring(2);
 
-        throw new IllegalArgumentException("Symbol.getOther(): unable to parse given chord");
+        throw new IllegalArgumentException("unable to get given chord: " + chord);
     }
 }

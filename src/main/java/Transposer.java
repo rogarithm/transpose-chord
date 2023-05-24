@@ -12,12 +12,12 @@ public class Transposer {
         Interval itv = new Interval();
 
         String rootNote = chord.getRootNote();
-        String other = chord.getOther();
+        String chordTones = chord.getChordTones();
 
         Note note = NoteFactory.create(rootNote);
         int steps = itv.getNumberOfSemitonesBetween(currentKey, note);
         Note transposedNote = itv.getRaisedNote(transposedKey, steps);
 
-        return transposedNote.toString() + other;
+        return transposedNote.toString() + chordTones;
     }
 }
