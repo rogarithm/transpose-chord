@@ -5,7 +5,7 @@ import model.note.Note;
 
 public class Interval {
 
-    private enum Intervals {
+    private enum DegreeFinder {
 
         MAJOR_SECOND(2, 2),
         MAJOR_THIRD(3, 4),
@@ -17,7 +17,7 @@ public class Interval {
         private final int degree;
         private final int semitones;
 
-        Intervals(int degree, int semitones) {
+        DegreeFinder(int degree, int semitones) {
             this.degree = degree;
             this.semitones = semitones;
         }
@@ -30,9 +30,9 @@ public class Interval {
             return degree;
         }
 
-        static Intervals findDegreeOfSemitones(int semitones) {
+        static DegreeFinder findDegreeOfSemitones(int semitones) {
 
-            for (Intervals itvName : Intervals.values()) {
+            for (DegreeFinder itvName : DegreeFinder.values()) {
                 if (semitones == itvName.semitones)
                     return itvName;
             }
@@ -43,7 +43,7 @@ public class Interval {
 
     public int getDegreeFromSemitones(int semitones) {
 
-        Intervals intervalName = Intervals.findDegreeOfSemitones(semitones);
+        DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
         return intervalName.degree;
     }
 
