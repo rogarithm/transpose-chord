@@ -12,19 +12,19 @@ public class Key {
         Ab("Ab", "G#"),
         Bb("Bb", "A#");
 
-        private final String current;
+        private final String name;
         private final String alternate;
 
-        EquivalentNote(String current, String alternate) {
+        EquivalentNote(String name, String alternate) {
 
-            this.current = current;
+            this.name = name;
             this.alternate = alternate;
         }
 
         static String findFormattedNote(Note note, String format) {
 
             for (EquivalentNote equivalentNote : EquivalentNote.values()) {
-                if (equivalentNote.current.equals(note.toString()) &&
+                if (equivalentNote.name.equals(note.toString()) &&
                         equivalentNote.alternate.substring(0,1).equals(format)) {
                     return equivalentNote.alternate;
                 }
