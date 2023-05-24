@@ -30,14 +30,14 @@ public class Interval {
         }
     }
 
-    public Intervals getIntervalName(int steps) {
+    public Intervals getIntervalName(int numberOfSemitones) {
 
         for (Intervals itvName : Intervals.values()) {
-            if (steps == itvName.semitonesFromRootNote)
+            if (numberOfSemitones == itvName.semitonesFromRootNote)
                 return itvName;
         }
 
-        throw new IllegalArgumentException("can't find interval name for given semitones count: " + steps);
+        throw new IllegalArgumentException("can't find interval name for given semitones count: " + numberOfSemitones);
     }
 
     private enum HigherNoteFinder {
