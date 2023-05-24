@@ -2,7 +2,6 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import model.Interval.Intervals;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;

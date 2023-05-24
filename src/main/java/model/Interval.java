@@ -5,7 +5,8 @@ import model.note.Note;
 
 public class Interval {
 
-    enum Intervals {
+    private enum Intervals {
+
         MAJOR_SECOND(2, 2),
         MAJOR_THIRD(3, 4),
         MAJOR_FOURTH(4, 5),

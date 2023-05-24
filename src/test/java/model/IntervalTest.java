@@ -2,7 +2,6 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import model.Interval.Intervals;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;
@@ -66,12 +65,6 @@ class IntervalTest {
 
         Note noteA = itv.getRaisedNote(Gsharp, 1);
         assertThat(noteA).isEqualTo(A);
-    }
-
-    @Test
-    public void getIntervalNameFromIntervalSteps() {
-        Intervals majorSecond = Intervals.findDegreeOfSemitones(2);
-        Assertions.assertThat(majorSecond).isEqualTo(Intervals.MAJOR_SECOND);
     }
 
     @Test
