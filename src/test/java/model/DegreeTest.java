@@ -47,7 +47,7 @@ class DegreeTest {
 
         Interval itv = new Interval();
         int interval = itv.getNumberOfSemitonesBetween(keyBefore, noteToTranspose);
-        int degreeOfInterval = itv.getDegreeNumberFromSemitoneCount(interval);
+        int degreeOfInterval = itv.getDegreeFromSemitones(interval);
 
         Degree degree = new Degree(keyAfter);
         String noteToFormat = degree.getNoteOf(degreeOfInterval);

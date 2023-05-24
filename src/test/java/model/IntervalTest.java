@@ -70,13 +70,13 @@ class IntervalTest {
 
     @Test
     public void getIntervalNameFromIntervalSteps() {
-        Intervals majorSecond = Intervals.findDegreeNumberOfGivenSemitoneCount(2);
+        Intervals majorSecond = Intervals.findDegreeOfSemitones(2);
         Assertions.assertThat(majorSecond).isEqualTo(Intervals.MAJOR_SECOND);
     }
 
     @Test
     public void getDegreeFromIntervalName() {
-        int degree = itv.getDegreeNumberFromSemitoneCount(2);
+        int degree = itv.getDegreeFromSemitones(2);
         assertThat(degree).isEqualTo(2);
     }
 }

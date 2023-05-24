@@ -13,37 +13,37 @@ public class Interval {
         MAJOR_SIXTH(6, 9),
         MAJOR_SEVENTH(7, 11);
 
-        private final int degreeNumber;
-        private final int semitonesFromRootNote;
+        private final int degree;
+        private final int semitones;
 
-        Intervals(int degreeNumber, int semitonesFromRootNote) {
-            this.degreeNumber = degreeNumber;
-            this.semitonesFromRootNote = semitonesFromRootNote;
+        Intervals(int degree, int semitones) {
+            this.degree = degree;
+            this.semitones = semitones;
         }
 
-        public int getSemitonesFromRootNote() {
-            return semitonesFromRootNote;
+        public int getSemitones() {
+            return semitones;
         }
 
-        public int getDegreeNumber() {
-            return degreeNumber;
+        public int getDegree() {
+            return degree;
         }
 
-        static Intervals findDegreeNumberOfGivenSemitoneCount(int numberOfSemitones) {
+        static Intervals findDegreeOfSemitones(int semitones) {
 
             for (Intervals itvName : Intervals.values()) {
-                if (numberOfSemitones == itvName.semitonesFromRootNote)
+                if (semitones == itvName.semitones)
                     return itvName;
             }
 
-            throw new IllegalArgumentException("can't find interval name for given semitones count: " + numberOfSemitones);
+            throw new IllegalArgumentException("can't find interval name for given semitones count: " + semitones);
         }
     }
 
-    public int getDegreeNumberFromSemitoneCount(int numberOfSemitones) {
+    public int getDegreeFromSemitones(int semitones) {
 
-        Intervals intervalName = Intervals.findDegreeNumberOfGivenSemitoneCount(numberOfSemitones);
-        return intervalName.degreeNumber;
+        Intervals intervalName = Intervals.findDegreeOfSemitones(semitones);
+        return intervalName.degree;
     }
 
     private enum HigherNoteFinder {
@@ -93,14 +93,14 @@ public class Interval {
             return result;
         }
 
-        static String findRaisedNote(Note base, int numberOfSemitones) {
+        static String findRaisedNote(Note base, int semitones) {
 
             String baseName = base.toString();
             HigherNoteFinder noteFinder = HigherNoteFinder.valueOf(baseName);
 
-            while (numberOfSemitones != 0) {
+            while (semitones != 0) {
                 noteFinder = HigherNoteFinder.valueOf(noteFinder.next);
-                numberOfSemitones -= 1;
+                semitones -= 1;
             }
 
             return noteFinder.name;
@@ -136,13 +136,13 @@ public class Interval {
         return HigherNoteFinder.computeSemitonesBetween(base, target);
     }
 
-    public Note getRaisedNote(Note base, int numberOfSemitones) {
+    public Note getRaisedNote(Note base, int semitones) {
 
         if (base.toString().endsWith("#")) {
             base = HigherNoteFinder.findEquivalentNoteInFlat(base);
         }
 
-        String raisedNoteName = HigherNoteFinder.findRaisedNote(base, numberOfSemitones);
+        String raisedNoteName = HigherNoteFinder.findRaisedNote(base, semitones);
 
         return NoteFactory.create(raisedNoteName);
     }
