@@ -28,16 +28,22 @@ public class Interval {
         public int getDegreeNumber() {
             return degreeNumber;
         }
+
+        static Intervals findDegreeNumberOfGivenSemitoneCount(int numberOfSemitones) {
+
+            for (Intervals itvName : Intervals.values()) {
+                if (numberOfSemitones == itvName.semitonesFromRootNote)
+                    return itvName;
+            }
+
+            throw new IllegalArgumentException("can't find interval name for given semitones count: " + numberOfSemitones);
+        }
     }
 
-    public Intervals getIntervalName(int numberOfSemitones) {
+    public int getDegreeNumberFromSemitoneCount(int numberOfSemitones) {
 
-        for (Intervals itvName : Intervals.values()) {
-            if (numberOfSemitones == itvName.semitonesFromRootNote)
-                return itvName;
-        }
-
-        throw new IllegalArgumentException("can't find interval name for given semitones count: " + numberOfSemitones);
+        Intervals intervalName = Intervals.findDegreeNumberOfGivenSemitoneCount(numberOfSemitones);
+        return intervalName.degreeNumber;
     }
 
     private enum HigherNoteFinder {
