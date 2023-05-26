@@ -9,12 +9,16 @@ public class Transposer {
 
     private final Symbol chord;
     private final Note currentKey;
-    private final Note transposedKey;
+    private final Note transposeTo;
+    private final Degree degree;
+    private final Key key;
 
-    public Transposer(String chord, String currentKey, String transposedKey) {
+    public Transposer(String chord, String currentKey, String transposeTo) {
         this.chord = new Symbol(chord);
         this.currentKey = NoteFactory.create(currentKey);
-        this.transposedKey = NoteFactory.create(transposedKey);
+        this.transposeTo = NoteFactory.create(transposeTo);
+        this.degree = new Degree(this.transposeTo);
+        this.key = new Key(this.transposeTo);
     }
 
     public String doTranspose() {
@@ -26,11 +30,9 @@ public class Transposer {
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
         int degreeNumber = interval.getDegreeFromSemitones(semitones);
-        Degree degree = new Degree(transposedKey);
         String noteToFormat = degree.getNoteOf(degreeNumber);
 
         if (!bassOfTranposedKey.toString().equals(noteToFormat)) {
-            Key key = new Key(transposedKey);
             bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
         }
 
