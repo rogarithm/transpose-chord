@@ -23,7 +23,7 @@ public class Degree {
         }
     }
 
-    Degree(Note rootNote) {
+    public Degree(Note rootNote) {
 
         int degreeNumber = 1;
         NoteDisplayBasis degree1DisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());

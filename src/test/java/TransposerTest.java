@@ -14,7 +14,7 @@ class TransposerTest {
     public void transposeMinorChord() {
         Transposer transposer = new Transposer("Bm", "G", "A");
         String transposed = transposer.doTranspose();
-        Assertions.assertThat(transposed).isEqualTo("Dbm");
+        Assertions.assertThat(transposed).isEqualTo("C#m");
     }
 
     @Test

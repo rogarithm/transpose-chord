@@ -7,10 +7,11 @@ public class Interval {
 
     private enum DegreeFinder {
 
+        PERFECT_UNISON(1, 0),
         MAJOR_SECOND(2, 2),
         MAJOR_THIRD(3, 4),
-        MAJOR_FOURTH(4, 5),
-        MAJOR_FIFTH(5, 7),
+        PERFECT_FOURTH(4, 5),
+        PERFECT_FIFTH(5, 7),
         MAJOR_SIXTH(6, 9),
         MAJOR_SEVENTH(7, 11);
 

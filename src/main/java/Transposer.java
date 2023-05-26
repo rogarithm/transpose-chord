@@ -1,3 +1,5 @@
+import model.Degree;
+import model.Key;
 import model.note.NoteFactory;
 import model.Interval;
 import model.note.Note;
@@ -22,6 +24,15 @@ public class Transposer {
         Interval interval = new Interval();
         int semitones = interval.getNumberOfSemitonesBetween(currentKey, bass);
         Note bassOfTranposedKey = interval.getRaisedNote(transposedKey, semitones);
+
+        int degreeNumber = interval.getDegreeFromSemitones(semitones);
+        Degree degree = new Degree(transposedKey);
+        String noteToFormat = degree.getNoteOf(degreeNumber);
+
+        if (!bassOfTranposedKey.toString().equals(noteToFormat)) {
+            Key key = new Key(transposedKey);
+            bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
+        }
 
         return bassOfTranposedKey.toString() + chord.getChordTones();
     }
