@@ -25,14 +25,19 @@ public class Degree {
 
     public Degree(Note rootNote) {
 
+        initializeNoteDisplayBasis(rootNote);
+    }
+
+    private void initializeNoteDisplayBasis(Note rootNote) {
+
         int degreeNumber = 1;
-        NoteDisplayBasis degree1DisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
-        degree1DisplayBasis.degreeNumber = degreeNumber;
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
+        degreeOneDisplayBasis.degreeNumber = degreeNumber;
         degreeNumber++;
 
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degree1DisplayBasis.ofNextDegree);
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree);
 
-        while (!displayBasis.ofCurrentDegree.equals(degree1DisplayBasis.ofCurrentDegree)) {
+        while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
             displayBasis.degreeNumber = degreeNumber;
             displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree);
             degreeNumber++;

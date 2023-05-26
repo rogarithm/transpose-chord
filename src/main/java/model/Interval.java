@@ -15,11 +15,11 @@ public class Interval {
         MAJOR_SIXTH(6, 9),
         MAJOR_SEVENTH(7, 11);
 
-        private final int degree;
+        private final int degreeNumber;
         private final int semitones;
 
-        DegreeFinder(int degree, int semitones) {
-            this.degree = degree;
+        DegreeFinder(int degreeNumber, int semitones) {
+            this.degreeNumber = degreeNumber;
             this.semitones = semitones;
         }
 
@@ -45,7 +45,7 @@ public class Interval {
     public int getDegreeFromSemitones(int semitones) {
 
         DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
-        return intervalName.degree;
+        return intervalName.degreeNumber;
     }
 
     private enum HigherNoteFinder {
