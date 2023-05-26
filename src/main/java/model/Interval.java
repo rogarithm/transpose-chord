@@ -23,14 +23,6 @@ public class Interval {
             this.semitones = semitones;
         }
 
-        public int getSemitones() {
-            return semitones;
-        }
-
-        public int getDegree() {
-            return degree;
-        }
-
         static DegreeFinder findDegreeOfSemitones(int semitones) {
 
             for (DegreeFinder itvName : DegreeFinder.values()) {

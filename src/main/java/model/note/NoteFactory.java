@@ -15,6 +15,6 @@ public class NoteFactory {
             return SharpNote.valueOf(name.substring(0, 1));
         }
 
-        throw new IllegalArgumentException("unable to parse given chord " + name);
+        throw new IllegalArgumentException("unable to to make Note from given chord " + name);
     }
 }
