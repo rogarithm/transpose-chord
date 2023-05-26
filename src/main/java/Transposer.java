@@ -5,10 +5,17 @@ import model.Symbol;
 
 public class Transposer {
 
-    public Transposer() {
+    private final Symbol chord;
+    private final Note currentKey;
+    private final Note transposedKey;
+
+    public Transposer(String chord, String currentKey, String transposedKey) {
+        this.chord = new Symbol(chord);
+        this.currentKey = NoteFactory.create(currentKey);
+        this.transposedKey = NoteFactory.create(transposedKey);
     }
 
-    public String doTranspose(Symbol chord, Note currentKey, Note transposedKey) {
+    public String doTranspose() {
         Interval itv = new Interval();
 
         String rootNote = chord.getRootNote();
