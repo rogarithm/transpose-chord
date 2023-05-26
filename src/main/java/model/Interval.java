@@ -129,7 +129,7 @@ public class Interval {
 
     }
 
-    public int getNumberOfSemitonesBetween(Note base, Note target) {
+    public int getSemitonesBetween(Note base, Note target) {
 
         if (base.toString().endsWith("#")) {
             base = HigherNoteFinder.findEquivalentNoteInFlat(base);

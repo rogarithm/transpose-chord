@@ -31,13 +31,13 @@ class IntervalTest {
 
     @Test
     public void getIntervalsInGKey() {
-        int itvM2 = itv.getNumberOfSemitonesBetween(G, A);
+        int itvM2 = itv.getSemitonesBetween(G, A);
         assertThat(itvM2).isEqualTo(2);
 
-        int itvm3 = itv.getNumberOfSemitonesBetween(G, Bb);
+        int itvm3 = itv.getSemitonesBetween(G, Bb);
         assertThat(itvm3).isEqualTo(3);
 
-        int itvP5 = itv.getNumberOfSemitonesBetween(G, D);
+        int itvP5 = itv.getSemitonesBetween(G, D);
         assertThat(itvP5).isEqualTo(7);
     }
 
