@@ -4,7 +4,7 @@ import model.note.Note;
 
 public class Degree {
 
-    private enum Degrees {
+    private enum NoteDisplayBasis {
         C("C", "D"),
         D("D", "E"),
         E("E", "F"),
@@ -13,41 +13,56 @@ public class Degree {
         A("A", "B"),
         B("B", "C");
 
-        private final String current;
-        private final String next;
-        private int degree;
+        private final String ofCurrentDegree;
+        private final String ofNextDegree;
+        private int degreeNumber;
 
-        Degrees(String current, String next) {
-            this.current = current;
-            this.next = next;
+        NoteDisplayBasis(String ofCurrentDegree, String ofNextDegree) {
+            this.ofCurrentDegree = ofCurrentDegree;
+            this.ofNextDegree = ofNextDegree;
         }
     }
 
-    Degree(Note root) {
-        int degree = 1;
-        Degrees currentNote = Degrees.valueOf(root.toString());
-        currentNote.degree = degree;
-        degree++;
+    public Degree(Note rootNote) {
 
-        Degrees nextNote = Degrees.valueOf(currentNote.next);
-        while (!nextNote.current.equals(currentNote.current)) {
-            nextNote.degree = degree;
-            nextNote = Degrees.valueOf(nextNote.next);
-            degree++;
+        initializeNoteDisplayBasis(rootNote);
+    }
+
+    private void initializeNoteDisplayBasis(Note rootNote) {
+
+        int degreeNumber = 1;
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
+        degreeOneDisplayBasis.degreeNumber = degreeNumber;
+        degreeNumber++;
+
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree);
+
+        while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
+            displayBasis.degreeNumber = degreeNumber;
+            displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree);
+            degreeNumber++;
         }
     }
 
-    public int getDegreeOfNote(Note note) {
-        Degrees degrees = Degrees.valueOf(note.toString());
-        return degrees.degree;
+    public int getDegreeNumberOf(Note note) {
+
+        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
+        return noteDisplayBasis.degreeNumber;
     }
 
-    public String getNoteForGivenDegree(int degree) {
-        for (Degrees degrees : Degrees.values()) {
-            if (degrees.degree == degree) {
-                return degrees.current;
+    public String getNoteOf(int degreeNumber) {
+
+        if (degreeNumber < 1 || degreeNumber > 8) {
+            throw new IllegalArgumentException("you put invalid degree number: " + degreeNumber
+                    + "\nThe degree number should be between 1 and 8 (inclusive).");
+        }
+
+        for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
+            if (noteDisplayBasis.degreeNumber == degreeNumber) {
+                return noteDisplayBasis.ofCurrentDegree;
             }
         }
-        throw new IllegalArgumentException("there's no note for given degree: " + degree);
+
+        throw new IllegalArgumentException("there's no note for given degree number: " + degreeNumber);
     }
 }

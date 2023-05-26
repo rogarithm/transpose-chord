@@ -2,47 +2,46 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import model.Interval.Intervals;
-import model.note.FlatNote;
 import model.note.Note;
-import model.note.PlainNote;
-import model.note.SharpNote;
-import org.assertj.core.api.Assertions;
+import model.note.NoteFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class IntervalTest {
 
     private Interval itv;
+    private Note G;
+    private Note Gb;
+    private Note A;
+    private Note Bb;
+    private Note D;
+    private Note Gsp;
 
     @BeforeEach
     public void setUp() {
         itv = new Interval();
+        G = NoteFactory.create("G");
+        A = NoteFactory.create("A");
+        Bb = NoteFactory.create("Bb");
+        D = NoteFactory.create("D");
+        Gb = NoteFactory.create("Gb");
+        Gsp = NoteFactory.create("G#");
     }
+
     @Test
     public void getIntervalsInGKey() {
-        Note G = PlainNote.G;
-        Note A = PlainNote.A;
-        Note Bb = FlatNote.B;
-        Note D = PlainNote.D;
-
-        int itvM2 = itv.getInterval(G, A);
+        int itvM2 = itv.getSemitonesBetween(G, A);
         assertThat(itvM2).isEqualTo(2);
 
-        int itvm3 = itv.getInterval(G, Bb);
+        int itvm3 = itv.getSemitonesBetween(G, Bb);
         assertThat(itvm3).isEqualTo(3);
 
-        int itvP5 = itv.getInterval(G, D);
+        int itvP5 = itv.getSemitonesBetween(G, D);
         assertThat(itvP5).isEqualTo(7);
     }
 
     @Test
     public void getRaisedNotes() {
-        Note G = PlainNote.G;
-        Note A = PlainNote.A;
-        Note Bb = FlatNote.B;
-        Note D = PlainNote.D;
-
         Note noteA = itv.getRaisedNote(G, 2);
         assertThat(noteA).isEqualTo(A);
 
@@ -55,30 +54,21 @@ class IntervalTest {
 
     @Test
     public void getRaisedNoteOfFlatNote() {
-        Note G = PlainNote.G;
-
         Note noteGflat = itv.getRaisedNote(G, 11);
-        assertThat(noteGflat).isEqualTo(FlatNote.G);
+        assertThat(noteGflat).isEqualTo(Gb);
     }
 
     @Test
     public void getRaisedNoteOfSharpNote() {
-        Note Gsharp = SharpNote.G;
+        Note Gsharp = Gsp;
 
         Note noteA = itv.getRaisedNote(Gsharp, 1);
-        assertThat(noteA).isEqualTo(PlainNote.A);
-    }
-
-    @Test
-    public void getIntervalNameFromIntervalSteps() {
-        Intervals majorSecond = itv.getIntervalName(2);
-        Assertions.assertThat(majorSecond).isEqualTo(Intervals.MAJOR_SECOND);
+        assertThat(noteA).isEqualTo(A);
     }
 
     @Test
     public void getDegreeFromIntervalName() {
-        Intervals majorSecond = itv.getIntervalName(2);
-        int degree = majorSecond.getDegree();
+        int degree = itv.getDegreeFromSemitones(2);
         assertThat(degree).isEqualTo(2);
     }
 }

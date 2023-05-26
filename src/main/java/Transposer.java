@@ -1,3 +1,4 @@
+import model.Degree;
 import model.Key;
 import model.note.NoteFactory;
 import model.Interval;
@@ -6,19 +7,35 @@ import model.Symbol;
 
 public class Transposer {
 
-    public Transposer() {
+    private final Symbol chord;
+    private final Note currentKey;
+    private final Note transposeTo;
+    private final Degree degree;
+    private final Key key;
+
+    public Transposer(String chord, String currentKey, String transposeTo) {
+        this.chord = new Symbol(chord);
+        this.currentKey = NoteFactory.create(currentKey);
+        this.transposeTo = NoteFactory.create(transposeTo);
+        this.degree = new Degree(this.transposeTo);
+        this.key = new Key(this.transposeTo);
     }
 
-    public String doTranspose(Symbol chord, Note currentKey, Note transposedKey) {
-        Interval itv = new Interval();
+    public String doTranspose() {
 
-        String rootNote = chord.getRootNote();
-        String other = chord.getOther();
+        Note bass = NoteFactory.create(chord.getRootNote());
 
-        Note note = NoteFactory.create(rootNote);
-        int steps = itv.getInterval(currentKey, note);
-        Note transposedNote = itv.getRaisedNote(transposedKey, steps);
+        Interval interval = new Interval();
+        int semitones = interval.getSemitonesBetween(currentKey, bass);
+        Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
-        return transposedNote.toString() + other;
+        int degreeNumber = interval.getDegreeFromSemitones(semitones);
+        String noteToFormat = degree.getNoteOf(degreeNumber);
+
+        if (!bassOfTranposedKey.toString().equals(noteToFormat)) {
+            bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
+        }
+
+        return bassOfTranposedKey.toString() + chord.getChordTones();
     }
 }

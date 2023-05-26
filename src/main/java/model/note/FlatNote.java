@@ -1,6 +1,6 @@
 package model.note;
 
-public enum FlatNote implements Note {
+enum FlatNote implements Note {
 
     C("Cb"),
     D("Db"),
@@ -12,7 +12,7 @@ public enum FlatNote implements Note {
 
     private final String name;
 
-    private FlatNote(String name) {
+    FlatNote(String name) {
         this.name = name;
     }
 

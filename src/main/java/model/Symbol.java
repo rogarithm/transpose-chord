@@ -1,43 +1,31 @@
 package model;
 
-public class Symbol {
-    private String chordString;
+import model.note.NoteValidator;
 
-    public Symbol(String chordString) {
-        this.chordString = chordString;
+public class Symbol {
+
+    private final String chord;
+    private static final NoteValidator validator = NoteValidator.getInstance();
+
+    public Symbol(String chord) {
+        this.chord = chord;
     }
 
     public String getRootNote() {
-        if (isNotFlat(chordString) && isNotSharp(chordString))
-            return chordString.substring(0, 1);
-        if (isFlat(chordString) || isSharp(chordString))
-            return chordString.substring(0, 2);
+        if (validator.isNotFlat(chord) && validator.isNotSharp(chord))
+            return chord.substring(0, 1);
+        if (validator.isFlat(chord) || validator.isSharp(chord))
+            return chord.substring(0, 2);
 
-        throw new IllegalArgumentException("Symbol.getRootNote(): unable to parse given chord");
+        throw new IllegalArgumentException("unable to get root note of given chord: " + chord);
     }
 
-    private boolean isNotFlat(String s) {
-        return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != 'b');
-    }
+    public String getChordTones() {
+        if (validator.isNotFlat(chord))
+            return chord.substring(1);
+        if (validator.isFlat(chord))
+            return chord.substring(2);
 
-    private boolean isFlat(String s) {
-        return s.length() >= 2 && s.charAt(1) == 'b';
-    }
-
-    private boolean isNotSharp(String s) {
-        return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != '#');
-    }
-
-    private boolean isSharp(String s) {
-        return s.length() >= 2 && s.charAt(1) == '#';
-    }
-
-    public String getOther() {
-        if (isNotFlat(chordString))
-            return chordString.substring(1);
-        if (isFlat(chordString))
-            return chordString.substring(2);
-
-        throw new IllegalArgumentException("Symbol.getOther(): unable to parse given chord");
+        throw new IllegalArgumentException("unable to get given chord: " + chord);
     }
 }
