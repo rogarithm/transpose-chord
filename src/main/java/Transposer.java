@@ -16,15 +16,13 @@ public class Transposer {
     }
 
     public String doTranspose() {
-        Interval itv = new Interval();
 
-        String rootNote = chord.getRootNote();
-        String chordTones = chord.getChordTones();
+        Note bass = NoteFactory.create(chord.getRootNote());
 
-        Note note = NoteFactory.create(rootNote);
-        int steps = itv.getNumberOfSemitonesBetween(currentKey, note);
-        Note transposedNote = itv.getRaisedNote(transposedKey, steps);
+        Interval interval = new Interval();
+        int semitones = interval.getNumberOfSemitonesBetween(currentKey, bass);
+        Note bassOfTranposedKey = interval.getRaisedNote(transposedKey, semitones);
 
-        return transposedNote.toString() + chordTones;
+        return bassOfTranposedKey.toString() + chord.getChordTones();
     }
 }
