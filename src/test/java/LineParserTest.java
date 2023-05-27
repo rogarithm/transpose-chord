@@ -18,12 +18,11 @@ class LineParserTest {
     @Test
     public void transposeChordsInOneLine() {
         String line = "GM7 C Am7 D7sus4 G";
-        LineParser parser = new LineParser(new Transposer("G", "G", "D"));
+        LineParser parser = new LineParser(new Transposer("G", "D"));
         List<Symbol> chords = parser.splitChordsInLine(line);
-        for (Symbol chord : chords) {
-            LineParser eachParser = new LineParser(new Transposer(chord.getRootNote() + chord.getChordTones(), "G", "D"));
-            List<Symbol> transposed = eachParser.transposeChordsInLine(chords);
-            System.out.println(transposed.get(0).getRootNote() + transposed.get(0).getChordTones());
+        List<Symbol> transposed = parser.transposeChordsInLine(chords);
+        for (Symbol chord : transposed) {
+            System.out.println(chord.getRootNote() + chord.getChordTones());
         }
     }
 }

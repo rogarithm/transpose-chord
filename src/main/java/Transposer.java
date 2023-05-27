@@ -7,22 +7,20 @@ import model.Symbol;
 
 public class Transposer {
 
-    private final Symbol chord;
     private final Note currentKey;
     private final Note transposeTo;
     private final Degree degree;
     private final Key key;
 
-    public Transposer(String chord, String currentKey, String transposeTo) {
-        this.chord = new Symbol(chord);
+    public Transposer(String currentKey, String transposeTo) {
         this.currentKey = NoteFactory.create(currentKey);
         this.transposeTo = NoteFactory.create(transposeTo);
         this.degree = new Degree(this.transposeTo);
         this.key = new Key(this.transposeTo);
     }
 
-    public String doTranspose() {
-
+    public String doTranspose(String chordString) {
+        Symbol chord = new Symbol(chordString);
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
