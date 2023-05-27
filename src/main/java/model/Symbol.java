@@ -28,4 +28,9 @@ public class Symbol {
 
         throw new IllegalArgumentException("unable to get given chord: " + chord);
     }
+
+    @Override
+    public String toString() {
+        return this.getRootNote() + this.getChordTones();
+    }
 }

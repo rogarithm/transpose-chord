@@ -25,7 +25,7 @@ public class LineParser {
         List<Symbol> result = new ArrayList<>();
 
         for (Symbol chord : chords) {
-            String transposed = transposer.doTranspose(chord.getRootNote() + chord.getChordTones());
+            String transposed = transposer.doTranspose(chord.toString());
             result.add(new Symbol(transposed));
         }
 
