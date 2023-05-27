@@ -20,4 +20,15 @@ public class LineParser {
 
         return result;
     }
+
+    public List<Symbol> transposeChordsInLine(List<Symbol> chords) {
+        List<Symbol> result = new ArrayList<>();
+
+        for (Symbol chord : chords) {
+            String transposed = transposer.doTranspose();
+            result.add(new Symbol(transposed));
+        }
+
+        return result;
+    }
 }
