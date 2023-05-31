@@ -5,22 +5,22 @@ class TransposerTest {
 
     @Test
     public void transposeMajorChord() {
-        Transposer transposer = new Transposer("G", "G", "A");
-        String transposed = transposer.doTranspose();
+        Transposer transposer = new Transposer("G", "A");
+        String transposed = transposer.doTranspose("G");
         Assertions.assertThat(transposed).isEqualTo("A");
     }
 
     @Test
     public void transposeMinorChord() {
-        Transposer transposer = new Transposer("Bm", "G", "A");
-        String transposed = transposer.doTranspose();
+        Transposer transposer = new Transposer("G", "A");
+        String transposed = transposer.doTranspose("Bm");
         Assertions.assertThat(transposed).isEqualTo("C#m");
     }
 
     @Test
     public void transpose7thChord() {
-        Transposer transposer = new Transposer("D7", "G", "A");
-        String transposed = transposer.doTranspose();
+        Transposer transposer = new Transposer("G", "A");
+        String transposed = transposer.doTranspose("D7");
         Assertions.assertThat(transposed).isEqualTo("E7");
     }
 

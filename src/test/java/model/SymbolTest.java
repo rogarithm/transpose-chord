@@ -62,4 +62,9 @@ class SymbolTest {
         assertThat(other).isEqualTo("m");
     }
 
+    @Test
+    public void constructSymbolOfSharpChord() {
+        Symbol symbol = new Symbol("C#m7");
+        assertThat(symbol.toString()).isEqualTo("C#m7");
+    }
 }
