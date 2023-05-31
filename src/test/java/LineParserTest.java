@@ -29,14 +29,34 @@ class LineParserTest {
     }
 
     @Test
-    public void transposeChordsInOneLine() {
+    public void transposeChordsInOneLineFromGkeyToDkey() {
         LineParser parser = new LineParser(new Transposer("G", "D"));
-        String line = "GM7 C Am7 D7sus4 G";
+        String line = "GM7 C Am7 D7sus4 Bm7 G";
 
         List<Symbol> chords = parser.splitChordsInLine(line);
         List<Symbol> transposedChords = parser.transposeChordsInLine(chords);
 
-        List<Symbol> expectedResult = Stream.of("DM7", "G", "Em7", "A7sus4", "D")
+        List<Symbol> expectedResult = Stream.of("DM7", "G", "Em7", "A7sus4", "F#m7", "D")
+                                            .map(Symbol::new)
+                                            .collect(Collectors.toList());
+
+        for (int idx = 0; idx < transposedChords.size(); idx++) {
+            String actual = transposedChords.get(idx).toString();
+            String expected = expectedResult.get(idx).toString();
+            Assertions.assertThat(actual).isEqualTo(expected);
+            idx++;
+        }
+    }
+
+    @Test
+    public void transposeChordsInOneLineFromAKeyToEKey() {
+        LineParser parser = new LineParser(new Transposer("A", "E"));
+        String line = "AM7 D Bm7 E7sus4 C#m7 A";
+
+        List<Symbol> chords = parser.splitChordsInLine(line);
+        List<Symbol> transposedChords = parser.transposeChordsInLine(chords);
+
+        List<Symbol> expectedResult = Stream.of("EM7", "A", "F#m7", "B7sus4", "G#m7", "E")
                                             .map(Symbol::new)
                                             .collect(Collectors.toList());
 

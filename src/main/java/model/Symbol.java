@@ -21,9 +21,9 @@ public class Symbol {
     }
 
     public String getChordTones() {
-        if (validator.isNotFlat(chord))
+        if (validator.isNotFlat(chord) && validator.isNotSharp(chord))
             return chord.substring(1);
-        if (validator.isFlat(chord))
+        if (validator.isFlat(chord) || validator.isSharp(chord))
             return chord.substring(2);
 
         throw new IllegalArgumentException("unable to get given chord: " + chord);

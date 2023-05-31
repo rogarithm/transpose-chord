@@ -10,22 +10,24 @@ import org.junit.jupiter.api.Test;
 class IntervalTest {
 
     private Interval itv;
-    private Note G;
+    private Note Csp;
+    private Note D;
     private Note Gb;
+    private Note G;
+    private Note Gsp;
     private Note A;
     private Note Bb;
-    private Note D;
-    private Note Gsp;
 
     @BeforeEach
     public void setUp() {
         itv = new Interval();
-        G = NoteFactory.create("G");
-        A = NoteFactory.create("A");
-        Bb = NoteFactory.create("Bb");
+        Csp = NoteFactory.create("C#");
         D = NoteFactory.create("D");
         Gb = NoteFactory.create("Gb");
+        G = NoteFactory.create("G");
         Gsp = NoteFactory.create("G#");
+        A = NoteFactory.create("A");
+        Bb = NoteFactory.create("Bb");
     }
 
     @Test
@@ -38,6 +40,9 @@ class IntervalTest {
 
         int itvP5 = itv.getSemitonesBetween(G, D);
         assertThat(itvP5).isEqualTo(7);
+
+        int itvM3 = itv.getSemitonesBetween(A, Csp);
+        assertThat(itvM3).isEqualTo(4);
     }
 
     @Test

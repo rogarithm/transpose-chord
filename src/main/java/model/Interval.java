@@ -126,6 +126,10 @@ public class Interval {
             base = NoteAscender.findEquivalentNoteInFlat(base);
         }
 
+        if (target.toString().endsWith("#")) {
+            target = NoteAscender.findEquivalentNoteInFlat(target);
+        }
+
         return NoteAscender.computeSemitonesBetween(base, target);
     }
 
