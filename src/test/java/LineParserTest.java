@@ -67,4 +67,24 @@ class LineParserTest {
             idx++;
         }
     }
+
+    @Test
+    public void transposeChordsInOneLineFromEkeyToCKey() {
+        LineParser parser = new LineParser(new Transposer("E", "C"));
+        String line = "EM7 A F#m7 B7sus4 G#m7 E";
+
+        List<Symbol> chords = parser.splitChordsInLine(line);
+        List<Symbol> transposedChords = parser.transposeChordsInLine(chords);
+
+        List<Symbol> expectedResult = Stream.of("CM7", "F", "Dm7", "G7sus4", "Em7", "C")
+                                            .map(Symbol::new)
+                                            .collect(Collectors.toList());
+
+        for (int idx = 0; idx < transposedChords.size(); idx++) {
+            String actual = transposedChords.get(idx).toString();
+            String expected = expectedResult.get(idx).toString();
+            Assertions.assertThat(actual).isEqualTo(expected);
+            idx++;
+        }
+    }
 }
