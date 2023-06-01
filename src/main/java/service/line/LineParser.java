@@ -1,6 +1,9 @@
+package service.line;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.Symbol;
+import service.chord.Transposer;
 
 public class LineParser {
 

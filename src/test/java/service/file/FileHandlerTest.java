@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
+package service.file;
 
 import java.io.File;
 import java.util.List;
@@ -18,5 +18,4 @@ class FileHandlerTest {
         List<String> lines = handler.readFile(file);
         Assertions.assertThat(lines.size()).isEqualTo(4);
     }
-
 }

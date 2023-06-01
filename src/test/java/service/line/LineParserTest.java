@@ -1,12 +1,13 @@
-import static org.junit.jupiter.api.Assertions.*;
+package service.line;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import model.Symbol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import service.line.LineParser;
+import service.chord.Transposer;
 
 class LineParserTest {
 
