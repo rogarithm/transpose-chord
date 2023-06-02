@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 import model.Symbol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import service.line.LineParser;
 import service.chord.Transposer;
 
 class LineParserTest {
@@ -87,5 +86,17 @@ class LineParserTest {
             Assertions.assertThat(actual).isEqualTo(expected);
             idx++;
         }
+    }
+
+    @Test
+    public void parseLineOfChords() {
+        LineParser parser = new LineParser(new Transposer("E", "C"));
+        String line = "EM7 A F#m7 B7sus4 G#m7 E";
+
+        List<String> parsedLine = parser.parseLine(line);
+        List<String> expectedResult = Stream.of("CM7", "F", "Dm7", "G7sus4", "Em7", "C")
+                                            .collect(Collectors.toList());
+
+        Assertions.assertThat(parsedLine).isEqualTo(expectedResult);
     }
 }

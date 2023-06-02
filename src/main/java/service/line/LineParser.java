@@ -34,4 +34,16 @@ public class LineParser implements Parser {
 
         return result;
     }
+
+    public List<String> parseLine(String line) {
+        List<Symbol> chords = splitChordsInLine(line);
+        List<Symbol> transposedChords = transposeChordsInLine(chords);
+
+        List<String> result = new ArrayList<>();
+        for (Symbol chord : transposedChords) {
+            result.add(chord.toString());
+        }
+
+        return result;
+    }
 }
