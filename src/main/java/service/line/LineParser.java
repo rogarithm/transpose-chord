@@ -5,7 +5,7 @@ import java.util.List;
 import model.Symbol;
 import service.chord.Transposer;
 
-public class LineParser {
+public class LineParser implements Parser {
 
     private final Transposer transposer;
 
