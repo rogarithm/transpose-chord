@@ -15,7 +15,8 @@ public class TransposeService {
         this.handler = handler;
     }
 
-    public List<String> handle(List<String> lines) {
+    public List<String> handle(String pathName, String fileName, String currentKey, String transposeKey) {
+        List<String> lines = handler.readFile(pathName, fileName);
         List<String> result = new ArrayList<>();
 
         for (String line : lines) {

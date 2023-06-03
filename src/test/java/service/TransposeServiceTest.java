@@ -38,6 +38,7 @@ class TransposeServiceTest {
     @Test
     public void parseEveryLineInFile() {
         List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Bbdim Am C");
+        when(handler.readFile(pathName, fileName)).thenReturn(readFromFile);
 
         List<String> parsedLine1 = Arrays.asList("G", "Bm", "D", "C");
         List<String> parsedLine2 = Arrays.asList("C", "D", "C", "G");
@@ -50,6 +51,6 @@ class TransposeServiceTest {
         when(parser.parseLine(readFromFile.get(3))).thenReturn(parsedLine4);
 
         List<String> expectedResult = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Bbdim Am C");
-        Assertions.assertThat(service.handle(readFromFile)).isEqualTo(expectedResult);
+        Assertions.assertThat(service.handle(pathName, fileName, "G", "G")).isEqualTo(expectedResult);
     }
 }
