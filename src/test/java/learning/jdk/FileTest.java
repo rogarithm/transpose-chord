@@ -32,12 +32,13 @@ class FileTest {
 
     @Test
     public void checkFileInfo() throws IOException {
-        System.out.println(file.getAbsolutePath());
-        System.out.println(file.getAbsoluteFile());
-        System.out.println(file.getCanonicalPath());
-        System.out.println(file.getCanonicalFile());
-        System.out.println(file.getName());
-        System.out.println(file.getPath());
+        String expectedPath = "/Users/sehun/Documents/music/chords.txt";
+        assertThat(file.getAbsolutePath()).isEqualTo(expectedPath);
+        assertThat(file.getAbsoluteFile()).isEqualTo(file);
+        assertThat(file.getCanonicalPath()).isEqualTo(expectedPath);
+        assertThat(file.getCanonicalFile()).isEqualTo(file);
+        assertThat(file.getName()).isEqualTo(fileName);
+        assertThat(file.getPath()).isEqualTo(expectedPath);
     }
 
     @Test
@@ -50,8 +51,9 @@ class FileTest {
     @Test
     public void createNewFile() throws IOException {
         File newFile = new File(pathName, "test.txt");
-        if (newFile.exists())
+        if (newFile.exists()) {
             newFile.delete();
+        }
         assertThat(newFile.createNewFile()).isTrue();
     }
 }
