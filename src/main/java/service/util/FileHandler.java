@@ -15,7 +15,8 @@ public class FileHandler {
         this.parser = parser;
     }
 
-    public List<String> readFile(File file) {
+    public List<String> readFile(String pathName, String fileName) {
+        File file = getFile(pathName, fileName);
         List<String> result = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file);
@@ -26,6 +27,10 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
         return result;
+    }
+
+    private File getFile(String pathName, String fileName) {
+        return new File(pathName + File.separator + fileName);
     }
 
     public List<String> handle(List<String> lines) {

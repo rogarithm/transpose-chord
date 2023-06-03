@@ -18,7 +18,6 @@ import service.line.Parser;
 @ExtendWith(MockitoExtension.class)
 class FileHandlerTest {
 
-    private File file;
     private String pathName = "/Users/sehun/Documents/music";
     private String fileName = "chords.txt";
 
@@ -29,19 +28,18 @@ class FileHandlerTest {
 
     @BeforeEach
     public void setUp() {
-        file = new File(pathName + File.separator + fileName);
         handler = new FileHandler(parser);
     }
 
     @Test
     public void readFileOfGivenPath() {
-        List<String> lines = handler.readFile(file);
+        List<String> lines = handler.readFile(pathName, fileName);
         Assertions.assertThat(lines.size()).isEqualTo(4);
     }
 
     @Test
     public void parseEveryLineInFile() {
-        List<String> lines = handler.readFile(file);
+        List<String> lines = handler.readFile(pathName, fileName);
         String line1 = "G Bm D C";
         String line2 = "C D C G";
         String line3 = "D C C Gmaj7";
