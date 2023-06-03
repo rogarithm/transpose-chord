@@ -5,15 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import service.line.Parser;
 
 public class FileHandler {
-
-    private final Parser parser;
-
-    public FileHandler(Parser parser) {
-        this.parser = parser;
-    }
 
     public List<String> readFile(String pathName, String fileName) {
         File file = getFile(pathName, fileName);
