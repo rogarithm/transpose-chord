@@ -17,20 +17,24 @@ public class TransposeService {
 
     public List<String> handle(String pathName, String fileName, String currentKey, String transposeKey) {
         List<String> lines = handler.readFile(pathName, fileName);
+
         List<String> result = new ArrayList<>();
-
         for (String line : lines) {
-            StringBuilder oneLine = new StringBuilder();
-            List<String> parsedLine = parser.parseLine(line);
-
-            for (int i=0; i<parsedLine.size(); i++) {
-                oneLine.append(parsedLine.get(i));
-                if (i != parsedLine.size() - 1)
-                    oneLine.append(" ");
-            }
-            result.add(oneLine.toString());
+            List<String> transposedChords = parser.parseLine(line);
+            String aLine = collectChordsIntoLine(transposedChords);
+            result.add(aLine);
         }
 
         return result;
+    }
+
+    private String collectChordsIntoLine(List<String> parsedLine) {
+        StringBuilder aLine = new StringBuilder();
+        for (int i=0; i< parsedLine.size(); i++) {
+            aLine.append(parsedLine.get(i));
+            if (i != parsedLine.size() - 1)
+                aLine.append(" ");
+        }
+        return aLine.toString();
     }
 }
