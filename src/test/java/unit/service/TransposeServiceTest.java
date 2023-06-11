@@ -12,6 +12,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.TransposeService;
+import service.chord.Transposer;
+import service.line.LineParser;
 import service.util.FileHandler;
 import service.line.Parser;
 
@@ -28,27 +30,23 @@ class TransposeServiceTest {
     @Mock
     Parser parser;
 
-    @BeforeEach
-    public void setUp() {
-        service = new TransposeService(handler, parser);
+    @Test
+    public void parseEveryLineInFile() {
+        service = new TransposeService(
+                new LineParser(new Transposer("G", "G")),
+                new FileHandler(pathName, fileName)
+        );
+        List<String> expectedResult = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
+        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
     }
 
     @Test
-    public void parseEveryLineInFile() {
-        List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Bbdim Am C");
-        when(handler.readFile(pathName, fileName)).thenReturn(readFromFile);
-
-        List<String> parsedLine1 = Arrays.asList("G", "Bm", "D", "C");
-        List<String> parsedLine2 = Arrays.asList("C", "D", "C", "G");
-        List<String> parsedLine3 = Arrays.asList("D", "C", "C", "Gmaj7");
-        List<String> parsedLine4 = Arrays.asList("Bbdim", "Am", "C");
-
-        when(parser.parseLine(readFromFile.get(0))).thenReturn(parsedLine1);
-        when(parser.parseLine(readFromFile.get(1))).thenReturn(parsedLine2);
-        when(parser.parseLine(readFromFile.get(2))).thenReturn(parsedLine3);
-        when(parser.parseLine(readFromFile.get(3))).thenReturn(parsedLine4);
-
-        List<String> expectedResult = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Bbdim Am C");
-        Assertions.assertThat(service.handle(pathName, fileName, "G", "G")).isEqualTo(expectedResult);
+    public void parseEveryLineInFileToDifferentKey() {
+        service = new TransposeService(
+                new LineParser(new Transposer("G", "E")),
+                new FileHandler(pathName, fileName)
+        );
+        List<String> expectedResult = Arrays.asList("E G#m B A", "A B A E", "B A A Emaj7", "F#m A");
+        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
     }
 }

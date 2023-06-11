@@ -8,7 +8,15 @@ import java.util.Scanner;
 
 public class FileHandler {
 
-    public List<String> readFile(String pathName, String fileName) {
+    private final String pathName;
+    private final String fileName;
+
+    public FileHandler(String pathName, String fileName) {
+        this.pathName = pathName;
+        this.fileName = fileName;
+    }
+
+    public List<String> readFile() {
         File file = getFile(pathName, fileName);
         List<String> result = new ArrayList<>();
         try {

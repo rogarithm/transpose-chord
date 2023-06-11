@@ -14,12 +14,12 @@ class FileHandlerTest {
 
     @BeforeEach
     public void setUp() {
-        handler = new FileHandler();
+        handler = new FileHandler(pathName, fileName);
     }
 
     @Test
     public void readFileOfGivenPath() {
-        List<String> lines = handler.readFile(pathName, fileName);
+        List<String> lines = handler.readFile();
         Assertions.assertThat(lines.size()).isEqualTo(4);
     }
 }
