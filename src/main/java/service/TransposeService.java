@@ -2,8 +2,6 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import service.chord.Transposer;
-import service.line.LineParser;
 import service.util.FileHandler;
 import service.line.Parser;
 
