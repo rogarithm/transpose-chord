@@ -1,7 +1,10 @@
 package service.util;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,5 +35,23 @@ public class FileHandler {
 
     private File getFile(String pathName, String fileName) {
         return new File(pathName + File.separator + fileName);
+    }
+
+    public void writeFile(List<String> lines, String path) {
+        File file = new File(path);
+
+        StringBuilder result = new StringBuilder();
+        for (String line : lines) {
+            result.append(line).append("\n");
+        }
+
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            bufferedWriter.write(result.toString());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
