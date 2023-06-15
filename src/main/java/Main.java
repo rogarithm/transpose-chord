@@ -1,3 +1,4 @@
+import java.util.List;
 import service.TransposeService;
 import service.chord.Transposer;
 import service.chord.TransposerFactory;
@@ -19,7 +20,7 @@ public class Main {
         Parser parser = LineParserFactory.create(transposer);
 
         TransposeService service = new TransposeService(parser, fileHandler);
-        service.handle();
+        List<String> result = service.handle();
+        fileHandler.writeFile(result, fileHandler.getTransposedFilePath());
     }
-
 }

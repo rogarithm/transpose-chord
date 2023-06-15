@@ -37,6 +37,12 @@ public class FileHandler {
         return new File(pathName + File.separator + fileName);
     }
 
+    public String getTransposedFilePath() {
+        String[] split = fileName.split("\\.");
+        String resultFileName = split[0] + "_transposed." + split[1];
+        return pathName + File.separator + resultFileName;
+    }
+
     public void writeFile(List<String> lines, String path) {
         File file = new File(path);
 
