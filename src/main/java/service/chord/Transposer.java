@@ -1,3 +1,5 @@
+package service.chord;
+
 import model.Degree;
 import model.Key;
 import model.note.NoteFactory;
