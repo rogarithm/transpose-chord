@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.TransposeService;
-import service.util.FileHandler;
+import service.file.FileHandler;
 import service.line.Parser;
 
 @ExtendWith(MockitoExtension.class)

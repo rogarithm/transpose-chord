@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import service.TransposeService;
 import service.chord.Transposer;
 import service.line.LineParser;
-import service.util.FileHandler;
+import service.file.FileHandler;
 
 public class TransposeServiceIntegrationTest {
 
