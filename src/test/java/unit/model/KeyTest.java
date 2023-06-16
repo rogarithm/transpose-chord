@@ -1,7 +1,8 @@
-package model;
+package unit.model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import model.Key;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,9 @@
-package model;
+package unit.model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import model.Degree;
+import model.Interval;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;

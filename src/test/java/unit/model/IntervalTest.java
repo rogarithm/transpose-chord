@@ -1,7 +1,8 @@
-package model;
+package unit.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.Interval;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.junit.jupiter.api.BeforeEach;

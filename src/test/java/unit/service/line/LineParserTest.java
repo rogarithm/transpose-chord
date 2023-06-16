@@ -1,4 +1,4 @@
-package service.line;
+package unit.service.line;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,6 +7,7 @@ import model.Symbol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import service.chord.Transposer;
+import service.line.LineParser;
 
 class LineParserTest {
 

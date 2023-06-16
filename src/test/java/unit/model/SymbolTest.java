@@ -1,7 +1,8 @@
-package model;
+package unit.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.Symbol;
 import org.junit.jupiter.api.Test;
 
 class SymbolTest {
