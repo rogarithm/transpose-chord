@@ -13,7 +13,7 @@ public class LineParser implements Parser {
         this.transposer = transposer;
     }
 
-    public List<Symbol> splitChordsInLine(String line) {
+    public List<Symbol> collectChordsInLine(String line) {
         List<Symbol> result = new ArrayList<>();
         String[] splitted = line.split(" +");
 
@@ -36,7 +36,7 @@ public class LineParser implements Parser {
     }
 
     public List<String> parseLine(String line) {
-        List<Symbol> chords = splitChordsInLine(line);
+        List<Symbol> chords = collectChordsInLine(line);
         List<Symbol> transposedChords = transposeChordsInLine(chords);
 
         List<String> result = new ArrayList<>();
