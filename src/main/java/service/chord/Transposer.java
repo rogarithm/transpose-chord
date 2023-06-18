@@ -30,10 +30,10 @@ public class Transposer {
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
         int degreeNumber = interval.getDegreeFromSemitones(semitones);
-        String noteToFormat = degree.getNoteOf(degreeNumber);
+        Note noteToFormat = degree.getNoteOf(degreeNumber);
 
-        if (!bassOfTranposedKey.toString().equals(noteToFormat)) {
-            bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
+        if (!bassOfTranposedKey.toString().equals(noteToFormat.toString())) {
+            bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat.toString());
         }
 
         return bassOfTranposedKey.toString() + chord.getChordTones();
