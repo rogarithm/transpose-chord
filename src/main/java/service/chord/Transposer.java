@@ -1,11 +1,11 @@
 package service.chord;
 
+import model.Chord;
 import model.Degree;
 import model.Key;
 import model.note.NoteFactory;
 import model.Interval;
 import model.note.Note;
-import model.Symbol;
 
 public class Transposer {
 
@@ -22,7 +22,7 @@ public class Transposer {
     }
 
     public String doTranspose(String chordString) {
-        Symbol chord = new Symbol(chordString);
+        Chord chord = new Chord(chordString);
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();

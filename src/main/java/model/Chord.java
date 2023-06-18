@@ -2,12 +2,12 @@ package model;
 
 import model.note.NoteValidator;
 
-public class Symbol {
+public class Chord {
 
     private final String chord;
     private static final NoteValidator validator = NoteValidator.getInstance();
 
-    public Symbol(String chord) {
+    public Chord(String chord) {
         this.chord = chord;
     }
 
