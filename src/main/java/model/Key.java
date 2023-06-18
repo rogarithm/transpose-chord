@@ -21,16 +21,16 @@ public class Key {
             this.alternate = alternate;
         }
 
-        static String findEquivalentNoteMeetsFormat(Note note, Note format) {
+        static String findEquivalentNoteMeetsFormat(Note note, Note basis) {
 
             for (EquivalentNoteFinder noteFinder : EquivalentNoteFinder.values()) {
                 if (noteFinder.name.equals(note.toString()) &&
-                        noteFinder.alternate.substring(0,1).equals(format.toString())) {
+                        noteFinder.alternate.substring(0,1).equals(basis.toString())) {
                     return noteFinder.alternate;
                 }
             }
 
-            throw new IllegalArgumentException("can't format given note " + note + " in " + format + "!");
+            throw new IllegalArgumentException("can't format given note " + note + " in " + basis + "!");
         }
     }
 
@@ -43,9 +43,9 @@ public class Key {
         this.interval = new Interval();
     }
 
-    public Note convertToSharpNoteOfSamePitch(Note note, Note format) {
+    public Note convertToSharpNoteOfSamePitch(Note note, Note basis) {
 
-        String formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, format);
+        String formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
         return NoteFactory.create(formatted);
     }
 }
