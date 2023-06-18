@@ -21,11 +21,11 @@ public class Key {
             this.alternate = alternate;
         }
 
-        static String findEquivalentNoteMeetsFormat(Note note, String format) {
+        static String findEquivalentNoteMeetsFormat(Note note, Note format) {
 
             for (EquivalentNoteFinder noteFinder : EquivalentNoteFinder.values()) {
                 if (noteFinder.name.equals(note.toString()) &&
-                        noteFinder.alternate.substring(0,1).equals(format)) {
+                        noteFinder.alternate.substring(0,1).equals(format.toString())) {
                     return noteFinder.alternate;
                 }
             }
@@ -43,7 +43,7 @@ public class Key {
         this.interval = new Interval();
     }
 
-    public Note convertToSharpNoteOfSamePitch(Note note, String format) {
+    public Note convertToSharpNoteOfSamePitch(Note note, Note format) {
 
         String formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, format);
         return NoteFactory.create(formatted);
