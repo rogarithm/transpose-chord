@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.TransposeService;
 import service.chord.Transposer;
+import service.file.FileHandlerFactory;
 import service.line.LineParser;
-import service.file.FileHandler;
 
 public class TransposeServiceIntegrationTest {
 
@@ -21,7 +21,7 @@ public class TransposeServiceIntegrationTest {
     public void setUp() {
         service = new TransposeService(
                 new LineParser(new Transposer("G", "E")),
-                new FileHandler(pathName, fileName)
+                FileHandlerFactory.create(pathName, fileName)
         );
     }
 

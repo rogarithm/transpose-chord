@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.TransposeService;
-import service.file.FileHandler;
+import service.file.DefaultFileHandler;
 import service.line.Parser;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,7 +23,7 @@ class TransposeServiceTest {
     @InjectMocks
     TransposeService service;
     @Mock
-    FileHandler handler;
+    DefaultFileHandler handler;
     @Mock
     Parser parser;
 

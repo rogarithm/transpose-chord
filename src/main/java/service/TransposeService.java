@@ -2,15 +2,15 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import service.file.FileHandler;
+import service.file.DefaultFileHandler;
 import service.line.Parser;
 
 public class TransposeService {
 
     private final Parser parser;
-    private final FileHandler handler;
+    private final DefaultFileHandler handler;
 
-    public TransposeService(Parser parser, FileHandler handler) {
+    public TransposeService(Parser parser, DefaultFileHandler handler) {
         this.parser = parser;
         this.handler = handler;
     }

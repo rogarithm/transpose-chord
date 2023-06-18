@@ -2,9 +2,9 @@ import java.util.List;
 import service.TransposeService;
 import service.chord.Transposer;
 import service.chord.TransposerFactory;
+import service.file.DefaultFileHandler;
 import service.line.LineParserFactory;
 import service.line.Parser;
-import service.file.FileHandler;
 import service.file.FileHandlerFactory;
 
 public class Main {
@@ -15,7 +15,7 @@ public class Main {
         String pathName = args[2];
         String fileName = args[3];
 
-        FileHandler fileHandler = FileHandlerFactory.create(pathName, fileName);
+        DefaultFileHandler fileHandler = FileHandlerFactory.create(pathName, fileName);
         Transposer transposer = TransposerFactory.create(currentKey, transposeTo);
         Parser parser = LineParserFactory.create(transposer);
 

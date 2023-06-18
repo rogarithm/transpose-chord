@@ -8,21 +8,22 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import service.file.FileHandler;
+import service.file.DefaultFileHandler;
+import service.file.FileHandlerFactory;
 
 class FileHandlerTest {
 
     private String pathName = "/Users/sehun/Documents/music";
     private String fileName = "chords.txt";
 
-    FileHandler handler;
+    DefaultFileHandler handler;
 
     @TempDir
     Path tempDir;
 
     @BeforeEach
     public void setUp() {
-        handler = new FileHandler(pathName, fileName);
+        handler = FileHandlerFactory.create(pathName, fileName);
     }
 
     @Test
