@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,7 +40,12 @@ class TransposeServiceTest {
         when(parser.parseLine(readFromFile.get(2))).thenReturn(Arrays.asList("D C C Gmaj7"));
         when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("Am C"));
 
-        List<String> expectedResult = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
+        List<Line> expectedResult = Arrays.asList(
+                new Line("G Bm D C"),
+                new Line("C D C G"),
+                new Line("D C C Gmaj7"),
+                new Line("Am C")
+        );
         Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
     }
 
@@ -55,7 +61,12 @@ class TransposeServiceTest {
         when(parser.parseLine(readFromFile.get(2))).thenReturn(Arrays.asList("B A A Emaj7"));
         when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("F#m A"));
 
-        List<String> expectedResult = Arrays.asList("E G#m B A", "A B A E", "B A A Emaj7", "F#m A");
+        List<Line> expectedResult = Arrays.asList(
+                new Line("E G#m B A"),
+                new Line("A B A E"),
+                new Line("B A A Emaj7"),
+                new Line("F#m A")
+        );
         Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
     }
 }

@@ -1,7 +1,9 @@
 package integration.service;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +29,20 @@ public class TransposeServiceIntegrationTest {
 
     @Test
     public void parseEveryLineInFileToDifferentKey() {
-        List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
-        List<String> expectedResult = Arrays.asList("E G#m B A", "A B A E", "B A A Emaj7", "F#m A");
-        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
+        List<Line> expectedResult = Arrays.asList(
+                new Line("E G#m B A"),
+                new Line("A B A E"),
+                new Line("B A A Emaj7"),
+                new Line("F#m A")
+        );
+
+        List<Line> result = service.handle();
+        Iterator<Line> iterator1 = result.iterator();
+        Iterator<Line> iterator2 = expectedResult.iterator();
+        for (; iterator1.hasNext(); ) {
+            Line line = iterator2.next();
+            Line expected = iterator2.next();
+            Assertions.assertThat(line.toString()).isEqualTo(expected.toString());
+        }
     }
 }

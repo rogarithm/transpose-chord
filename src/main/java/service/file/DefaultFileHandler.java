@@ -1,10 +1,11 @@
 package service.file;
 
 import java.util.List;
+import model.Line;
 
 public interface DefaultFileHandler {
 
     List<String> readFile();
     String getTransposedFilePath();
-    void writeFile(List<String> lines, String path);
+    void writeFile(List<Line> lines, String path);
 }

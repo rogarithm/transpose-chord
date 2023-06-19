@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import model.Line;
 
 public class FileHandler implements DefaultFileHandler {
 
@@ -43,12 +44,12 @@ public class FileHandler implements DefaultFileHandler {
         return pathName + File.separator + resultFileName;
     }
 
-    public void writeFile(List<String> lines, String path) {
+    public void writeFile(List<Line> lines, String path) {
         File file = new File(path);
 
         StringBuilder result = new StringBuilder();
-        for (String line : lines) {
-            result.append(line).append("\n");
+        for (Line line : lines) {
+            result.append(line.toString()).append("\n");
         }
 
         try (FileWriter fileWriter = new FileWriter(file);
