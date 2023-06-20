@@ -28,7 +28,7 @@ public class TransposeServiceIntegrationTest {
     }
 
     @Test
-    public void parseEveryLineInFileToDifferentKey() {
+    public void transposeFileToOtherKeyHavingSharpNote() {
         List<Line> expectedResult = Arrays.asList(
                 new Line("E G#m B A"),
                 new Line("A B A E"),

@@ -15,7 +15,7 @@ public class ChordTransposeEndToEndTest {
     Path tempDir;
 
     @Test
-    public void transposeAllChordsInTextFileWithNoLyrics() throws IOException {
+    public void transposeFileWithNoLyrics() throws IOException {
 
         String fileName = "chords.txt";
         Path originalFilePath = tempDir.resolve(fileName);

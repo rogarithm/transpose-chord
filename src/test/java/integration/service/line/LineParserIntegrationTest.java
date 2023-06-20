@@ -11,19 +11,19 @@ import service.line.LineParser;
 public class LineParserIntegrationTest {
 
     @Test
-    public void parseLineOfChordsFromGtoG() {
+    public void transposeLineToSameKeyHasNoChange() {
         LineParser parser = new LineParser(new Transposer("G", "G"));
         String line = "GM7 C Am7 D7sus4 G";
 
         List<String> parsedLine = parser.parseLine(line);
-        List<String> expectedResult = Stream.of("GM7", "C", "Am7", "D7sus4", "G")
+        List<String> expectedResult = Stream.of(line.split(" "))
                                             .collect(Collectors.toList());
 
         Assertions.assertThat(parsedLine).isEqualTo(expectedResult);
     }
 
     @Test
-    public void parseLineOfChordsFromGtoD() {
+    public void transposeLineToKeyHavingSharpNote() {
         LineParser parser = new LineParser(new Transposer("G", "D"));
         String line = "GM7 C Am7 D7sus4 Bm7 G";
 
@@ -35,7 +35,7 @@ public class LineParserIntegrationTest {
     }
 
     @Test
-    public void parseLineOfChordsFromAtoE() {
+    public void transposeLineToOtherKeyHavingSharpNote() {
         LineParser parser = new LineParser(new Transposer("A", "E"));
         String line = "AM7 D Bm7 E7sus4 C#m7 A";
 
@@ -47,7 +47,7 @@ public class LineParserIntegrationTest {
     }
 
     @Test
-    public void parseLineOfChordsFromEtoC() {
+    public void transposeLineToKeyHavingOnlyPlainNote() {
         LineParser parser = new LineParser(new Transposer("E", "C"));
         String line = "EM7 A F#m7 B7sus4 G#m7 E";
 

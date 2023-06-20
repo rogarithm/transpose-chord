@@ -29,7 +29,7 @@ class TransposeServiceTest {
     Parser parser;
 
     @Test
-    public void parseEveryLineInFile() {
+    public void transposeFileToSameKeyHasNoChange() {
         service = new TransposeService(parser, handler);
 
         List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
@@ -41,10 +41,10 @@ class TransposeServiceTest {
         when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("Am C"));
 
         List<Line> expectedResult = Arrays.asList(
-                new Line("G Bm D C"),
-                new Line("C D C G"),
-                new Line("D C C Gmaj7"),
-                new Line("Am C")
+                new Line(readFromFile.get(0)),
+                new Line(readFromFile.get(1)),
+                new Line(readFromFile.get(2)),
+                new Line(readFromFile.get(3))
         );
 
         List<Line> result = service.handle();
@@ -55,7 +55,7 @@ class TransposeServiceTest {
     }
 
     @Test
-    public void parseEveryLineInFileToDifferentKey() {
+    public void transposeFileToOtherKeyHavingSharpNote() {
         service = new TransposeService(parser, handler);
 
         List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
