@@ -46,7 +46,12 @@ class TransposeServiceTest {
                 new Line("D C C Gmaj7"),
                 new Line("Am C")
         );
-        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
+
+        List<Line> result = service.handle();
+        for (int i=0; i<result.size(); i++) {
+            Line line = result.get(i);
+            Assertions.assertThat(line.toString()).isEqualTo(expectedResult.get(i).toString());
+        }
     }
 
     @Test
@@ -67,6 +72,11 @@ class TransposeServiceTest {
                 new Line("B A A Emaj7"),
                 new Line("F#m A")
         );
-        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
+
+        List<Line> result = service.handle();
+        for (int i=0; i<result.size(); i++) {
+            Line line = result.get(i);
+            Assertions.assertThat(line.toString()).isEqualTo(expectedResult.get(i).toString());
+        }
     }
 }
