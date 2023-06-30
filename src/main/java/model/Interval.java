@@ -34,7 +34,7 @@ public class Interval {
         }
     }
 
-    public DegreeNumber getDegreeFromSemitones(SemitoneCount semitones) {
+    public DegreeNumber degree(SemitoneCount semitones) {
 
         DegreeFinder intervalName = DegreeFinder.from(semitones);
         return new DegreeNumber(intervalName.degreeNumber.number());
@@ -102,7 +102,7 @@ public class Interval {
             return noteFinder.name;
         }
 
-        static Note findEquivalentNoteInFlat(Note sharpNote) {
+        static Note findEquivalentFlatNote(Note sharpNote) {
 
             for (NoteAscender noteFinder : NoteAscender.values()) {
                 if (canDisplayInSharp(noteFinder) && sharpNote.equals(noteFinder.alternateNext)) {
@@ -121,11 +121,11 @@ public class Interval {
     public SemitoneCount getSemitonesBetween(Note base, Note target) {
 
         if (base.isSharp()) {
-            base = NoteAscender.findEquivalentNoteInFlat(base);
+            base = NoteAscender.findEquivalentFlatNote(base);
         }
 
         if (target.isSharp()) {
-            target = NoteAscender.findEquivalentNoteInFlat(target);
+            target = NoteAscender.findEquivalentFlatNote(target);
         }
 
         return NoteAscender.computeSemitonesBetween(base, target);
@@ -134,7 +134,7 @@ public class Interval {
     public Note getRaisedNote(Note base, SemitoneCount semitones) {
 
         if (base.isSharp()) {
-            base = NoteAscender.findEquivalentNoteInFlat(base);
+            base = NoteAscender.findEquivalentFlatNote(base);
         }
 
         Note raisedNoteName = NoteAscender.findRaisedNote(base, semitones);
