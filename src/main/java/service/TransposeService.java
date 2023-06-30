@@ -1,7 +1,7 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import model.Line;
 import service.file.DefaultFileHandler;
 import service.line.Parser;
@@ -19,14 +19,10 @@ public class TransposeService {
     public List<Line> handle() {
         List<Line> lines = handler.readFile();
 
-        List<Line> result = new ArrayList<>();
-        for (Line line : lines) {
-            List<String> transposedChords = parser.parseLine(line);
-            Line aLine = collectChordsIntoLine(transposedChords);
-            result.add(aLine);
-        }
-
-        return result;
+        return lines.stream()
+                    .map(parser::parseLine)
+                    .map(this::collectChordsIntoLine)
+                    .collect(Collectors.toList());
     }
 
     private Line collectChordsIntoLine(List<String> parsedLine) {
