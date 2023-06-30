@@ -21,8 +21,7 @@ public class Transposer {
         this.key = new Key(this.transposeTo);
     }
 
-    public Chord doTranspose(String chordString) {
-        Chord chord = new Chord(chordString);
+    public Chord doTranspose(Chord chord) {
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
