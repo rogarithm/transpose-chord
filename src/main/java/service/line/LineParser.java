@@ -35,7 +35,6 @@ public class LineParser implements Parser {
         return chords.stream()
                      .map(Chord::toString)
                      .map(transposer::doTranspose)
-                     .map(Chord::new)
                      .collect(Collectors.toList());
     }
 }
