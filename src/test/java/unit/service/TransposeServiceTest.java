@@ -40,10 +40,10 @@ class TransposeServiceTest {
         );
         when(handler.readFile()).thenReturn(readFromFile);
 
-        when(parser.parseLine(readFromFile.get(0).toString())).thenReturn(Arrays.asList("G Bm D C"));
-        when(parser.parseLine(readFromFile.get(1).toString())).thenReturn(Arrays.asList("C D C G"));
-        when(parser.parseLine(readFromFile.get(2).toString())).thenReturn(Arrays.asList("D C C Gmaj7"));
-        when(parser.parseLine(readFromFile.get(3).toString())).thenReturn(Arrays.asList("Am C"));
+        when(parser.parseLine(readFromFile.get(0).toString())).thenReturn(List.of("G Bm D C"));
+        when(parser.parseLine(readFromFile.get(1).toString())).thenReturn(List.of("C D C G"));
+        when(parser.parseLine(readFromFile.get(2).toString())).thenReturn(List.of("D C C Gmaj7"));
+        when(parser.parseLine(readFromFile.get(3).toString())).thenReturn(List.of("Am C"));
 
         List<Line> expectedResult = Arrays.asList(
                 new Line(readFromFile.get(0).toString()),
@@ -71,10 +71,10 @@ class TransposeServiceTest {
         );
         when(handler.readFile()).thenReturn(readFromFile);
 
-        when(parser.parseLine(readFromFile.get(0).toString())).thenReturn(Arrays.asList("E G#m B A"));
-        when(parser.parseLine(readFromFile.get(1).toString())).thenReturn(Arrays.asList("A B A E"));
-        when(parser.parseLine(readFromFile.get(2).toString())).thenReturn(Arrays.asList("B A A Emaj7"));
-        when(parser.parseLine(readFromFile.get(3).toString())).thenReturn(Arrays.asList("F#m A"));
+        when(parser.parseLine(readFromFile.get(0).toString())).thenReturn(List.of("E G#m B A"));
+        when(parser.parseLine(readFromFile.get(1).toString())).thenReturn(List.of("A B A E"));
+        when(parser.parseLine(readFromFile.get(2).toString())).thenReturn(List.of("B A A Emaj7"));
+        when(parser.parseLine(readFromFile.get(3).toString())).thenReturn(List.of("F#m A"));
 
         List<Line> expectedResult = Arrays.asList(
                 new Line("E G#m B A"),
