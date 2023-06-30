@@ -22,6 +22,10 @@ public class Degree {
             this.ofCurrentDegree = ofCurrentDegree;
             this.ofNextDegree = ofNextDegree;
         }
+
+        static NoteDisplayBasis from(Note note) {
+            return NoteDisplayBasis.valueOf(note.toString());
+        }
     }
 
     public Degree(Note rootNote) {
@@ -31,23 +35,23 @@ public class Degree {
 
     private void initializeNoteDisplayBasis(Note rootNote) {
 
-        int degreeNumber = 1;
-        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
-        degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
-        degreeNumber++;
+        int degree = 1;
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(rootNote);
+        degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degree);
+        degree++;
 
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree.toString());
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.from(degreeOneDisplayBasis.ofNextDegree);
 
         while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
-            displayBasis.degreeNumber = new DegreeNumber(degreeNumber);
-            displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree.toString());
-            degreeNumber++;
+            displayBasis.degreeNumber = new DegreeNumber(degree);
+            displayBasis = NoteDisplayBasis.from(displayBasis.ofNextDegree);
+            degree++;
         }
     }
 
     public int getDegreeNumberOf(Note note) {
 
-        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
+        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.from(note);
         return noteDisplayBasis.degreeNumber.number();
     }
 
@@ -60,7 +64,7 @@ public class Degree {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.number() == degreeNumber.number()) {
-                return NoteFactory.create(noteDisplayBasis.ofCurrentDegree.toString());
+                return noteDisplayBasis.ofCurrentDegree;
             }
         }
 
