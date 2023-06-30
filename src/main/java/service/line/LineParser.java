@@ -15,14 +15,10 @@ public class LineParser implements Parser {
         this.transposer = transposer;
     }
 
-    public List<String> parseLine(Line line) {
+    public List<Chord> parseLine(Line line) {
 
         List<Chord> chords = collectChordsInLine(line);
-        List<Chord> transposedChords = transposeChordsInLine(chords);
-
-        return transposedChords.stream()
-                               .map(Chord::toString)
-                               .collect(Collectors.toList());
+        return transposeChordsInLine(chords);
     }
 
     private List<Chord> collectChordsInLine(Line line) {
