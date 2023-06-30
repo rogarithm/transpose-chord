@@ -23,7 +23,7 @@ public class Interval {
             this.semitones = semitones;
         }
 
-        static DegreeFinder findDegreeOfSemitones(SemitoneCount semitones) {
+        static DegreeFinder from(SemitoneCount semitones) {
 
             for (DegreeFinder itvName : DegreeFinder.values()) {
                 if (semitones.count() == itvName.semitones.count())
@@ -36,7 +36,7 @@ public class Interval {
 
     public DegreeNumber getDegreeFromSemitones(SemitoneCount semitones) {
 
-        DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
+        DegreeFinder intervalName = DegreeFinder.from(semitones);
         return new DegreeNumber(intervalName.degreeNumber.number());
     }
 
