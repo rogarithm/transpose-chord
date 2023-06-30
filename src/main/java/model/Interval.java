@@ -137,8 +137,6 @@ public class Interval {
             base = NoteAscender.findEquivalentFlatNote(base);
         }
 
-        Note raisedNoteName = NoteAscender.findRaisedNote(base, semitones);
-
-        return raisedNoteName;
+        return NoteAscender.findRaisedNote(base, semitones);
     }
 }
