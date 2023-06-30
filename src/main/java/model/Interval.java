@@ -37,7 +37,7 @@ public class Interval {
     public DegreeNumber getDegreeFromSemitones(int semitones) {
 
         DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
-        return new DegreeNumber(intervalName.degreeNumber.getDegreeNumber());
+        return new DegreeNumber(intervalName.degreeNumber.number());
     }
 
     private enum NoteAscender {

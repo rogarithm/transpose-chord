@@ -48,18 +48,18 @@ public class Degree {
     public int getDegreeNumberOf(Note note) {
 
         NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
-        return noteDisplayBasis.degreeNumber.getDegreeNumber();
+        return noteDisplayBasis.degreeNumber.number();
     }
 
     public Note getNoteOf(DegreeNumber degreeNumber) {
 
-        if (degreeNumber.getDegreeNumber() < 1 || degreeNumber.getDegreeNumber() > 8) {
+        if (degreeNumber.number() < 1 || degreeNumber.number() > 8) {
             throw new IllegalArgumentException(this.getClass().getCanonicalName() + ": you put invalid degree number " + degreeNumber
                     + "\nThe degree number should be between 1 and 8 (inclusive).");
         }
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
-            if (noteDisplayBasis.degreeNumber.getDegreeNumber() == degreeNumber.getDegreeNumber()) {
+            if (noteDisplayBasis.degreeNumber.number() == degreeNumber.number()) {
                 return NoteFactory.create(noteDisplayBasis.ofCurrentDegree);
             }
         }
