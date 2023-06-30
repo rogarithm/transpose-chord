@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import model.Chord;
 import model.Line;
 import service.file.DefaultFileHandler;
 import service.line.Parser;
@@ -25,7 +26,7 @@ public class TransposeService {
                     .collect(Collectors.toList());
     }
 
-    private Line collectChordsIntoLine(List<String> parsedLine) {
+    private Line collectChordsIntoLine(List<Chord> parsedLine) {
         StringBuilder aLine = new StringBuilder();
         for (int i=0; i< parsedLine.size(); i++) {
             aLine.append(parsedLine.get(i));
