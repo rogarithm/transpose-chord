@@ -2,6 +2,7 @@ package unit.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.DegreeNumber;
 import model.Interval;
 import model.note.Note;
 import model.note.NoteFactory;
@@ -74,7 +75,7 @@ class IntervalTest {
 
     @Test
     public void getDegreeFromIntervalName() {
-        int degree = itv.getDegreeFromSemitones(2);
-        assertThat(degree).isEqualTo(2);
+        DegreeNumber degree = itv.getDegreeFromSemitones(2);
+        assertThat(degree.getDegreeNumber()).isEqualTo(2);
     }
 }
