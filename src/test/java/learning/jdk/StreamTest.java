@@ -29,7 +29,7 @@ public class StreamTest {
     }
 
     @Test
-    public void makeListFromList() {
+    public void makeListAfterToString() {
 
         List<String> expected = List.of("G", "Bm", "D", "C");
         List<String> collect = List.of(new Chord("G"), new Chord("Bm"), new Chord("D"), new Chord("C"))
