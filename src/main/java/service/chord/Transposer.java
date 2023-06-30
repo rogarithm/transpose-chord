@@ -2,6 +2,7 @@ package service.chord;
 
 import model.Chord;
 import model.Degree;
+import model.DegreeNumber;
 import model.Interval;
 import model.Key;
 import model.note.Note;
@@ -28,7 +29,7 @@ public class Transposer {
         int semitones = interval.getSemitonesBetween(currentKey, bass);
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
-        int degreeNumber = interval.getDegreeFromSemitones(semitones);
+        DegreeNumber degreeNumber = interval.getDegreeFromSemitones(semitones);
         Note noteToFormat = degree.getNoteOf(degreeNumber);
 
         if (!bassOfTranposedKey.toString().equals(noteToFormat.toString())) {

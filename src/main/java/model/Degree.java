@@ -16,7 +16,7 @@ public class Degree {
 
         private final String ofCurrentDegree;
         private final String ofNextDegree;
-        private int degreeNumber;
+        private DegreeNumber degreeNumber;
 
         NoteDisplayBasis(String ofCurrentDegree, String ofNextDegree) {
             this.ofCurrentDegree = ofCurrentDegree;
@@ -33,13 +33,13 @@ public class Degree {
 
         int degreeNumber = 1;
         NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
-        degreeOneDisplayBasis.degreeNumber = degreeNumber;
+        degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
         NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree);
 
         while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
-            displayBasis.degreeNumber = degreeNumber;
+            displayBasis.degreeNumber = new DegreeNumber(degreeNumber);
             displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree);
             degreeNumber++;
         }
@@ -48,18 +48,18 @@ public class Degree {
     public int getDegreeNumberOf(Note note) {
 
         NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
-        return noteDisplayBasis.degreeNumber;
+        return noteDisplayBasis.degreeNumber.getDegreeNumber();
     }
 
-    public Note getNoteOf(int degreeNumber) {
+    public Note getNoteOf(DegreeNumber degreeNumber) {
 
-        if (degreeNumber < 1 || degreeNumber > 8) {
+        if (degreeNumber.getDegreeNumber() < 1 || degreeNumber.getDegreeNumber() > 8) {
             throw new IllegalArgumentException("you put invalid degree number: " + degreeNumber
                     + "\nThe degree number should be between 1 and 8 (inclusive).");
         }
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
-            if (noteDisplayBasis.degreeNumber == degreeNumber) {
+            if (noteDisplayBasis.degreeNumber.getDegreeNumber() == degreeNumber.getDegreeNumber()) {
                 return NoteFactory.create(noteDisplayBasis.ofCurrentDegree);
             }
         }

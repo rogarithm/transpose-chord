@@ -1,7 +1,7 @@
 package model;
 
-import model.note.NoteFactory;
 import model.note.Note;
+import model.note.NoteFactory;
 
 public class Interval {
 
@@ -34,10 +34,10 @@ public class Interval {
         }
     }
 
-    public int getDegreeFromSemitones(int semitones) {
+    public DegreeNumber getDegreeFromSemitones(int semitones) {
 
         DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
-        return intervalName.degreeNumber;
+        return new DegreeNumber(intervalName.degreeNumber);
     }
 
     private enum NoteAscender {
