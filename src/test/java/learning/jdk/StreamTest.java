@@ -1,12 +1,12 @@
 package learning.jdk;
 
-import java.util.ArrayList;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.Chord;
 import model.Line;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class StreamTest {
@@ -22,8 +22,21 @@ public class StreamTest {
                                     .collect(Collectors.toList());
 
         for (int i = 0; i < collect.size(); i++) {
-            Assertions.assertThat(collect.get(i).toString()).isEqualTo(expected.get(i).toString());
+            assertThat(collect.get(i).toString()).isEqualTo(expected.get(i).toString());
         }
     }
 
+    @Test
+    public void makeListFromList() {
+
+        List<String> expected = List.of("G", "Bm", "D", "C");
+        List<String> collect = List.of(new Chord("G"), new Chord("Bm"), new Chord("D"), new Chord("C"))
+                                   .stream()
+                                   .map(Chord::toString)
+                                   .collect(Collectors.toList());
+
+        for (int i = 0; i < collect.size(); i++) {
+            assertThat(collect.get(i)).isEqualTo(expected.get(i));
+        }
+    }
 }
