@@ -48,7 +48,6 @@ public class Key {
 
     public Note convertToSharpNoteOfSamePitch(Note note, Note basis) {
 
-        Note formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
-        return formatted;
+        return EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
     }
 }
