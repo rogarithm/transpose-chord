@@ -6,19 +6,19 @@ import model.note.NoteFactory;
 public class Degree {
 
     private enum NoteDisplayBasis {
-        C("C", "D"),
-        D("D", "E"),
-        E("E", "F"),
-        F("F", "G"),
-        G("G", "A"),
-        A("A", "B"),
-        B("B", "C");
+        C(NoteFactory.create("C"), NoteFactory.create("D")),
+        D(NoteFactory.create("D"), NoteFactory.create("E")),
+        E(NoteFactory.create("E"), NoteFactory.create("F")),
+        F(NoteFactory.create("F"), NoteFactory.create("G")),
+        G(NoteFactory.create("G"), NoteFactory.create("A")),
+        A(NoteFactory.create("A"), NoteFactory.create("B")),
+        B(NoteFactory.create("B"), NoteFactory.create("C"));
 
-        private final String ofCurrentDegree;
-        private final String ofNextDegree;
+        private final Note ofCurrentDegree;
+        private final Note ofNextDegree;
         private DegreeNumber degreeNumber;
 
-        NoteDisplayBasis(String ofCurrentDegree, String ofNextDegree) {
+        NoteDisplayBasis(Note ofCurrentDegree, Note ofNextDegree) {
             this.ofCurrentDegree = ofCurrentDegree;
             this.ofNextDegree = ofNextDegree;
         }
@@ -36,11 +36,11 @@ public class Degree {
         degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree);
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree.toString());
 
         while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
             displayBasis.degreeNumber = new DegreeNumber(degreeNumber);
-            displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree);
+            displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree.toString());
             degreeNumber++;
         }
     }
@@ -60,7 +60,7 @@ public class Degree {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.number() == degreeNumber.number()) {
-                return NoteFactory.create(noteDisplayBasis.ofCurrentDegree);
+                return NoteFactory.create(noteDisplayBasis.ofCurrentDegree.toString());
             }
         }
 
