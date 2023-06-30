@@ -5,7 +5,7 @@ import model.Line;
 
 public interface DefaultFileHandler {
 
-    List<String> readFile();
+    List<Line> readFile();
     String getTransposedFilePath();
     void writeFile(List<Line> lines, String path);
 }

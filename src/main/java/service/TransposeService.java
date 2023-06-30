@@ -17,11 +17,11 @@ public class TransposeService {
     }
 
     public List<Line> handle() {
-        List<String> lines = handler.readFile();
+        List<Line> lines = handler.readFile();
 
         List<Line> result = new ArrayList<>();
-        for (String line : lines) {
-            List<String> transposedChords = parser.parseLine(line);
+        for (Line line : lines) {
+            List<String> transposedChords = parser.parseLine(line.toString());
             Line aLine = collectChordsIntoLine(transposedChords);
             result.add(aLine);
         }
