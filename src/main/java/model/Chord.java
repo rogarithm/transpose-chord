@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import model.note.NoteValidator;
 
 public class Chord {
@@ -32,5 +33,22 @@ public class Chord {
     @Override
     public String toString() {
         return this.getRootNote() + this.getChordTones();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Chord that = (Chord) o;
+        return Objects.equals(this.chord, that.chord);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(chord);
     }
 }

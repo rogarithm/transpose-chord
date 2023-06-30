@@ -26,7 +26,7 @@ public class Interval {
         static DegreeFinder from(SemitoneCount semitones) {
 
             for (DegreeFinder itvName : DegreeFinder.values()) {
-                if (semitones.count() == itvName.semitones.count())
+                if (semitones.equals(itvName.semitones))
                     return itvName;
             }
 
