@@ -123,11 +123,11 @@ public class Interval {
 
     public SemitoneCount getSemitonesBetween(Note base, Note target) {
 
-        if (base.toString().endsWith("#")) {
+        if (base.isSharp()) {
             base = NoteAscender.findEquivalentNoteInFlat(base);
         }
 
-        if (target.toString().endsWith("#")) {
+        if (target.isSharp()) {
             target = NoteAscender.findEquivalentNoteInFlat(target);
         }
 
@@ -136,7 +136,7 @@ public class Interval {
 
     public Note getRaisedNote(Note base, SemitoneCount semitones) {
 
-        if (base.toString().endsWith("#")) {
+        if (base.isSharp()) {
             base = NoteAscender.findEquivalentNoteInFlat(base);
         }
 

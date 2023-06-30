@@ -20,4 +20,19 @@ enum FlatNote implements Note {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean isFlat() {
+        return true;
+    }
+
+    @Override
+    public boolean isSharp() {
+        return false;
+    }
+
+    @Override
+    public boolean isPlain() {
+        return false;
+    }
 }
