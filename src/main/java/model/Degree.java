@@ -54,7 +54,7 @@ public class Degree {
     public Note getNoteOf(DegreeNumber degreeNumber) {
 
         if (degreeNumber.getDegreeNumber() < 1 || degreeNumber.getDegreeNumber() > 8) {
-            throw new IllegalArgumentException("you put invalid degree number: " + degreeNumber
+            throw new IllegalArgumentException(this.getClass().getCanonicalName() + ": you put invalid degree number " + degreeNumber
                     + "\nThe degree number should be between 1 and 8 (inclusive).");
         }
 
@@ -64,6 +64,6 @@ public class Degree {
             }
         }
 
-        throw new IllegalArgumentException("there's no note for given degree number: " + degreeNumber);
+        throw new IllegalArgumentException(this.getClass().getCanonicalName() + ": there's no note for given degree number for " + degreeNumber);
     }
 }
