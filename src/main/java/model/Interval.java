@@ -7,18 +7,18 @@ public class Interval {
 
     private enum DegreeFinder {
 
-        PERFECT_UNISON(1, 0),
-        MAJOR_SECOND(2, 2),
-        MAJOR_THIRD(3, 4),
-        PERFECT_FOURTH(4, 5),
-        PERFECT_FIFTH(5, 7),
-        MAJOR_SIXTH(6, 9),
-        MAJOR_SEVENTH(7, 11);
+        PERFECT_UNISON(new DegreeNumber(1), 0),
+        MAJOR_SECOND(new DegreeNumber(2), 2),
+        MAJOR_THIRD(new DegreeNumber(3), 4),
+        PERFECT_FOURTH(new DegreeNumber(4), 5),
+        PERFECT_FIFTH(new DegreeNumber(5), 7),
+        MAJOR_SIXTH(new DegreeNumber(6), 9),
+        MAJOR_SEVENTH(new DegreeNumber(7), 11);
 
-        private final int degreeNumber;
+        private final DegreeNumber degreeNumber;
         private final int semitones;
 
-        DegreeFinder(int degreeNumber, int semitones) {
+        DegreeFinder(DegreeNumber degreeNumber, int semitones) {
             this.degreeNumber = degreeNumber;
             this.semitones = semitones;
         }
@@ -37,7 +37,7 @@ public class Interval {
     public DegreeNumber getDegreeFromSemitones(int semitones) {
 
         DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
-        return new DegreeNumber(intervalName.degreeNumber);
+        return new DegreeNumber(intervalName.degreeNumber.getDegreeNumber());
     }
 
     private enum NoteAscender {
