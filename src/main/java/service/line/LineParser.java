@@ -1,7 +1,10 @@
 package service.line;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import model.Chord;
 import model.Line;
 import service.chord.Transposer;
@@ -27,14 +30,12 @@ public class LineParser implements Parser {
     }
 
     private List<Chord> collectChordsInLine(Line line) {
-        List<Chord> result = new ArrayList<>();
-        String[] splitted = line.toString().split(" +");
 
-        for (String chord : splitted) {
-            result.add(new Chord(chord));
-        }
-
-        return result;
+        return Arrays.stream(line
+                             .toString()
+                             .split(" +"))
+                     .map(Chord::new)
+                     .collect(Collectors.toList());
     }
 
     private List<Chord> transposeChordsInLine(List<Chord> chords) {
