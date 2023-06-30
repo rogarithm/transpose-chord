@@ -30,7 +30,7 @@ public class Interval {
                     return itvName;
             }
 
-            throw new IllegalArgumentException("can't find interval name for given semitones count: " + semitones);
+            throw new IllegalArgumentException(DegreeFinder.class.getCanonicalName() + ": can't find interval name for given semitones count " + semitones);
         }
     }
 
