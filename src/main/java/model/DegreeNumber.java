@@ -2,13 +2,13 @@ package model;
 
 public class DegreeNumber {
 
-    private int degreeNumber;
+    private int number;
 
-    public DegreeNumber(int degreeNumber) {
-        this.degreeNumber = degreeNumber;
+    public DegreeNumber(int number) {
+        this.number = number;
     }
 
-    public int getDegreeNumber() {
-        return degreeNumber;
+    public int number() {
+        return number;
     }
 }

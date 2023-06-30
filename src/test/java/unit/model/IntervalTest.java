@@ -76,6 +76,6 @@ class IntervalTest {
     @Test
     public void getDegreeFromIntervalName() {
         DegreeNumber degree = itv.getDegreeFromSemitones(2);
-        assertThat(degree.getDegreeNumber()).isEqualTo(2);
+        assertThat(degree.number()).isEqualTo(2);
     }
 }
