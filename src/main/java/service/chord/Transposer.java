@@ -30,7 +30,7 @@ public class Transposer {
         SemitoneCount semitones = interval.getSemitonesBetween(currentKey, bass);
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
-        DegreeNumber degreeNumber = interval.getDegreeFromSemitones(semitones);
+        DegreeNumber degreeNumber = interval.degree(semitones);
         Note noteToFormat = degree.getNoteOf(degreeNumber);
 
         if (!bassOfTranposedKey.equals(noteToFormat)) {
