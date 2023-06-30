@@ -35,4 +35,8 @@ enum PlainNote implements Note {
     public boolean isPlain() {
         return true;
     }
+
+    public boolean equals(Note other) {
+        return this.toString().equals(other.toString());
+    }
 }

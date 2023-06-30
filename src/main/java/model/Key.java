@@ -24,13 +24,16 @@ public class Key {
         static Note findEquivalentNoteMeetsFormat(Note note, Note basis) {
 
             for (EquivalentNoteFinder noteFinder : EquivalentNoteFinder.values()) {
-                if (noteFinder.name.toString().equals(note.toString()) &&
-                        noteFinder.alternate.toString().substring(0,1).equals(basis.toString())) {
+                if (noteFinder.name.equals(note) && getPlainNote(noteFinder.alternate).equals(basis)) {
                     return noteFinder.alternate;
                 }
             }
 
             throw new IllegalArgumentException(EquivalentNoteFinder.class.getCanonicalName() + ": can't format given note " + note + " in " + basis + "!");
+        }
+
+        private static Note getPlainNote(Note note) {
+            return NoteFactory.create(note.toString().substring(0, 1));
         }
     }
 

@@ -35,4 +35,8 @@ enum FlatNote implements Note {
     public boolean isPlain() {
         return false;
     }
+
+    public boolean equals(Note other) {
+        return this.toString().equals(other.toString());
+    }
 }

@@ -8,4 +8,5 @@ public interface Note {
 
     boolean isPlain();
 
+    boolean equals(Note other);
 }
