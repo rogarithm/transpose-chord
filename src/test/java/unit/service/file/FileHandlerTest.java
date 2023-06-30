@@ -29,7 +29,7 @@ class FileHandlerTest {
 
     @Test
     public void readFileOfGivenPath() {
-        List<String> lines = handler.readFile();
+        List<Line> lines = handler.readFile();
         Assertions.assertThat(lines.size()).isEqualTo(4);
     }
 
