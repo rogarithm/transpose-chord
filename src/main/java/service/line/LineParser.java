@@ -15,7 +15,7 @@ public class LineParser implements Parser {
     }
 
     public List<String> parseLine(Line line) {
-        List<Chord> chords = collectChordsInLine(line.toString());
+        List<Chord> chords = collectChordsInLine(line);
         List<Chord> transposedChords = transposeChordsInLine(chords);
 
         List<String> result = new ArrayList<>();
@@ -26,9 +26,9 @@ public class LineParser implements Parser {
         return result;
     }
 
-    private List<Chord> collectChordsInLine(String line) {
+    private List<Chord> collectChordsInLine(Line line) {
         List<Chord> result = new ArrayList<>();
-        String[] splitted = line.split(" +");
+        String[] splitted = line.toString().split(" +");
 
         for (String chord : splitted) {
             result.add(new Chord(chord));
