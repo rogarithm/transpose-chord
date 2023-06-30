@@ -12,7 +12,7 @@ public class Chord {
     }
 
     public String getRootNote() {
-        if (validator.isNotFlat(chord) && validator.isNotSharp(chord))
+        if (validator.isPlain(chord))
             return chord.substring(0, 1);
         if (validator.isFlat(chord) || validator.isSharp(chord))
             return chord.substring(0, 2);
@@ -21,7 +21,7 @@ public class Chord {
     }
 
     public String getChordTones() {
-        if (validator.isNotFlat(chord) && validator.isNotSharp(chord))
+        if (validator.isPlain(chord))
             return chord.substring(1);
         if (validator.isFlat(chord) || validator.isSharp(chord))
             return chord.substring(2);

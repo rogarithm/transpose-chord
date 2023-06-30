@@ -5,7 +5,7 @@ public class NoteFactory {
     private static final NoteValidator validator = NoteValidator.getInstance();
 
     public static Note create(String name) {
-        if (validator.isNotFlat(name) && validator.isNotSharp(name)) {
+        if (validator.isPlain(name)) {
             return PlainNote.valueOf(name.substring(0, 1));
         }
         if (validator.isFlat(name)) {
