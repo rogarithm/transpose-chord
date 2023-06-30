@@ -3,6 +3,7 @@ package service.line;
 import java.util.ArrayList;
 import java.util.List;
 import model.Chord;
+import model.Line;
 import service.chord.Transposer;
 
 public class LineParser implements Parser {
@@ -13,8 +14,8 @@ public class LineParser implements Parser {
         this.transposer = transposer;
     }
 
-    public List<String> parseLine(String line) {
-        List<Chord> chords = collectChordsInLine(line);
+    public List<String> parseLine(Line line) {
+        List<Chord> chords = collectChordsInLine(line.toString());
         List<Chord> transposedChords = transposeChordsInLine(chords);
 
         List<String> result = new ArrayList<>();

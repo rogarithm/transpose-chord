@@ -21,7 +21,7 @@ public class TransposeService {
 
         List<Line> result = new ArrayList<>();
         for (Line line : lines) {
-            List<String> transposedChords = parser.parseLine(line.toString());
+            List<String> transposedChords = parser.parseLine(line);
             Line aLine = collectChordsIntoLine(transposedChords);
             result.add(aLine);
         }

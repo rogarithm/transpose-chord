@@ -40,10 +40,10 @@ class TransposeServiceTest {
         );
         when(handler.readFile()).thenReturn(readFromFile);
 
-        when(parser.parseLine(readFromFile.get(0).toString())).thenReturn(List.of("G Bm D C"));
-        when(parser.parseLine(readFromFile.get(1).toString())).thenReturn(List.of("C D C G"));
-        when(parser.parseLine(readFromFile.get(2).toString())).thenReturn(List.of("D C C Gmaj7"));
-        when(parser.parseLine(readFromFile.get(3).toString())).thenReturn(List.of("Am C"));
+        when(parser.parseLine(readFromFile.get(0))).thenReturn(List.of("G Bm D C"));
+        when(parser.parseLine(readFromFile.get(1))).thenReturn(List.of("C D C G"));
+        when(parser.parseLine(readFromFile.get(2))).thenReturn(List.of("D C C Gmaj7"));
+        when(parser.parseLine(readFromFile.get(3))).thenReturn(List.of("Am C"));
 
         List<Line> expectedResult = Arrays.asList(
                 new Line(readFromFile.get(0).toString()),
@@ -71,10 +71,10 @@ class TransposeServiceTest {
         );
         when(handler.readFile()).thenReturn(readFromFile);
 
-        when(parser.parseLine(readFromFile.get(0).toString())).thenReturn(List.of("E G#m B A"));
-        when(parser.parseLine(readFromFile.get(1).toString())).thenReturn(List.of("A B A E"));
-        when(parser.parseLine(readFromFile.get(2).toString())).thenReturn(List.of("B A A Emaj7"));
-        when(parser.parseLine(readFromFile.get(3).toString())).thenReturn(List.of("F#m A"));
+        when(parser.parseLine(readFromFile.get(0))).thenReturn(List.of("E G#m B A"));
+        when(parser.parseLine(readFromFile.get(1))).thenReturn(List.of("A B A E"));
+        when(parser.parseLine(readFromFile.get(2))).thenReturn(List.of("B A A Emaj7"));
+        when(parser.parseLine(readFromFile.get(3))).thenReturn(List.of("F#m A"));
 
         List<Line> expectedResult = Arrays.asList(
                 new Line("E G#m B A"),
