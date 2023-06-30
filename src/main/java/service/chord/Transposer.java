@@ -2,10 +2,10 @@ package service.chord;
 
 import model.Chord;
 import model.Degree;
-import model.Key;
-import model.note.NoteFactory;
 import model.Interval;
+import model.Key;
 import model.note.Note;
+import model.note.NoteFactory;
 
 public class Transposer {
 
@@ -21,8 +21,7 @@ public class Transposer {
         this.key = new Key(this.transposeTo);
     }
 
-    public String doTranspose(String chordString) {
-        Chord chord = new Chord(chordString);
+    public Chord doTranspose(Chord chord) {
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
@@ -36,6 +35,6 @@ public class Transposer {
             bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
         }
 
-        return bassOfTranposedKey.toString() + chord.getChordTones();
+        return new Chord(bassOfTranposedKey.toString() + chord.getChordTones());
     }
 }

@@ -50,9 +50,7 @@ public class StreamTest {
         List<Chord> chords = List.of(new Chord("G"), new Chord("Bm"), new Chord("D"), new Chord("C"));
 
         List<Chord> collect = chords.stream()
-                                    .map(Chord::toString)
                                     .map(transposer::doTranspose)
-                                    .map(Chord::new)
                                     .collect(Collectors.toList());
 
         for (int i = 0; i < collect.size(); i++) {

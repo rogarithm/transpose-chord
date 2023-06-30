@@ -33,9 +33,7 @@ public class LineParser implements Parser {
     private List<Chord> transposeChordsInLine(List<Chord> chords) {
 
         return chords.stream()
-                     .map(Chord::toString)
                      .map(transposer::doTranspose)
-                     .map(Chord::new)
                      .collect(Collectors.toList());
     }
 }
