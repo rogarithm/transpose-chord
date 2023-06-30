@@ -7,26 +7,26 @@ public class Interval {
 
     private enum DegreeFinder {
 
-        PERFECT_UNISON(new DegreeNumber(1), 0),
-        MAJOR_SECOND(new DegreeNumber(2), 2),
-        MAJOR_THIRD(new DegreeNumber(3), 4),
-        PERFECT_FOURTH(new DegreeNumber(4), 5),
-        PERFECT_FIFTH(new DegreeNumber(5), 7),
-        MAJOR_SIXTH(new DegreeNumber(6), 9),
-        MAJOR_SEVENTH(new DegreeNumber(7), 11);
+        PERFECT_UNISON(new DegreeNumber(1), new SemitoneCount(0)),
+        MAJOR_SECOND  (new DegreeNumber(2), new SemitoneCount(2)),
+        MAJOR_THIRD   (new DegreeNumber(3), new SemitoneCount(4)),
+        PERFECT_FOURTH(new DegreeNumber(4), new SemitoneCount(5)),
+        PERFECT_FIFTH (new DegreeNumber(5), new SemitoneCount(7)),
+        MAJOR_SIXTH   (new DegreeNumber(6), new SemitoneCount(9)),
+        MAJOR_SEVENTH (new DegreeNumber(7), new SemitoneCount(11));
 
         private final DegreeNumber degreeNumber;
-        private final int semitones;
+        private final SemitoneCount semitones;
 
-        DegreeFinder(DegreeNumber degreeNumber, int semitones) {
+        DegreeFinder(DegreeNumber degreeNumber, SemitoneCount semitones) {
             this.degreeNumber = degreeNumber;
             this.semitones = semitones;
         }
 
-        static DegreeFinder findDegreeOfSemitones(int semitones) {
+        static DegreeFinder findDegreeOfSemitones(SemitoneCount semitones) {
 
             for (DegreeFinder itvName : DegreeFinder.values()) {
-                if (semitones == itvName.semitones)
+                if (semitones.count() == itvName.semitones.count())
                     return itvName;
             }
 
@@ -34,7 +34,7 @@ public class Interval {
         }
     }
 
-    public DegreeNumber getDegreeFromSemitones(int semitones) {
+    public DegreeNumber getDegreeFromSemitones(SemitoneCount semitones) {
 
         DegreeFinder intervalName = DegreeFinder.findDegreeOfSemitones(semitones);
         return new DegreeNumber(intervalName.degreeNumber.number());
@@ -72,7 +72,7 @@ public class Interval {
             this.alternateNext = alternateNext;
         }
 
-        static int computeSemitonesBetween(Note base, Note target) {
+        static SemitoneCount computeSemitonesBetween(Note base, Note target) {
 
             String baseName = base.toString();
             String targetName = target.toString();
@@ -84,17 +84,18 @@ public class Interval {
                 result += 1;
             }
 
-            return result;
+            return new SemitoneCount(result);
         }
 
-        static String findRaisedNote(Note base, int semitones) {
+        static String findRaisedNote(Note base, SemitoneCount semitones) {
 
             String baseName = base.toString();
             NoteAscender noteFinder = NoteAscender.valueOf(baseName);
+            int count = semitones.count();
 
-            while (semitones != 0) {
+            while (count != 0) {
                 noteFinder = NoteAscender.valueOf(noteFinder.next);
-                semitones -= 1;
+                count -= 1;
             }
 
             return noteFinder.name;
@@ -120,7 +121,7 @@ public class Interval {
         }
     }
 
-    public int getSemitonesBetween(Note base, Note target) {
+    public SemitoneCount getSemitonesBetween(Note base, Note target) {
 
         if (base.toString().endsWith("#")) {
             base = NoteAscender.findEquivalentNoteInFlat(base);
@@ -133,7 +134,7 @@ public class Interval {
         return NoteAscender.computeSemitonesBetween(base, target);
     }
 
-    public Note getRaisedNote(Note base, int semitones) {
+    public Note getRaisedNote(Note base, SemitoneCount semitones) {
 
         if (base.toString().endsWith("#")) {
             base = NoteAscender.findEquivalentNoteInFlat(base);

@@ -5,6 +5,7 @@ import model.Degree;
 import model.DegreeNumber;
 import model.Interval;
 import model.Key;
+import model.SemitoneCount;
 import model.note.Note;
 import model.note.NoteFactory;
 
@@ -26,7 +27,7 @@ public class Transposer {
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
-        int semitones = interval.getSemitonesBetween(currentKey, bass);
+        SemitoneCount semitones = interval.getSemitonesBetween(currentKey, bass);
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
         DegreeNumber degreeNumber = interval.getDegreeFromSemitones(semitones);
