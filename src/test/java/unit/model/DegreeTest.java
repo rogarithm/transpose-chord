@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import model.Degree;
 import model.DegreeNumber;
 import model.Interval;
+import model.SemitoneCount;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;
@@ -48,7 +49,7 @@ class DegreeTest {
         Note keyAfter = NoteFactory.create("D");
 
         Interval itv = new Interval();
-        int interval = itv.getSemitonesBetween(keyBefore, noteToTranspose);
+        SemitoneCount interval = itv.getSemitonesBetween(keyBefore, noteToTranspose);
         DegreeNumber degreeOfInterval = itv.getDegreeFromSemitones(interval);
 
         Degree degree = new Degree(keyAfter);
