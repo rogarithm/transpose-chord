@@ -64,7 +64,7 @@ public class Degree {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.number() == degreeNumber.number()) {
-                return NoteFactory.create(noteDisplayBasis.ofCurrentDegree.toString());
+                return noteDisplayBasis.ofCurrentDegree;
             }
         }
 
