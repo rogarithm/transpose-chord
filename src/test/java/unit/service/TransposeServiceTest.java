@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.TransposeService;
-import service.util.FileHandler;
+import service.file.DefaultFileHandler;
 import service.line.Parser;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,12 +24,12 @@ class TransposeServiceTest {
     @InjectMocks
     TransposeService service;
     @Mock
-    FileHandler handler;
+    DefaultFileHandler handler;
     @Mock
     Parser parser;
 
     @Test
-    public void parseEveryLineInFile() {
+    public void transposeFileToSameKeyHasNoChange() {
         service = new TransposeService(parser, handler);
 
         List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
@@ -39,12 +40,22 @@ class TransposeServiceTest {
         when(parser.parseLine(readFromFile.get(2))).thenReturn(Arrays.asList("D C C Gmaj7"));
         when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("Am C"));
 
-        List<String> expectedResult = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
-        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
+        List<Line> expectedResult = Arrays.asList(
+                new Line(readFromFile.get(0)),
+                new Line(readFromFile.get(1)),
+                new Line(readFromFile.get(2)),
+                new Line(readFromFile.get(3))
+        );
+
+        List<Line> result = service.handle();
+        for (int i=0; i<result.size(); i++) {
+            Line line = result.get(i);
+            Assertions.assertThat(line.toString()).isEqualTo(expectedResult.get(i).toString());
+        }
     }
 
     @Test
-    public void parseEveryLineInFileToDifferentKey() {
+    public void transposeFileToOtherKeyHavingSharpNote() {
         service = new TransposeService(parser, handler);
 
         List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
@@ -55,7 +66,17 @@ class TransposeServiceTest {
         when(parser.parseLine(readFromFile.get(2))).thenReturn(Arrays.asList("B A A Emaj7"));
         when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("F#m A"));
 
-        List<String> expectedResult = Arrays.asList("E G#m B A", "A B A E", "B A A Emaj7", "F#m A");
-        Assertions.assertThat(service.handle()).isEqualTo(expectedResult);
+        List<Line> expectedResult = Arrays.asList(
+                new Line("E G#m B A"),
+                new Line("A B A E"),
+                new Line("B A A Emaj7"),
+                new Line("F#m A")
+        );
+
+        List<Line> result = service.handle();
+        for (int i=0; i<result.size(); i++) {
+            Line line = result.get(i);
+            Assertions.assertThat(line.toString()).isEqualTo(expectedResult.get(i).toString());
+        }
     }
 }

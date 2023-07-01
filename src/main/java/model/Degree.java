@@ -1,6 +1,7 @@
 package model;
 
 import model.note.Note;
+import model.note.NoteFactory;
 
 public class Degree {
 
@@ -50,7 +51,7 @@ public class Degree {
         return noteDisplayBasis.degreeNumber;
     }
 
-    public String getNoteOf(int degreeNumber) {
+    public Note getNoteOf(int degreeNumber) {
 
         if (degreeNumber < 1 || degreeNumber > 8) {
             throw new IllegalArgumentException("you put invalid degree number: " + degreeNumber
@@ -59,7 +60,7 @@ public class Degree {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber == degreeNumber) {
-                return noteDisplayBasis.ofCurrentDegree;
+                return NoteFactory.create(noteDisplayBasis.ofCurrentDegree);
             }
         }
 

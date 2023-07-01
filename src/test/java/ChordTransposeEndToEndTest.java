@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -14,27 +15,37 @@ public class ChordTransposeEndToEndTest {
     @TempDir
     Path tempDir;
 
-    @Test
-    public void transposeAllChordsInTextFileWithNoLyrics() throws IOException {
+    Path originalFilePath;
 
-        String fileName = "chords.txt";
-        Path originalFilePath = tempDir.resolve(fileName);
+    String fileName;
+
+    File transposedFile;
+
+    @BeforeEach
+    public void setUpFiles() throws IOException {
+        fileName = "chords.txt";
+        originalFilePath = tempDir.resolve("chords.txt");
+        File originalFile = originalFilePath.toFile();
 
         String content = "G Bm D C\n"
                 + "C D C G\n"
                 + "D C C Gmaj7\n"
                 + "Am C\n";
-        File file = originalFilePath.toFile();
-        try (FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
+        try (FileWriter fileWriter = new FileWriter(originalFile);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(content);
             bufferedWriter.flush();
         }
 
         String[] split = fileName.split("\\.");
-        String resultFileName = split[0] + "_transposed." + split[1];
-        Path resultPath = tempDir.resolve(resultFileName);
-        File transposedFile = resultPath.toFile();
+        String name = split[0];
+        String extension = split[1];
+        transposedFile = tempDir.resolve(name + "_transposed." + extension).toFile();
+    }
+
+    @Test
+    public void transposeFileWithNoLyrics() throws IOException {
 
         Main.main(new String[]{
                 "G",

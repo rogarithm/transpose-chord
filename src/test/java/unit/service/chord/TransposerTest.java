@@ -1,7 +1,8 @@
-package service.chord;
+package unit.service.chord;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import service.chord.Transposer;
 
 class TransposerTest {
 

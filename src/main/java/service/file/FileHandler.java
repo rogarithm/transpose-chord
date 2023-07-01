@@ -1,4 +1,4 @@
-package service.util;
+package service.file;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import model.Line;
 
-public class FileHandler {
+public class FileHandler implements DefaultFileHandler {
 
     private final String pathName;
     private final String fileName;
@@ -43,12 +44,12 @@ public class FileHandler {
         return pathName + File.separator + resultFileName;
     }
 
-    public void writeFile(List<String> lines, String path) {
+    public void writeFile(List<Line> lines, String path) {
         File file = new File(path);
 
         StringBuilder result = new StringBuilder();
-        for (String line : lines) {
-            result.append(line).append("\n");
+        for (Line line : lines) {
+            result.append(line.toString()).append("\n");
         }
 
         try (FileWriter fileWriter = new FileWriter(file);

@@ -2,7 +2,7 @@ package service.line;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Symbol;
+import model.Chord;
 import service.chord.Transposer;
 
 public class LineParser implements Parser {
@@ -13,35 +13,35 @@ public class LineParser implements Parser {
         this.transposer = transposer;
     }
 
-    public List<Symbol> splitChordsInLine(String line) {
-        List<Symbol> result = new ArrayList<>();
+    public List<String> parseLine(String line) {
+        List<Chord> chords = collectChordsInLine(line);
+        List<Chord> transposedChords = transposeChordsInLine(chords);
+
+        List<String> result = new ArrayList<>();
+        for (Chord chord : transposedChords) {
+            result.add(chord.toString());
+        }
+
+        return result;
+    }
+
+    private List<Chord> collectChordsInLine(String line) {
+        List<Chord> result = new ArrayList<>();
         String[] splitted = line.split(" +");
 
         for (String chord : splitted) {
-            result.add(new Symbol(chord));
+            result.add(new Chord(chord));
         }
 
         return result;
     }
 
-    public List<Symbol> transposeChordsInLine(List<Symbol> chords) {
-        List<Symbol> result = new ArrayList<>();
+    private List<Chord> transposeChordsInLine(List<Chord> chords) {
+        List<Chord> result = new ArrayList<>();
 
-        for (Symbol chord : chords) {
+        for (Chord chord : chords) {
             String transposed = transposer.doTranspose(chord.toString());
-            result.add(new Symbol(transposed));
-        }
-
-        return result;
-    }
-
-    public List<String> parseLine(String line) {
-        List<Symbol> chords = splitChordsInLine(line);
-        List<Symbol> transposedChords = transposeChordsInLine(chords);
-
-        List<String> result = new ArrayList<>();
-        for (Symbol chord : transposedChords) {
-            result.add(chord.toString());
+            result.add(new Chord(transposed));
         }
 
         return result;
