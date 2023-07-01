@@ -105,16 +105,12 @@ public class Interval {
         static Note findEquivalentNoteInFlat(Note sharpNote) {
 
             for (NoteAscender noteFinder : NoteAscender.values()) {
-                if (canDisplayInSharp(noteFinder) && isSameNote(sharpNote, noteFinder.alternateNext)) {
-                    sharpNote = NoteFactory.create(noteFinder.next);
+                if (canDisplayInSharp(noteFinder) && sharpNote.equals(noteFinder.alternateNext)) {
+                    sharpNote = noteFinder.next;
                 }
             }
 
             return sharpNote;
-        }
-
-        private static boolean isSameNote(Note note1, String note2) {
-            return note1.toString().equals(note2);
         }
 
         private static boolean canDisplayInSharp(NoteAscender noteFinder) {
