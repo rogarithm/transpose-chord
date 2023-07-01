@@ -22,6 +22,10 @@ public class Degree {
             this.ofCurrentDegree = ofCurrentDegree;
             this.ofNextDegree = ofNextDegree;
         }
+
+        static NoteDisplayBasis from(Note note) {
+            return NoteDisplayBasis.valueOf(note.toString());
+        }
     }
 
     public Degree(Note rootNote) {
@@ -32,22 +36,22 @@ public class Degree {
     private void initializeNoteDisplayBasis(Note rootNote) {
 
         int degreeNumber = 1;
-        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.valueOf(rootNote.toString());
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(rootNote);
         degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.valueOf(degreeOneDisplayBasis.ofNextDegree.toString());
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.from(degreeOneDisplayBasis.ofNextDegree);
 
         while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
             displayBasis.degreeNumber = new DegreeNumber(degreeNumber);
-            displayBasis = NoteDisplayBasis.valueOf(displayBasis.ofNextDegree.toString());
+            displayBasis = NoteDisplayBasis.from(displayBasis.ofNextDegree);
             degreeNumber++;
         }
     }
 
     public int getDegreeNumberOf(Note note) {
 
-        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.valueOf(note.toString());
+        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.from(note);
         return noteDisplayBasis.degreeNumber.number();
     }
 
