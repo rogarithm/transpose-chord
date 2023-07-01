@@ -2,7 +2,9 @@ package unit.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.DegreeNumber;
 import model.Interval;
+import model.SemitoneCount;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,34 +35,34 @@ class IntervalTest {
 
     @Test
     public void getIntervalsInGKey() {
-        int itvM2 = itv.getSemitonesBetween(G, A);
-        assertThat(itvM2).isEqualTo(2);
+        SemitoneCount itvM2 = itv.getSemitonesBetween(G, A);
+        assertThat(itvM2.count()).isEqualTo(2);
 
-        int itvm3 = itv.getSemitonesBetween(G, Bb);
-        assertThat(itvm3).isEqualTo(3);
+        SemitoneCount itvm3 = itv.getSemitonesBetween(G, Bb);
+        assertThat(itvm3.count()).isEqualTo(3);
 
-        int itvP5 = itv.getSemitonesBetween(G, D);
-        assertThat(itvP5).isEqualTo(7);
+        SemitoneCount itvP5 = itv.getSemitonesBetween(G, D);
+        assertThat(itvP5.count()).isEqualTo(7);
 
-        int itvM3 = itv.getSemitonesBetween(A, Csp);
-        assertThat(itvM3).isEqualTo(4);
+        SemitoneCount itvM3 = itv.getSemitonesBetween(A, Csp);
+        assertThat(itvM3.count()).isEqualTo(4);
     }
 
     @Test
     public void getRaisedNotes() {
-        Note noteA = itv.getRaisedNote(G, 2);
+        Note noteA = itv.getRaisedNote(G, new SemitoneCount(2));
         assertThat(noteA).isEqualTo(A);
 
-        Note noteBb = itv.getRaisedNote(G, 3);
+        Note noteBb = itv.getRaisedNote(G, new SemitoneCount(3));
         assertThat(noteBb).isEqualTo(Bb);
 
-        Note noteD = itv.getRaisedNote(G, 7);
+        Note noteD = itv.getRaisedNote(G, new SemitoneCount(7));
         assertThat(noteD).isEqualTo(D);
     }
 
     @Test
     public void getRaisedNoteOfFlatNote() {
-        Note noteGflat = itv.getRaisedNote(G, 11);
+        Note noteGflat = itv.getRaisedNote(G, new SemitoneCount(11));
         assertThat(noteGflat).isEqualTo(Gb);
     }
 
@@ -68,13 +70,13 @@ class IntervalTest {
     public void getRaisedNoteOfSharpNote() {
         Note Gsharp = Gsp;
 
-        Note noteA = itv.getRaisedNote(Gsharp, 1);
+        Note noteA = itv.getRaisedNote(Gsharp, new SemitoneCount(1));
         assertThat(noteA).isEqualTo(A);
     }
 
     @Test
     public void getDegreeFromIntervalName() {
-        int degree = itv.getDegreeFromSemitones(2);
-        assertThat(degree).isEqualTo(2);
+        DegreeNumber degree = itv.degree(new SemitoneCount(2));
+        assertThat(degree.number()).isEqualTo(2);
     }
 }

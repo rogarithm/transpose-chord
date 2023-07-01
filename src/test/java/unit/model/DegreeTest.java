@@ -3,7 +3,9 @@ package unit.model;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import model.Degree;
+import model.DegreeNumber;
 import model.Interval;
+import model.SemitoneCount;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;
@@ -30,14 +32,14 @@ class DegreeTest {
     public void getNoteForInvalidDegree() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        assertThrows(IllegalArgumentException.class, () -> degree.getNoteOf(0));
+        assertThrows(IllegalArgumentException.class, () -> degree.getNoteOf(new DegreeNumber(0)));
     }
 
     @Test
     public void getNoteForDegree() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getNoteOf(2).toString()).isEqualTo("E");
+        Assertions.assertThat(degree.getNoteOf(new DegreeNumber(2)).toString()).isEqualTo("E");
     }
 
     @Test
@@ -47,8 +49,8 @@ class DegreeTest {
         Note keyAfter = NoteFactory.create("D");
 
         Interval itv = new Interval();
-        int interval = itv.getSemitonesBetween(keyBefore, noteToTranspose);
-        int degreeOfInterval = itv.getDegreeFromSemitones(interval);
+        SemitoneCount interval = itv.getSemitonesBetween(keyBefore, noteToTranspose);
+        DegreeNumber degreeOfInterval = itv.degree(interval);
 
         Degree degree = new Degree(keyAfter);
         Note noteToFormat = degree.getNoteOf(degreeOfInterval);

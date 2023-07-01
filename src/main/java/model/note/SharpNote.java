@@ -20,4 +20,23 @@ enum SharpNote implements Note {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean isFlat() {
+        return false;
+    }
+
+    @Override
+    public boolean isSharp() {
+        return true;
+    }
+
+    @Override
+    public boolean isPlain() {
+        return false;
+    }
+
+    public boolean equals(Note other) {
+        return this.toString().equals(other.toString());
+    }
 }

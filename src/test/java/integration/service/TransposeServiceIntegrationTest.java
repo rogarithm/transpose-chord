@@ -42,7 +42,7 @@ public class TransposeServiceIntegrationTest {
         for (; iterator1.hasNext(); ) {
             Line line = iterator1.next();
             Line expected = iterator2.next();
-            Assertions.assertThat(line.toString()).isEqualTo(expected.toString());
+            Assertions.assertThat(line).isEqualTo(expected);
         }
     }
 }

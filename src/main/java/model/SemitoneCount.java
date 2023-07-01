@@ -2,17 +2,16 @@ package model;
 
 import java.util.Objects;
 
-public class Line {
+public class SemitoneCount {
 
-    String content;
+    private int count;
 
-    public Line(String content) {
-        this.content = content;
+    public SemitoneCount(int count) {
+        this.count = count;
     }
 
-    @Override
-    public String toString() {
-        return content;
+    public int count() {
+        return count;
     }
 
     @Override
@@ -23,12 +22,12 @@ public class Line {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Line line = (Line) o;
-        return Objects.equals(content, line.content);
+        SemitoneCount that = (SemitoneCount) o;
+        return count == that.count;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(content);
+        return Objects.hash(count);
     }
 }

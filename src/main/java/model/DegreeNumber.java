@@ -2,17 +2,16 @@ package model;
 
 import java.util.Objects;
 
-public class Line {
+public class DegreeNumber {
 
-    String content;
+    private int number;
 
-    public Line(String content) {
-        this.content = content;
+    public DegreeNumber(int number) {
+        this.number = number;
     }
 
-    @Override
-    public String toString() {
-        return content;
+    public int number() {
+        return number;
     }
 
     @Override
@@ -23,12 +22,12 @@ public class Line {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Line line = (Line) o;
-        return Objects.equals(content, line.content);
+        DegreeNumber that = (DegreeNumber) o;
+        return number == that.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(content);
+        return Objects.hash(number);
     }
 }

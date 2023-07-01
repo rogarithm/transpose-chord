@@ -6,31 +6,34 @@ import model.note.NoteFactory;
 public class Key {
 
     private enum EquivalentNoteFinder {
-        Db("Db", "C#"),
-        Eb("Eb", "D#"),
-        Gb("Gb", "F#"),
-        Ab("Ab", "G#"),
-        Bb("Bb", "A#");
+        Db(NoteFactory.create("Db"), NoteFactory.create("C#")),
+        Eb(NoteFactory.create("Eb"), NoteFactory.create("D#")),
+        Gb(NoteFactory.create("Gb"), NoteFactory.create("F#")),
+        Ab(NoteFactory.create("Ab"), NoteFactory.create("G#")),
+        Bb(NoteFactory.create("Bb"), NoteFactory.create("A#"));
 
-        private final String name;
-        private final String alternate;
+        private final Note name;
+        private final Note alternate;
 
-        EquivalentNoteFinder(String name, String alternate) {
+        EquivalentNoteFinder(Note name, Note alternate) {
 
             this.name = name;
             this.alternate = alternate;
         }
 
-        static String findEquivalentNoteMeetsFormat(Note note, Note basis) {
+        static Note findEquivalentNoteMeetsFormat(Note note, Note basis) {
 
             for (EquivalentNoteFinder noteFinder : EquivalentNoteFinder.values()) {
-                if (noteFinder.name.equals(note.toString()) &&
-                        noteFinder.alternate.substring(0,1).equals(basis.toString())) {
+                if (noteFinder.name.equals(note) && getPlainNote(noteFinder.alternate).equals(basis)) {
                     return noteFinder.alternate;
                 }
             }
 
-            throw new IllegalArgumentException("can't format given note " + note + " in " + basis + "!");
+            throw new IllegalArgumentException(EquivalentNoteFinder.class.getCanonicalName() + ": can't format given note " + note + " in " + basis + "!");
+        }
+
+        private static Note getPlainNote(Note note) {
+            return NoteFactory.create(note.toString().substring(0, 1));
         }
     }
 
@@ -45,7 +48,6 @@ public class Key {
 
     public Note convertToSharpNoteOfSamePitch(Note note, Note basis) {
 
-        String formatted = EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
-        return NoteFactory.create(formatted);
+        return EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
     }
 }

@@ -20,13 +20,13 @@ public class FileHandler implements DefaultFileHandler {
         this.fileName = fileName;
     }
 
-    public List<String> readFile() {
+    public List<Line> readFile() {
         File file = getFile(pathName, fileName);
-        List<String> result = new ArrayList<>();
+        List<Line> result = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
-                result.add(sc.nextLine());
+                result.add(new Line(sc.nextLine()));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

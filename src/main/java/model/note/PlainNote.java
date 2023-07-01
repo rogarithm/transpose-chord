@@ -20,4 +20,23 @@ enum PlainNote implements Note {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean isFlat() {
+        return false;
+    }
+
+    @Override
+    public boolean isSharp() {
+        return false;
+    }
+
+    @Override
+    public boolean isPlain() {
+        return true;
+    }
+
+    public boolean equals(Note other) {
+        return this.toString().equals(other.toString());
+    }
 }

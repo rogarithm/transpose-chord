@@ -2,10 +2,12 @@ package service.chord;
 
 import model.Chord;
 import model.Degree;
-import model.Key;
-import model.note.NoteFactory;
+import model.DegreeNumber;
 import model.Interval;
+import model.Key;
+import model.SemitoneCount;
 import model.note.Note;
+import model.note.NoteFactory;
 
 public class Transposer {
 
@@ -21,21 +23,20 @@ public class Transposer {
         this.key = new Key(this.transposeTo);
     }
 
-    public String doTranspose(String chordString) {
-        Chord chord = new Chord(chordString);
+    public Chord doTranspose(Chord chord) {
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
-        int semitones = interval.getSemitonesBetween(currentKey, bass);
+        SemitoneCount semitones = interval.getSemitonesBetween(currentKey, bass);
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
-        int degreeNumber = interval.getDegreeFromSemitones(semitones);
+        DegreeNumber degreeNumber = interval.degree(semitones);
         Note noteToFormat = degree.getNoteOf(degreeNumber);
 
-        if (!bassOfTranposedKey.toString().equals(noteToFormat.toString())) {
+        if (!bassOfTranposedKey.equals(noteToFormat)) {
             bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
         }
 
-        return bassOfTranposedKey.toString() + chord.getChordTones();
+        return new Chord(bassOfTranposedKey.toString() + chord.getChordTones());
     }
 }

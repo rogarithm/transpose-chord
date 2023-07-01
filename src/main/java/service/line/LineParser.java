@@ -1,8 +1,10 @@
 package service.line;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import model.Chord;
+import model.Line;
 import service.chord.Transposer;
 
 public class LineParser implements Parser {
@@ -13,37 +15,25 @@ public class LineParser implements Parser {
         this.transposer = transposer;
     }
 
-    public List<String> parseLine(String line) {
+    public List<Chord> parseLine(Line line) {
+
         List<Chord> chords = collectChordsInLine(line);
-        List<Chord> transposedChords = transposeChordsInLine(chords);
-
-        List<String> result = new ArrayList<>();
-        for (Chord chord : transposedChords) {
-            result.add(chord.toString());
-        }
-
-        return result;
+        return transposeChordsInLine(chords);
     }
 
-    private List<Chord> collectChordsInLine(String line) {
-        List<Chord> result = new ArrayList<>();
-        String[] splitted = line.split(" +");
+    private List<Chord> collectChordsInLine(Line line) {
 
-        for (String chord : splitted) {
-            result.add(new Chord(chord));
-        }
-
-        return result;
+        return Arrays.stream(line
+                             .toString()
+                             .split(" +"))
+                     .map(Chord::new)
+                     .collect(Collectors.toList());
     }
 
     private List<Chord> transposeChordsInLine(List<Chord> chords) {
-        List<Chord> result = new ArrayList<>();
 
-        for (Chord chord : chords) {
-            String transposed = transposer.doTranspose(chord.toString());
-            result.add(new Chord(transposed));
-        }
-
-        return result;
+        return chords.stream()
+                     .map(transposer::doTranspose)
+                     .collect(Collectors.toList());
     }
 }

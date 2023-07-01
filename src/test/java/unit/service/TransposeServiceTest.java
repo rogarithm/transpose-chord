@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import model.Chord;
 import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,23 +33,36 @@ class TransposeServiceTest {
     public void transposeFileToSameKeyHasNoChange() {
         service = new TransposeService(parser, handler);
 
-        List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
+        List<Line> readFromFile = Arrays.asList(
+                new Line("G Bm D C"),
+                new Line("C D C G"),
+                new Line("D C C Gmaj7"),
+                new Line("Am C")
+        );
         when(handler.readFile()).thenReturn(readFromFile);
 
-        when(parser.parseLine(readFromFile.get(0))).thenReturn(Arrays.asList("G Bm D C"));
-        when(parser.parseLine(readFromFile.get(1))).thenReturn(Arrays.asList("C D C G"));
-        when(parser.parseLine(readFromFile.get(2))).thenReturn(Arrays.asList("D C C Gmaj7"));
-        when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("Am C"));
+        when(parser.parseLine(readFromFile.get(0))).thenReturn(
+                List.of(new Chord("G"), new Chord("Bm"), new Chord("D"), new Chord("C"))
+        );
+        when(parser.parseLine(readFromFile.get(1))).thenReturn(
+                List.of(new Chord("C"), new Chord("D"), new Chord("C"), new Chord("G"))
+        );
+        when(parser.parseLine(readFromFile.get(2))).thenReturn(
+                List.of(new Chord("D"), new Chord("C"), new Chord("C"), new Chord("Gmaj7"))
+        );
+        when(parser.parseLine(readFromFile.get(3))).thenReturn(
+                List.of(new Chord("Am"), new Chord("C"))
+        );
 
         List<Line> expectedResult = Arrays.asList(
-                new Line(readFromFile.get(0)),
-                new Line(readFromFile.get(1)),
-                new Line(readFromFile.get(2)),
-                new Line(readFromFile.get(3))
+                new Line(readFromFile.get(0).toString()),
+                new Line(readFromFile.get(1).toString()),
+                new Line(readFromFile.get(2).toString()),
+                new Line(readFromFile.get(3).toString())
         );
 
         List<Line> result = service.handle();
-        for (int i=0; i<result.size(); i++) {
+        for (int i = 0; i < result.size(); i++) {
             Line line = result.get(i);
             Assertions.assertThat(line.toString()).isEqualTo(expectedResult.get(i).toString());
         }
@@ -58,13 +72,18 @@ class TransposeServiceTest {
     public void transposeFileToOtherKeyHavingSharpNote() {
         service = new TransposeService(parser, handler);
 
-        List<String> readFromFile = Arrays.asList("G Bm D C", "C D C G", "D C C Gmaj7", "Am C");
+        List<Line> readFromFile = Arrays.asList(
+                new Line("G Bm D C"),
+                new Line("C D C G"),
+                new Line("D C C Gmaj7"),
+                new Line("Am C")
+        );
         when(handler.readFile()).thenReturn(readFromFile);
 
-        when(parser.parseLine(readFromFile.get(0))).thenReturn(Arrays.asList("E G#m B A"));
-        when(parser.parseLine(readFromFile.get(1))).thenReturn(Arrays.asList("A B A E"));
-        when(parser.parseLine(readFromFile.get(2))).thenReturn(Arrays.asList("B A A Emaj7"));
-        when(parser.parseLine(readFromFile.get(3))).thenReturn(Arrays.asList("F#m A"));
+        when(parser.parseLine(readFromFile.get(0))).thenReturn(List.of(new Chord("E"), new Chord("G#m"), new Chord("B"), new Chord("A")));
+        when(parser.parseLine(readFromFile.get(1))).thenReturn(List.of(new Chord("A"), new Chord("B"), new Chord("A"), new Chord("E")));
+        when(parser.parseLine(readFromFile.get(2))).thenReturn(List.of(new Chord("B"), new Chord("A"), new Chord("A"), new Chord("Emaj7")));
+        when(parser.parseLine(readFromFile.get(3))).thenReturn(List.of(new Chord("F#m"), new Chord("A")));
 
         List<Line> expectedResult = Arrays.asList(
                 new Line("E G#m B A"),
@@ -74,7 +93,7 @@ class TransposeServiceTest {
         );
 
         List<Line> result = service.handle();
-        for (int i=0; i<result.size(); i++) {
+        for (int i = 0; i < result.size(); i++) {
             Line line = result.get(i);
             Assertions.assertThat(line.toString()).isEqualTo(expectedResult.get(i).toString());
         }

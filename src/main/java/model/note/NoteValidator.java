@@ -41,6 +41,10 @@ public class NoteValidator {
                 && s.charAt(1) == '#';
     }
 
+    public boolean isPlain(String s) {
+        return isNotFlat(s) && isNotSharp(s);
+    }
+
     public boolean isNotFlat(String s) {
         return (s.length() == 1) || (s.length() >= 2 && s.charAt(1) != 'b');
     }
