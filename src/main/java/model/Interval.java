@@ -72,15 +72,17 @@ public class Interval {
             this.alternateNext = alternateNext;
         }
 
+        static NoteAscender from(Note note) {
+            return NoteAscender.valueOf(note.toString());
+        }
+
         static SemitoneCount computeSemitonesBetween(Note base, Note target) {
 
-            String baseName = base.toString();
-            String targetName = target.toString();
-            NoteAscender noteFinder = NoteAscender.valueOf(baseName);
+            NoteAscender noteFinder = NoteAscender.from(base);
 
             int result = 0;
-            while (!noteFinder.name.equals(targetName)) {
-                noteFinder = NoteAscender.valueOf(noteFinder.next);
+            while (!noteFinder.name.equals(target)) {
+                noteFinder = NoteAscender.from(noteFinder.next);
                 result += 1;
             }
 
@@ -89,12 +91,11 @@ public class Interval {
 
         static Note findRaisedNote(Note base, SemitoneCount semitones) {
 
-            String baseName = base.toString();
-            NoteAscender noteFinder = NoteAscender.valueOf(baseName);
+            NoteAscender noteFinder = NoteAscender.from(base);
             int count = semitones.count();
 
             while (count != 0) {
-                noteFinder = NoteAscender.valueOf(noteFinder.next);
+                noteFinder = NoteAscender.from(noteFinder.next);
                 count -= 1;
             }
 
