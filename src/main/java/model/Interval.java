@@ -42,30 +42,30 @@ public class Interval {
 
     private enum NoteAscender {
 
-        C("C", "Db", "C#"),
-        Db("Db", "D"),
-        D("D", "Eb", "D#"),
-        Eb("Eb", "E"),
-        E("E", "F"),
-        F("F", "Gb", "F#"),
-        Gb("Gb", "G"),
-        G("G", "Ab", "G#"),
-        Ab("Ab", "A"),
-        A("A", "Bb", "A#"),
-        Bb("Bb", "B"),
-        B("B", "C");
+        C (NoteFactory.create("C"),  NoteFactory.create("Db"), NoteFactory.create("C#")),
+        Db(NoteFactory.create("Db"), NoteFactory.create("D")),
+        D (NoteFactory.create("D"),  NoteFactory.create("Eb"), NoteFactory.create("D#")),
+        Eb(NoteFactory.create("Eb"), NoteFactory.create("E")),
+        E (NoteFactory.create("E"),  NoteFactory.create("F")),
+        F (NoteFactory.create("F"),  NoteFactory.create("Gb"), NoteFactory.create("F#")),
+        Gb(NoteFactory.create("Gb"), NoteFactory.create("G")),
+        G (NoteFactory.create("G"),  NoteFactory.create("Ab"), NoteFactory.create("G#")),
+        Ab(NoteFactory.create("Ab"), NoteFactory.create("A")),
+        A (NoteFactory.create("A"),  NoteFactory.create("Bb"), NoteFactory.create("A#")),
+        Bb(NoteFactory.create("Bb"), NoteFactory.create("B")),
+        B (NoteFactory.create("B"),  NoteFactory.create("C"));
 
-        private final String name;
-        private final String next;
-        private String alternateNext;
+        private final Note name;
+        private final Note next;
+        private Note alternateNext;
 
-        NoteAscender(String name, String next) {
+        NoteAscender(Note name, Note next) {
 
             this.name = name;
             this.next = next;
         }
 
-        NoteAscender(String name, String next, String alternateNext) {
+        NoteAscender(Note name, Note next, Note alternateNext) {
 
             this.name = name;
             this.next = next;
@@ -87,7 +87,7 @@ public class Interval {
             return new SemitoneCount(result);
         }
 
-        static String findRaisedNote(Note base, SemitoneCount semitones) {
+        static Note findRaisedNote(Note base, SemitoneCount semitones) {
 
             String baseName = base.toString();
             NoteAscender noteFinder = NoteAscender.valueOf(baseName);
@@ -140,8 +140,8 @@ public class Interval {
             base = NoteAscender.findEquivalentNoteInFlat(base);
         }
 
-        String raisedNoteName = NoteAscender.findRaisedNote(base, semitones);
+        Note raisedNoteName = NoteAscender.findRaisedNote(base, semitones);
 
-        return NoteFactory.create(raisedNoteName);
+        return raisedNoteName;
     }
 }
