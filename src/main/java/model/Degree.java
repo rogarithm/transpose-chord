@@ -14,13 +14,13 @@ public class Degree {
         A(NoteFactory.create("A"), NoteFactory.create("B")),
         B(NoteFactory.create("B"), NoteFactory.create("C"));
 
-        private final Note ofCurrentDegree;
-        private final Note ofNextDegree;
+        private final Note current;
+        private final Note next;
         private DegreeNumber degreeNumber;
 
-        NoteDisplayBasis(Note ofCurrentDegree, Note ofNextDegree) {
-            this.ofCurrentDegree = ofCurrentDegree;
-            this.ofNextDegree = ofNextDegree;
+        NoteDisplayBasis(Note current, Note next) {
+            this.current = current;
+            this.next = next;
         }
 
         static NoteDisplayBasis from(Note note) {
@@ -64,7 +64,7 @@ public class Degree {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.equals(degreeNumber)) {
-                return noteDisplayBasis.ofCurrentDegree;
+                return noteDisplayBasis.current;
             }
         }
 
