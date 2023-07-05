@@ -49,12 +49,6 @@ public class Degree {
         }
     }
 
-    public DegreeNumber getDegreeNumberOf(Note note) {
-
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.from(note);
-        return displayBasis.degreeNumber;
-    }
-
     public Note getNoteOf(DegreeNumber degreeNumber) {
 
         if (degreeNumber.number() < 1 || degreeNumber.number() > 8) {

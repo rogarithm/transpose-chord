@@ -14,21 +14,6 @@ import org.junit.jupiter.api.Test;
 class DegreeTest {
 
     @Test
-    public void setGivenNoteAsRoot() {
-        Note noteD = NoteFactory.create("D");
-        Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeNumberOf(noteD)).isEqualTo(new DegreeNumber(1));
-    }
-
-    @Test
-    public void setGivenNoteAsSecond() {
-        Note noteD = NoteFactory.create("D");
-        Note noteE = NoteFactory.create("E");
-        Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeNumberOf(noteE)).isEqualTo(new DegreeNumber(2));
-    }
-
-    @Test
     public void getNoteForInvalidDegree() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
