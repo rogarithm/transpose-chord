@@ -1,7 +1,5 @@
 package unit.model;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import model.Degree;
 import model.DegreeNumber;
 import model.Interval;
@@ -12,13 +10,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class DegreeTest {
-
-    @Test
-    public void getNoteForInvalidDegree() {
-        Note noteD = NoteFactory.create("D");
-        Degree degree = new Degree(noteD);
-        assertThrows(IllegalArgumentException.class, () -> degree.getNoteOf(new DegreeNumber(0)));
-    }
 
     @Test
     public void getNoteForDegree() {
