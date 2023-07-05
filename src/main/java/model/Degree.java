@@ -28,15 +28,15 @@ public class Degree {
         }
     }
 
-    public Degree(Note rootNote) {
+    public Degree(Note root) {
 
-        initializeNoteDisplayBasis(rootNote);
+        initializeNoteDisplayBasis(root);
     }
 
-    private void initializeNoteDisplayBasis(Note rootNote) {
+    private void initializeNoteDisplayBasis(Note root) {
 
         int degreeNumber = 1;
-        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(rootNote);
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(root);
         degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
