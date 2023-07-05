@@ -31,7 +31,7 @@ public class Transposer {
         Note tranposedBass = interval.raise(transposeTo, semitones);
 
         DegreeNumber degreeNumber = interval.degree(semitones);
-        Note noteToFormat = degree.note(degreeNumber);
+        Note noteToFormat = degree.displayBasis(degreeNumber);
 
         if (!tranposedBass.equals(noteToFormat)) {
             tranposedBass = key.convertToSharpNoteOfSamePitch(tranposedBass, noteToFormat);
