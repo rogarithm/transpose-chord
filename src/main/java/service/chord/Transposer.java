@@ -24,10 +24,10 @@ public class Transposer {
     }
 
     public Chord doTranspose(Chord chord) {
-        Note bass = NoteFactory.create(chord.getRootNote());
+        Note currentBass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
-        SemitoneCount semitones = interval.semitones(currentKey, bass);
+        SemitoneCount semitones = interval.semitones(currentKey, currentBass);
         Note tranposedBass = interval.raise(transposeTo, semitones);
 
         DegreeNumber degreeNumber = interval.degree(semitones);
