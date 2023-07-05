@@ -17,7 +17,7 @@ class DegreeTest {
     public void setGivenNoteAsRoot() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeNumberOf(noteD)).isEqualTo(1);
+        Assertions.assertThat(degree.getDegreeNumberOf(noteD)).isEqualTo(new DegreeNumber(1));
     }
 
     @Test
@@ -25,7 +25,7 @@ class DegreeTest {
         Note noteD = NoteFactory.create("D");
         Note noteE = NoteFactory.create("E");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeNumberOf(noteE)).isEqualTo(2);
+        Assertions.assertThat(degree.getDegreeNumberOf(noteE)).isEqualTo(new DegreeNumber(2));
     }
 
     @Test
