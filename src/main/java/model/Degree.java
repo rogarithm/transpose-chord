@@ -51,8 +51,8 @@ public class Degree {
 
     public DegreeNumber getDegreeNumberOf(Note note) {
 
-        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.from(note);
-        return noteDisplayBasis.degreeNumber;
+        NoteDisplayBasis displayBasis = NoteDisplayBasis.from(note);
+        return displayBasis.degreeNumber;
     }
 
     public Note getNoteOf(DegreeNumber degreeNumber) {
