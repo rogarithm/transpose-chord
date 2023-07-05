@@ -50,19 +50,19 @@ class IntervalTest {
 
     @Test
     public void getRaisedNotes() {
-        Note noteA = itv.getRaisedNote(G, new SemitoneCount(2));
+        Note noteA = itv.raise(G, new SemitoneCount(2));
         assertThat(noteA).isEqualTo(A);
 
-        Note noteBb = itv.getRaisedNote(G, new SemitoneCount(3));
+        Note noteBb = itv.raise(G, new SemitoneCount(3));
         assertThat(noteBb).isEqualTo(Bb);
 
-        Note noteD = itv.getRaisedNote(G, new SemitoneCount(7));
+        Note noteD = itv.raise(G, new SemitoneCount(7));
         assertThat(noteD).isEqualTo(D);
     }
 
     @Test
     public void getRaisedNoteOfFlatNote() {
-        Note noteGflat = itv.getRaisedNote(G, new SemitoneCount(11));
+        Note noteGflat = itv.raise(G, new SemitoneCount(11));
         assertThat(noteGflat).isEqualTo(Gb);
     }
 
@@ -70,7 +70,7 @@ class IntervalTest {
     public void getRaisedNoteOfSharpNote() {
         Note Gsharp = Gsp;
 
-        Note noteA = itv.getRaisedNote(Gsharp, new SemitoneCount(1));
+        Note noteA = itv.raise(Gsharp, new SemitoneCount(1));
         assertThat(noteA).isEqualTo(A);
     }
 
