@@ -29,7 +29,10 @@ public class Key {
                 }
             }
 
-            throw new IllegalArgumentException(EquivalentNoteFinder.class.getCanonicalName() + ": can't format given note " + note + " in " + basis + "!");
+            throw new IllegalArgumentException(
+                    EquivalentNoteFinder.class.getCanonicalName() + ": can't format given note "
+                            + note + " in " + basis + "!"
+            );
         }
 
         private static Note getPlainNote(Note note) {
