@@ -35,16 +35,16 @@ class IntervalTest {
 
     @Test
     public void getIntervalsInGKey() {
-        SemitoneCount itvM2 = itv.getSemitonesBetween(G, A);
+        SemitoneCount itvM2 = itv.semitones(G, A);
         assertThat(itvM2.count()).isEqualTo(2);
 
-        SemitoneCount itvm3 = itv.getSemitonesBetween(G, Bb);
+        SemitoneCount itvm3 = itv.semitones(G, Bb);
         assertThat(itvm3.count()).isEqualTo(3);
 
-        SemitoneCount itvP5 = itv.getSemitonesBetween(G, D);
+        SemitoneCount itvP5 = itv.semitones(G, D);
         assertThat(itvP5.count()).isEqualTo(7);
 
-        SemitoneCount itvM3 = itv.getSemitonesBetween(A, Csp);
+        SemitoneCount itvM3 = itv.semitones(A, Csp);
         assertThat(itvM3.count()).isEqualTo(4);
     }
 

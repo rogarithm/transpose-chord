@@ -27,7 +27,7 @@ public class Transposer {
         Note bass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
-        SemitoneCount semitones = interval.getSemitonesBetween(currentKey, bass);
+        SemitoneCount semitones = interval.semitones(currentKey, bass);
         Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
 
         DegreeNumber degreeNumber = interval.degree(semitones);

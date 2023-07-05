@@ -25,7 +25,7 @@ class DegreeTest {
         Note keyAfter = NoteFactory.create("D");
 
         Interval itv = new Interval();
-        SemitoneCount interval = itv.getSemitonesBetween(keyBefore, noteToTranspose);
+        SemitoneCount interval = itv.semitones(keyBefore, noteToTranspose);
         DegreeNumber degreeOfInterval = itv.degree(interval);
 
         Degree degree = new Degree(keyAfter);
