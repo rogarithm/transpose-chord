@@ -24,7 +24,7 @@ public class Key {
         static Note findEquivalentNoteMeetsFormat(Note note, Note basis) {
 
             for (EquivalentNoteFinder noteFinder : EquivalentNoteFinder.values()) {
-                if (noteFinder.name.equals(note) && getPlainNote(noteFinder.alternate).equals(basis)) {
+                if (noteFinder.name.equals(note) && getDisplayBasis(noteFinder.alternate).equals(basis)) {
                     return noteFinder.alternate;
                 }
             }
@@ -35,7 +35,7 @@ public class Key {
             );
         }
 
-        private static Note getPlainNote(Note note) {
+        private static Note getDisplayBasis(Note note) {
             return NoteFactory.create(note.toString().substring(0, 1));
         }
     }
