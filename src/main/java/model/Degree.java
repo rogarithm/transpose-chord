@@ -40,11 +40,11 @@ public class Degree {
         degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.from(degreeOneDisplayBasis.ofNextDegree);
+        NoteDisplayBasis nextDisplayBasis = NoteDisplayBasis.from(degreeOneDisplayBasis.next);
 
-        while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
-            displayBasis.degreeNumber = new DegreeNumber(degreeNumber);
-            displayBasis = NoteDisplayBasis.from(displayBasis.ofNextDegree);
+        while (!nextDisplayBasis.current.equals(degreeOneDisplayBasis.current)) {
+            nextDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
+            nextDisplayBasis = NoteDisplayBasis.from(nextDisplayBasis.next);
             degreeNumber++;
         }
     }
