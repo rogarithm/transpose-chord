@@ -31,10 +31,11 @@ public class Transposer {
         Note tranposedBass = interval.raise(transposeTo, semitones);
 
         DegreeNumber degreeNumber = interval.degree(semitones);
-        Note noteToFormat = degree.displayBasis(degreeNumber);
-
-        if (!tranposedBass.equals(noteToFormat)) {
-            tranposedBass = key.convertToSharpNoteOfSamePitch(tranposedBass, noteToFormat);
+        Note resultBasis1 = degree.displayBasis(tranposedBass);
+        Note resultBasis2 = degree.displayBasis(degreeNumber);
+        boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
+        if (needConvertToSharp) {
+            tranposedBass = key.convertToSharpNoteOfSamePitch(tranposedBass, resultBasis2);
         }
 
         return new Chord(tranposedBass.toString() + chord.getChordTones());

@@ -28,4 +28,13 @@ class TransposerTest {
         Assertions.assertThat(transposed).isEqualTo(new Chord("E7"));
     }
 
+    @Test
+    public void t() {
+        Transposer transposer = new Transposer("A", "Bb");
+
+        Chord transposed = transposer.doTranspose(new Chord("A"));
+        Chord expected = new Chord("Bb");
+
+        Assertions.assertThat(transposed).isEqualTo(expected);
+    }
 }
