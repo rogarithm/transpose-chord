@@ -15,7 +15,7 @@ class DegreeTest {
     public void getNoteForDegree() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getNoteOf(new DegreeNumber(2)).toString()).isEqualTo("E");
+        Assertions.assertThat(degree.note(new DegreeNumber(2)).toString()).isEqualTo("E");
     }
 
     @Test
@@ -29,7 +29,7 @@ class DegreeTest {
         DegreeNumber degreeOfInterval = itv.degree(interval);
 
         Degree degree = new Degree(keyAfter);
-        Note noteToFormat = degree.getNoteOf(degreeOfInterval);
+        Note noteToFormat = degree.note(degreeOfInterval);
         Assertions.assertThat(noteToFormat.toString()).isEqualTo("F");
     }
 }

@@ -49,7 +49,7 @@ public class Degree {
         }
     }
 
-    public Note getNoteOf(DegreeNumber degreeNumber) {
+    public Note note(DegreeNumber degreeNumber) {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.equals(degreeNumber)) {
