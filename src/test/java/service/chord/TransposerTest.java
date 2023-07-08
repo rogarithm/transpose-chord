@@ -1,4 +1,4 @@
-package unit.service.chord;
+package service.chord;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import model.Chord;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.chord.Transposer;
 
 class TransposerTest {
 

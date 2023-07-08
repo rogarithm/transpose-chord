@@ -1,4 +1,4 @@
-package integration.service.line;
+package service.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,7 +9,6 @@ import model.Chord;
 import model.Line;
 import org.junit.jupiter.api.Test;
 import service.chord.Transposer;
-import service.line.LineParser;
 
 public class LineParserIntegrationTest {
 
