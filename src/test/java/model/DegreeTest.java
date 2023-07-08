@@ -1,9 +1,5 @@
-package unit.model;
+package model;
 
-import model.Degree;
-import model.DegreeNumber;
-import model.Interval;
-import model.SemitoneCount;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.assertj.core.api.Assertions;

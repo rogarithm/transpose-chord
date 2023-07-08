@@ -1,10 +1,7 @@
-package unit.model;
+package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import model.DegreeNumber;
-import model.Interval;
-import model.SemitoneCount;
 import model.note.Note;
 import model.note.NoteFactory;
 import org.junit.jupiter.api.BeforeEach;

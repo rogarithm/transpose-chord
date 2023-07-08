@@ -1,4 +1,4 @@
-package integration.service;
+package service;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -7,7 +7,6 @@ import model.Line;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.TransposeService;
 import service.chord.Transposer;
 import service.file.FileHandlerFactory;
 import service.line.LineParser;

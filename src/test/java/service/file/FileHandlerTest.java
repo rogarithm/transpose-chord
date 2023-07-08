@@ -1,4 +1,4 @@
-package unit.service.file;
+package service.file;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -9,8 +9,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import service.file.DefaultFileHandler;
-import service.file.FileHandlerFactory;
 
 class FileHandlerTest {
 
