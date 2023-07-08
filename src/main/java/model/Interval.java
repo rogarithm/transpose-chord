@@ -118,7 +118,7 @@ public class Interval {
         }
     }
 
-    public SemitoneCount getSemitonesBetween(Note base, Note target) {
+    public SemitoneCount semitones(Note base, Note target) {
 
         if (base.isSharp()) {
             base = NoteAscender.findEquivalentFlatNote(base);
@@ -131,7 +131,7 @@ public class Interval {
         return NoteAscender.computeSemitonesBetween(base, target);
     }
 
-    public Note getRaisedNote(Note base, SemitoneCount semitones) {
+    public Note raise(Note base, SemitoneCount semitones) {
 
         if (base.isSharp()) {
             base = NoteAscender.findEquivalentFlatNote(base);

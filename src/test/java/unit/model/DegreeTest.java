@@ -1,7 +1,5 @@
 package unit.model;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import model.Degree;
 import model.DegreeNumber;
 import model.Interval;
@@ -14,32 +12,10 @@ import org.junit.jupiter.api.Test;
 class DegreeTest {
 
     @Test
-    public void setGivenNoteAsRoot() {
-        Note noteD = NoteFactory.create("D");
-        Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeNumberOf(noteD)).isEqualTo(1);
-    }
-
-    @Test
-    public void setGivenNoteAsSecond() {
-        Note noteD = NoteFactory.create("D");
-        Note noteE = NoteFactory.create("E");
-        Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getDegreeNumberOf(noteE)).isEqualTo(2);
-    }
-
-    @Test
-    public void getNoteForInvalidDegree() {
-        Note noteD = NoteFactory.create("D");
-        Degree degree = new Degree(noteD);
-        assertThrows(IllegalArgumentException.class, () -> degree.getNoteOf(new DegreeNumber(0)));
-    }
-
-    @Test
     public void getNoteForDegree() {
         Note noteD = NoteFactory.create("D");
         Degree degree = new Degree(noteD);
-        Assertions.assertThat(degree.getNoteOf(new DegreeNumber(2)).toString()).isEqualTo("E");
+        Assertions.assertThat(degree.displayBasis(new DegreeNumber(2)).toString()).isEqualTo("E");
     }
 
     @Test
@@ -49,11 +25,11 @@ class DegreeTest {
         Note keyAfter = NoteFactory.create("D");
 
         Interval itv = new Interval();
-        SemitoneCount interval = itv.getSemitonesBetween(keyBefore, noteToTranspose);
+        SemitoneCount interval = itv.semitones(keyBefore, noteToTranspose);
         DegreeNumber degreeOfInterval = itv.degree(interval);
 
         Degree degree = new Degree(keyAfter);
-        Note noteToFormat = degree.getNoteOf(degreeOfInterval);
+        Note noteToFormat = degree.displayBasis(degreeOfInterval);
         Assertions.assertThat(noteToFormat.toString()).isEqualTo("F");
     }
 }

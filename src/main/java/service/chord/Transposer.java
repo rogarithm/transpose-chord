@@ -24,19 +24,19 @@ public class Transposer {
     }
 
     public Chord doTranspose(Chord chord) {
-        Note bass = NoteFactory.create(chord.getRootNote());
+        Note currentBass = NoteFactory.create(chord.getRootNote());
 
         Interval interval = new Interval();
-        SemitoneCount semitones = interval.getSemitonesBetween(currentKey, bass);
-        Note bassOfTranposedKey = interval.getRaisedNote(transposeTo, semitones);
+        SemitoneCount semitones = interval.semitones(currentKey, currentBass);
+        Note tranposedBass = interval.raise(transposeTo, semitones);
 
         DegreeNumber degreeNumber = interval.degree(semitones);
-        Note noteToFormat = degree.getNoteOf(degreeNumber);
+        Note noteToFormat = degree.displayBasis(degreeNumber);
 
-        if (!bassOfTranposedKey.equals(noteToFormat)) {
-            bassOfTranposedKey = key.convertToSharpNoteOfSamePitch(bassOfTranposedKey, noteToFormat);
+        if (!tranposedBass.equals(noteToFormat)) {
+            tranposedBass = key.convertToSharpNoteOfSamePitch(tranposedBass, noteToFormat);
         }
 
-        return new Chord(bassOfTranposedKey.toString() + chord.getChordTones());
+        return new Chord(tranposedBass.toString() + chord.getChordTones());
     }
 }

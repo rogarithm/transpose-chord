@@ -35,34 +35,34 @@ class IntervalTest {
 
     @Test
     public void getIntervalsInGKey() {
-        SemitoneCount itvM2 = itv.getSemitonesBetween(G, A);
+        SemitoneCount itvM2 = itv.semitones(G, A);
         assertThat(itvM2.count()).isEqualTo(2);
 
-        SemitoneCount itvm3 = itv.getSemitonesBetween(G, Bb);
+        SemitoneCount itvm3 = itv.semitones(G, Bb);
         assertThat(itvm3.count()).isEqualTo(3);
 
-        SemitoneCount itvP5 = itv.getSemitonesBetween(G, D);
+        SemitoneCount itvP5 = itv.semitones(G, D);
         assertThat(itvP5.count()).isEqualTo(7);
 
-        SemitoneCount itvM3 = itv.getSemitonesBetween(A, Csp);
+        SemitoneCount itvM3 = itv.semitones(A, Csp);
         assertThat(itvM3.count()).isEqualTo(4);
     }
 
     @Test
     public void getRaisedNotes() {
-        Note noteA = itv.getRaisedNote(G, new SemitoneCount(2));
+        Note noteA = itv.raise(G, new SemitoneCount(2));
         assertThat(noteA).isEqualTo(A);
 
-        Note noteBb = itv.getRaisedNote(G, new SemitoneCount(3));
+        Note noteBb = itv.raise(G, new SemitoneCount(3));
         assertThat(noteBb).isEqualTo(Bb);
 
-        Note noteD = itv.getRaisedNote(G, new SemitoneCount(7));
+        Note noteD = itv.raise(G, new SemitoneCount(7));
         assertThat(noteD).isEqualTo(D);
     }
 
     @Test
     public void getRaisedNoteOfFlatNote() {
-        Note noteGflat = itv.getRaisedNote(G, new SemitoneCount(11));
+        Note noteGflat = itv.raise(G, new SemitoneCount(11));
         assertThat(noteGflat).isEqualTo(Gb);
     }
 
@@ -70,7 +70,7 @@ class IntervalTest {
     public void getRaisedNoteOfSharpNote() {
         Note Gsharp = Gsp;
 
-        Note noteA = itv.getRaisedNote(Gsharp, new SemitoneCount(1));
+        Note noteA = itv.raise(Gsharp, new SemitoneCount(1));
         assertThat(noteA).isEqualTo(A);
     }
 

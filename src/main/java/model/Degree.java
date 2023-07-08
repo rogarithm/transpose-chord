@@ -14,13 +14,13 @@ public class Degree {
         A(NoteFactory.create("A"), NoteFactory.create("B")),
         B(NoteFactory.create("B"), NoteFactory.create("C"));
 
-        private final Note ofCurrentDegree;
-        private final Note ofNextDegree;
+        private final Note current;
+        private final Note next;
         private DegreeNumber degreeNumber;
 
-        NoteDisplayBasis(Note ofCurrentDegree, Note ofNextDegree) {
-            this.ofCurrentDegree = ofCurrentDegree;
-            this.ofNextDegree = ofNextDegree;
+        NoteDisplayBasis(Note current, Note next) {
+            this.current = current;
+            this.next = next;
         }
 
         static NoteDisplayBasis from(Note note) {
@@ -28,46 +28,37 @@ public class Degree {
         }
     }
 
-    public Degree(Note rootNote) {
+    public Degree(Note root) {
 
-        initializeNoteDisplayBasis(rootNote);
+        initializeNoteDisplayBasis(root);
     }
 
-    private void initializeNoteDisplayBasis(Note rootNote) {
+    private void initializeNoteDisplayBasis(Note root) {
 
         int degreeNumber = 1;
-        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(rootNote);
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(root);
         degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
-        NoteDisplayBasis displayBasis = NoteDisplayBasis.from(degreeOneDisplayBasis.ofNextDegree);
+        NoteDisplayBasis nextDisplayBasis = NoteDisplayBasis.from(degreeOneDisplayBasis.next);
 
-        while (!displayBasis.ofCurrentDegree.equals(degreeOneDisplayBasis.ofCurrentDegree)) {
-            displayBasis.degreeNumber = new DegreeNumber(degreeNumber);
-            displayBasis = NoteDisplayBasis.from(displayBasis.ofNextDegree);
+        while (!nextDisplayBasis.current.equals(degreeOneDisplayBasis.current)) {
+            nextDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
+            nextDisplayBasis = NoteDisplayBasis.from(nextDisplayBasis.next);
             degreeNumber++;
         }
     }
 
-    public int getDegreeNumberOf(Note note) {
-
-        NoteDisplayBasis noteDisplayBasis = NoteDisplayBasis.from(note);
-        return noteDisplayBasis.degreeNumber.number();
-    }
-
-    public Note getNoteOf(DegreeNumber degreeNumber) {
-
-        if (degreeNumber.number() < 1 || degreeNumber.number() > 8) {
-            throw new IllegalArgumentException(this.getClass().getCanonicalName() + ": you put invalid degree number " + degreeNumber
-                    + "\nThe degree number should be between 1 and 8 (inclusive).");
-        }
+    public Note displayBasis(DegreeNumber degreeNumber) {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.equals(degreeNumber)) {
-                return noteDisplayBasis.ofCurrentDegree;
+                return noteDisplayBasis.current;
             }
         }
 
-        throw new IllegalArgumentException(this.getClass().getCanonicalName() + ": there's no note for given degree number for " + degreeNumber);
+        throw new IllegalArgumentException(
+                this.getClass().getCanonicalName() + ": there's no note for given degree number for " + degreeNumber
+        );
     }
 }
