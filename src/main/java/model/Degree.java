@@ -35,8 +35,13 @@ public class Degree {
 
     private void initializeNoteDisplayBasis(Note root) {
 
+        Note basis = root;
+        if (!basis.isPlain()) {
+            basis = getDisplayBasis(basis);
+        }
+
         int degreeNumber = 1;
-        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(root);
+        NoteDisplayBasis degreeOneDisplayBasis = NoteDisplayBasis.from(basis);
         degreeOneDisplayBasis.degreeNumber = new DegreeNumber(degreeNumber);
         degreeNumber++;
 
@@ -58,7 +63,30 @@ public class Degree {
         }
 
         throw new IllegalArgumentException(
-                this.getClass().getCanonicalName() + ": there's no note for given degree number for " + degreeNumber
+                this.getClass().getCanonicalName() + ": no suitable display basis for degree number of " + degreeNumber
         );
     }
+
+    public Note displayBasis(Note note) {
+
+        Note basis = note;
+        if (!basis.isPlain()) {
+            basis = getDisplayBasis(basis);
+        }
+
+        for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
+            if (noteDisplayBasis.current.equals(basis)) {
+                return noteDisplayBasis.current;
+            }
+        }
+
+        throw new IllegalArgumentException(
+                this.getClass().getCanonicalName() + ": no suitable display basis for note of " + note
+        );
+    }
+
+    private Note getDisplayBasis(Note note) {
+        return NoteFactory.create(note.toString().substring(0, 1));
+    }
+
 }
