@@ -54,12 +54,12 @@ public class Key {
         Note resultBasis2 = degree.displayBasis(degreeNumber);
         boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
         if (needConvertToSharp) {
-            note = this.convertToSharpNoteOfSamePitch(note, resultBasis2);
+            note = this.convertToSharp(note, resultBasis2);
         }
         return note;
     }
 
-    public Note convertToSharpNoteOfSamePitch(Note note, Note basis) {
+    public Note convertToSharp(Note note, Note basis) {
 
         return EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
     }
