@@ -31,13 +31,8 @@ public class Transposer {
         Note transposedBass = currentKey.raise(transposedRoot, semitones);
         DegreeNumber degreeNumber =  currentKey.degree(semitones);
 
-        Note resultBasis1 = degree.displayBasis(transposedBass);
-        Note resultBasis2 = degree.displayBasis(degreeNumber);
-        boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
-        if (needConvertToSharp) {
-            transposedBass = transposedKey.convertToSharpNoteOfSamePitch(transposedBass, resultBasis2);
-        }
+        Note resultBass = transposedKey.format(transposedBass, degreeNumber, degree);
 
-        return new Chord(transposedBass.toString() + chord.getChordTones());
+        return new Chord(resultBass.toString() + chord.getChordTones());
     }
 }

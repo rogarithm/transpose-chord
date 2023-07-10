@@ -49,6 +49,16 @@ public class Key {
         this.interval = new Interval();
     }
 
+    public Note format(Note note, DegreeNumber degreeNumber, Degree degree) {
+        Note resultBasis1 = degree.displayBasis(note);
+        Note resultBasis2 = degree.displayBasis(degreeNumber);
+        boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
+        if (needConvertToSharp) {
+            note = this.convertToSharpNoteOfSamePitch(note, resultBasis2);
+        }
+        return note;
+    }
+
     public Note convertToSharpNoteOfSamePitch(Note note, Note basis) {
 
         return EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
