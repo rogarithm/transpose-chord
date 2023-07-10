@@ -49,8 +49,33 @@ public class Key {
         this.interval = new Interval();
     }
 
-    public Note convertToSharpNoteOfSamePitch(Note note, Note basis) {
+    public Note format(Note note, DegreeNumber degreeNumber, Degree degree) {
+
+        Note result = note;
+
+        boolean needConvertToSharp = !degree.compareDisplayBasis(note, degreeNumber);
+        if (needConvertToSharp) {
+            Note resultBasis = degree.displayBasisNote(degreeNumber);
+            result = this.convertToSharp(note, resultBasis);
+        }
+
+        return result;
+    }
+
+    public Note convertToSharp(Note note, Note basis) {
 
         return EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
+    }
+
+    public SemitoneCount semitones(Note target) {
+        return this.interval.semitones(this.rootNote, target);
+    }
+
+    public Note raise(SemitoneCount target) {
+        return this.interval.raise(this.rootNote, target);
+    }
+
+    public DegreeNumber degree(SemitoneCount semitones) {
+        return this.interval.degree(semitones);
     }
 }

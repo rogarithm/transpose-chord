@@ -3,7 +3,6 @@ package service.chord;
 import model.Chord;
 import model.Degree;
 import model.DegreeNumber;
-import model.Interval;
 import model.Key;
 import model.SemitoneCount;
 import model.note.Note;
@@ -11,33 +10,25 @@ import model.note.NoteFactory;
 
 public class Transposer {
 
-    private final Note currentKey;
-    private final Note transposeTo;
     private final Degree degree;
-    private final Key key;
+    private final Key currentKey;
+    private final Key transposedKey;
 
-    public Transposer(String currentKey, String transposeTo) {
-        this.currentKey = NoteFactory.create(currentKey);
-        this.transposeTo = NoteFactory.create(transposeTo);
-        this.degree = new Degree(this.transposeTo);
-        this.key = new Key(this.transposeTo);
+    public Transposer(String currentRoot, String transposedRoot) {
+        this.degree = new Degree(NoteFactory.create(transposedRoot));
+        this.currentKey = new Key(NoteFactory.create(currentRoot));
+        this.transposedKey = new Key(NoteFactory.create(transposedRoot));
     }
 
     public Chord doTranspose(Chord chord) {
         Note currentBass = NoteFactory.create(chord.getRootNote());
 
-        Interval interval = new Interval();
-        SemitoneCount semitones = interval.semitones(currentKey, currentBass);
-        Note tranposedBass = interval.raise(transposeTo, semitones);
+        SemitoneCount semitones = currentKey.semitones(currentBass);
+        Note transposedBass = transposedKey.raise(semitones);
+        DegreeNumber degreeNumber =  currentKey.degree(semitones);
 
-        DegreeNumber degreeNumber = interval.degree(semitones);
-        Note resultBasis1 = degree.displayBasis(tranposedBass);
-        Note resultBasis2 = degree.displayBasis(degreeNumber);
-        boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
-        if (needConvertToSharp) {
-            tranposedBass = key.convertToSharpNoteOfSamePitch(tranposedBass, resultBasis2);
-        }
+        Note resultBass = transposedKey.format(transposedBass, degreeNumber, degree);
 
-        return new Chord(tranposedBass.toString() + chord.getChordTones());
+        return new Chord(resultBass.toString() + chord.getChordTones());
     }
 }
