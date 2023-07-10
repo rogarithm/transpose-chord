@@ -3,7 +3,6 @@ package service.chord;
 import model.Chord;
 import model.Degree;
 import model.DegreeNumber;
-import model.Interval;
 import model.Key;
 import model.SemitoneCount;
 import model.note.Note;
@@ -28,11 +27,9 @@ public class Transposer {
     public Chord doTranspose(Chord chord) {
         Note currentBass = NoteFactory.create(chord.getRootNote());
 
-        Interval interval = new Interval();
-        SemitoneCount semitones = interval.semitones(currentRoot, currentBass);
-
-        Note tranposedBass = interval.raise(transposedRoot, semitones);
-        DegreeNumber degreeNumber = interval.degree(semitones);
+        SemitoneCount semitones = currentKey.semitones(currentRoot, currentBass);
+        Note tranposedBass = currentKey.raise(transposedRoot, semitones);
+        DegreeNumber degreeNumber =  currentKey.degree(semitones);
 
         Note resultBasis1 = degree.displayBasis(tranposedBass);
         Note resultBasis2 = degree.displayBasis(degreeNumber);

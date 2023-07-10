@@ -53,4 +53,16 @@ public class Key {
 
         return EquivalentNoteFinder.findEquivalentNoteMeetsFormat(note, basis);
     }
+
+    public SemitoneCount semitones(Note base, Note target) {
+        return this.interval.semitones(base, target);
+    }
+
+    public Note raise(Note base, SemitoneCount target) {
+        return this.interval.raise(base, target);
+    }
+
+    public DegreeNumber degree(SemitoneCount semitones) {
+        return this.interval.degree(semitones);
+    }
 }
