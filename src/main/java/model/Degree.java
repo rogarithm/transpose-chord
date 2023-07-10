@@ -54,11 +54,11 @@ public class Degree {
         }
     }
 
-    public Note displayBasis(DegreeNumber degreeNumber) {
+    private NoteDisplayBasis displayBasis(DegreeNumber degreeNumber) {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.degreeNumber.equals(degreeNumber)) {
-                return noteDisplayBasis.current;
+                return noteDisplayBasis;
             }
         }
 
@@ -67,7 +67,7 @@ public class Degree {
         );
     }
 
-    public Note displayBasis(Note note) {
+    private NoteDisplayBasis displayBasis(Note note) {
 
         Note basis = note;
         if (!basis.isPlain()) {
@@ -76,7 +76,7 @@ public class Degree {
 
         for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
             if (noteDisplayBasis.current.equals(basis)) {
-                return noteDisplayBasis.current;
+                return noteDisplayBasis;
             }
         }
 
@@ -85,8 +85,27 @@ public class Degree {
         );
     }
 
+    public Note displayBasisNote(DegreeNumber degreeNumber) {
+
+        for (NoteDisplayBasis noteDisplayBasis : NoteDisplayBasis.values()) {
+            if (noteDisplayBasis.degreeNumber.equals(degreeNumber)) {
+                return noteDisplayBasis.current;
+            }
+        }
+
+        throw new IllegalArgumentException(
+                this.getClass().getCanonicalName()
+                        + ": no suitable note representing display basis for degree number of " + degreeNumber
+        );
+    }
+
     private Note getDisplayBasis(Note note) {
         return NoteFactory.create(note.toString().substring(0, 1));
     }
 
+    public boolean compareDisplayBasis(Note note, DegreeNumber degreenumber) {
+        NoteDisplayBasis displaybasis1 = this.displayBasis(note);
+        NoteDisplayBasis displaybasis2 = this.displayBasis(degreenumber);
+        return displaybasis1.equals(displaybasis2);
+    }
 }

@@ -50,13 +50,16 @@ public class Key {
     }
 
     public Note format(Note note, DegreeNumber degreeNumber, Degree degree) {
-        Note resultBasis1 = degree.displayBasis(note);
-        Note resultBasis2 = degree.displayBasis(degreeNumber);
-        boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
+
+        Note result = note;
+
+        boolean needConvertToSharp = !degree.compareDisplayBasis(note, degreeNumber);
         if (needConvertToSharp) {
-            note = this.convertToSharp(note, resultBasis2);
+            Note resultBasis = degree.displayBasisNote(degreeNumber);
+            result = this.convertToSharp(note, resultBasis);
         }
-        return note;
+
+        return result;
     }
 
     public Note convertToSharp(Note note, Note basis) {
