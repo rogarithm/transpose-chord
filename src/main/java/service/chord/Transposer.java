@@ -28,16 +28,16 @@ public class Transposer {
         Note currentBass = NoteFactory.create(chord.getRootNote());
 
         SemitoneCount semitones = currentKey.semitones(currentRoot, currentBass);
-        Note tranposedBass = currentKey.raise(transposedRoot, semitones);
+        Note transposedBass = currentKey.raise(transposedRoot, semitones);
         DegreeNumber degreeNumber =  currentKey.degree(semitones);
 
-        Note resultBasis1 = degree.displayBasis(tranposedBass);
+        Note resultBasis1 = degree.displayBasis(transposedBass);
         Note resultBasis2 = degree.displayBasis(degreeNumber);
         boolean needConvertToSharp = !resultBasis1.equals(resultBasis2);
         if (needConvertToSharp) {
-            tranposedBass = transposedKey.convertToSharpNoteOfSamePitch(tranposedBass, resultBasis2);
+            transposedBass = transposedKey.convertToSharpNoteOfSamePitch(transposedBass, resultBasis2);
         }
 
-        return new Chord(tranposedBass.toString() + chord.getChordTones());
+        return new Chord(transposedBass.toString() + chord.getChordTones());
     }
 }
