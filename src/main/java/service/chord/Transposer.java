@@ -14,12 +14,14 @@ public class Transposer {
     private final Note currentRoot;
     private final Note transposedRoot;
     private final Degree degree;
+    private final Key currentKey;
     private final Key transposedKey;
 
     public Transposer(String currentRoot, String transposedRoot) {
         this.currentRoot = NoteFactory.create(currentRoot);
         this.transposedRoot = NoteFactory.create(transposedRoot);
         this.degree = new Degree(this.transposedRoot);
+        this.currentKey = new Key(this.currentRoot);
         this.transposedKey = new Key(this.transposedRoot);
     }
 
