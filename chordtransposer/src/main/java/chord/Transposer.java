@@ -1,4 +1,4 @@
-package service.chord;
+package chord;
 
 import model.Chord;
 import model.Degree;

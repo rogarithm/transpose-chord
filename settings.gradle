@@ -1,2 +1,5 @@
 rootProject.name = 'chordtransposer'
 
+include 'chordtransposer'
+include 'chordtransposer-cmdline'
+include 'chordtransposer-web'

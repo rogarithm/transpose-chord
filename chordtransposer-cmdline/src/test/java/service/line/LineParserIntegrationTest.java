@@ -2,13 +2,13 @@ package service.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import chord.Transposer;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import model.Chord;
 import model.Line;
 import org.junit.jupiter.api.Test;
-import service.chord.Transposer;
 
 public class LineParserIntegrationTest {
 

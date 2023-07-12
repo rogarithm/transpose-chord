@@ -1,11 +1,11 @@
 package service.line;
 
+import chord.Transposer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.Chord;
 import model.Line;
-import service.chord.Transposer;
 
 public class LineParser implements Parser {
 

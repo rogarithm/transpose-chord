@@ -1,15 +1,16 @@
 package learning.jdk;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
+import chord.Transposer;
+import chord.TransposerFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.Chord;
 import model.Line;
 import org.junit.jupiter.api.Test;
-import service.chord.Transposer;
-import service.chord.TransposerFactory;
 
 public class StreamTest {
 

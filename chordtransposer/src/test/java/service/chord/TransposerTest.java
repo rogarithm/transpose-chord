@@ -2,6 +2,7 @@ package service.chord;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import chord.Transposer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/chordtransposer" />
+            <option value="$PROJECT_DIR$/chordtransposer-cmdline" />
+            <option value="$PROJECT_DIR$/chordtransposer-web" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,12 +1,12 @@
+import chord.Transposer;
+import chord.TransposerFactory;
 import java.util.List;
 import model.Line;
 import service.TransposeService;
-import service.chord.Transposer;
-import service.chord.TransposerFactory;
 import service.file.DefaultFileHandler;
+import service.file.FileHandlerFactory;
 import service.line.LineParserFactory;
 import service.line.Parser;
-import service.file.FileHandlerFactory;
 
 public class Main {
 

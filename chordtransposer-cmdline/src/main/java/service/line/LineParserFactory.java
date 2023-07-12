@@ -1,6 +1,6 @@
 package service.line;
 
-import service.chord.Transposer;
+import chord.Transposer;
 
 public class LineParserFactory {
 

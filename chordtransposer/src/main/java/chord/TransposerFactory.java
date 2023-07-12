@@ -1,4 +1,4 @@
-package service.chord;
+package chord;
 
 public class TransposerFactory {
 
