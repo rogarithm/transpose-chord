@@ -2,11 +2,8 @@ plugins {
     id 'java'
 }
 
-group 'kr.rogarithm'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+java {
+    sourceCompatibility = '11'
 }
 
 dependencies {
